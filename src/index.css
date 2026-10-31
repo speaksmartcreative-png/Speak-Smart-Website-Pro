@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand: #3dabab;
+  --color-brand-hover: #329696;
+  --color-brand-active: #277979;
+  --color-brand-light: #ebf7f7;
+  --color-brand-tint: #c5ebeb;
+  --color-brand-dark: #1f5e5e;
+  --color-brand-deep: #0c2121;
+}
+
+@font-face {
+  font-family: 'Hand of Sean';
+  font-style: normal;
+  font-weight: 100 900;
+  src: url('/fonts/handsean.woff') format('woff'),
+       url('https://fonts.cdnfonts.com/s/9309/handsean.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hand Of Sean';
+  font-style: normal;
+  font-weight: 100 900;
+  src: url('/fonts/handsean.woff') format('woff'),
+       url('https://fonts.cdnfonts.com/s/9309/handsean.woff') format('woff');
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-script: 'Hand of Sean', 'Hand Of Sean', 'Caveat', cursive, sans-serif;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: #000000;
+    background-color: #ffffff;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  .font-script {
+    font-family: var(--font-script);
+  }
+}
