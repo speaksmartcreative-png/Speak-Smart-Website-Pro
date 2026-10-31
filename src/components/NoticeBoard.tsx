@@ -221,7 +221,7 @@ export const NoticeBoard: React.FC<NoticeBoardProps> = ({
               <div className="p-3 bg-stone-50 rounded-lg border border-stone-200 text-xs text-stone-700 space-y-1 mb-6">
                 <div className="flex items-center gap-2">
                   <MapPin className="w-3.5 h-3.5 text-[#3dabab]" />
-                  <span><strong>Location / Venue:</strong> {activeNotice.venue || 'Grand Oratory Hall, SpeakSmart'}</span>
+                  <span><strong>Location / Venue:</strong> {activeNotice.venue || 'Grand Auditorium, SpeakSmart'}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Clock className="w-3.5 h-3.5 text-[#3dabab]" />

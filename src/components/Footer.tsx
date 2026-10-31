@@ -62,7 +62,7 @@ export const Footer: React.FC<FooterProps> = () => {
               About the Centre
             </h4>
             <p className="text-sm text-stone-600 leading-relaxed">
-              Kolkata's premier communication studio for youth oratory, intellectual poise, and leadership communication. Official home to the ARISTRI™ Examination Board (Express • Evolve • Excel).
+              Kolkata's premier communication studio for youth public speaking, intellectual poise, and leadership communication. Official home to the ARISTRI™ Examination Board (Express • Evolve • Excel).
             </p>
             <p className="text-xs text-stone-500 italic pt-1">
               Academic direction conceived by Founder Sreela Mitra.

@@ -120,7 +120,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
               Transformations on the Podium
             </h2>
             <p className="text-stone-600 text-sm sm:text-base mt-2 max-w-2xl">
-              Hear directly from our student orators who conquered stage anxiety and the parents who witnessed their profound personal and academic evolution.
+              Hear directly from our student speakers who conquered stage anxiety and the parents who witnessed their profound personal and academic evolution.
             </p>
           </div>
 
@@ -187,7 +187,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
               className="bg-white border border-stone-300 rounded px-2.5 py-1.5 text-xs text-black font-medium focus:outline-[#3dabab] cursor-pointer"
             >
               <option value="all">All Cohorts & Programs</option>
-              <option value="junior">Junior Orators (7-10 yrs)</option>
+              <option value="junior">Junior Communicators (7-10 yrs)</option>
               <option value="teen">Teen Communicators (11-14 yrs)</option>
               <option value="aristri">ARISTRI™ Examination Track</option>
             </select>
@@ -212,7 +212,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
               <div className="lg:col-span-8 space-y-4">
                 <div className="flex items-center gap-2 text-xs text-[#3dabab] font-bold uppercase tracking-wider">
                   <Award className="w-4 h-4 text-[#3dabab]" />
-                  <span>Spotlight Orator · Class of 2026</span>
+                  <span>Spotlight Speaker · Class of 2026</span>
                 </div>
                 <h3 className="text-xl sm:text-2xl font-bold text-black font-display">
                   &ldquo;SpeakSmart taught me that nervous energy is just fuel waiting for direction.&rdquo;
@@ -373,7 +373,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
               Ready to witness your child&apos;s breakthrough on stage?
             </h4>
             <p className="text-xs sm:text-sm text-stone-600 mt-1">
-              Join the upcoming semester cohort. Strictly capped at 12 orators per studio batch.
+              Join the upcoming semester cohort. Strictly capped at 12 students per studio batch.
             </p>
           </div>
           <button
@@ -463,7 +463,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
                         onChange={(e) => setReviewForm({ ...reviewForm, program: e.target.value })}
                         className="w-full px-3 py-2 border border-stone-300 rounded focus:outline-[#3dabab] text-xs font-medium text-black"
                       >
-                        <option>SpeakSmart Junior Orators</option>
+                        <option>SpeakSmart Junior Communicators</option>
                         <option>SpeakSmart Teen Communicators</option>
                         <option>ARISTRI™ Examination Fellowship</option>
                         <option>Impromptu Bootcamp</option>

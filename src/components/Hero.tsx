@@ -99,30 +99,107 @@ export const Hero: React.FC<HeroProps> = ({
             </div>
           </div>
 
-          {/* Right Column: Hero Stage Image Asset */}
+          {/* Right Column: Leadership Showcase (Founder & Co-Founder Cutouts) */}
           <div className="lg:col-span-5 relative">
-            <div className="relative rounded-2xl overflow-hidden border border-stone-200 shadow-xl bg-stone-100">
-              <img
-                src="/src/assets/images/speaksmart_hero_stage_1793341836932.jpg"
-                alt="Young confident student orator speaking at SpeakSmart auditorium podium"
-                referrerPolicy="no-referrer"
-                className="w-full h-80 sm:h-96 lg:h-[430px] object-cover object-top hover:scale-[1.02] transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-stone-950/60 via-transparent to-transparent pointer-events-none" />
+            {/* Subtle background glow */}
+            <div className="absolute -inset-2 bg-gradient-to-r from-[#3dabab]/20 to-teal-100 rounded-3xl blur-xl opacity-70 pointer-events-none" />
+
+            <div className="relative rounded-3xl overflow-hidden border border-stone-200/90 shadow-2xl bg-white p-5 sm:p-6 space-y-4">
               
-              {/* Overlay card */}
-              <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-white/95 backdrop-blur-md border border-[#3dabab]/30 shadow-lg text-xs">
-                <div className="flex items-center justify-between text-stone-700 mb-1">
-                  <span className="font-bold text-stone-950 flex items-center gap-1.5">
-                    <Mic2 className="w-3.5 h-3.5 text-[#3dabab]" />
-                    Grand Oratory Stage Showcase
+              {/* Card Header */}
+              <div className="flex items-center justify-between pb-3 border-b border-stone-100">
+                <div className="flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#3dabab] animate-pulse" />
+                  <span className="text-[11px] font-bold tracking-widest uppercase text-[#1f5e5e]">
+                    SpeakSmart Leadership
                   </span>
-                  <span className="text-[#1f5e5e] font-mono font-bold">Live In-Studio</span>
                 </div>
-                <p className="text-stone-600 text-[11px] leading-snug">
-                  Every enrolled student steps onto our auditorium stage with professional lighting, broadcast microphones, and live audience debriefs.
-                </p>
+                <span className="text-[10px] font-mono text-stone-500 bg-stone-100 px-2 py-0.5 rounded-md border border-stone-200">
+                  LLPIN: ACO-6485
+                </span>
               </div>
+
+              {/* Dual Cutout Portraits Grid */}
+              <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                
+                {/* 1. FOUNDER (Green Dress) */}
+                <div className="group relative rounded-2xl overflow-hidden bg-gradient-to-b from-[#e6f4f4] via-stone-50 to-white border border-[#3dabab]/30 p-2 sm:p-3 flex flex-col transition-all hover:shadow-md hover:border-[#3dabab]">
+                  {/* Cutout Image Container */}
+                  <div className="relative aspect-[3/4] w-full rounded-xl overflow-hidden bg-stone-100 shadow-inner">
+                    <img
+                      src="/assets/aistudio/founder_sreela_mitra.jpeg"
+                      alt="Founder Mrs. Sreela Mitra in green dress"
+                      className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    />
+                    {/* Founder Badge Overlay */}
+                    <div className="absolute top-2 left-2">
+                      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-[#3dabab] text-white shadow-md">
+                        ★ Founder
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Profile Details */}
+                  <div className="pt-3 text-center sm:text-left space-y-0.5">
+                    <h4 className="text-xs sm:text-sm font-extrabold text-stone-950 font-display leading-tight">
+                      Mrs. Sreela Mitra
+                    </h4>
+                    <p className="text-[11px] font-bold text-[#1f5e5e]">
+                      Founder &amp; Director
+                    </p>
+                    <p className="text-[10px] text-stone-500 leading-snug pt-1 line-clamp-2">
+                      Conceiver of ARISTRI™ framework &amp; pedagogy
+                    </p>
+                  </div>
+                </div>
+
+                {/* 2. CO-FOUNDER (Printed Dress) */}
+                <div className="group relative rounded-2xl overflow-hidden bg-gradient-to-b from-stone-50 via-stone-50 to-white border border-stone-200 p-2 sm:p-3 flex flex-col transition-all hover:shadow-md hover:border-[#3dabab]">
+                  {/* Cutout Image Container */}
+                  <div className="relative aspect-[3/4] w-full rounded-xl overflow-hidden bg-stone-100 shadow-inner">
+                    <img
+                      src="/assets/aistudio/co_founder_speaksmart.jpeg"
+                      alt="Co-Founder SpeakSmart Centre for Communication"
+                      className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    />
+                    {/* Co-Founder Badge Overlay */}
+                    <div className="absolute top-2 left-2">
+                      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-stone-900 text-white shadow-md">
+                        Co-Founder
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Profile Details */}
+                  <div className="pt-3 text-center sm:text-left space-y-0.5">
+                    <h4 className="text-xs sm:text-sm font-extrabold text-stone-950 font-display leading-tight">
+                      Co-Founder
+                    </h4>
+                    <p className="text-[11px] font-bold text-[#1f5e5e]">
+                      Executive Director
+                    </p>
+                    <p className="text-[10px] text-stone-500 leading-snug pt-1 line-clamp-2">
+                      Operations, mentorship &amp; student growth
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+
+              {/* Bottom Quote / Institutional Note */}
+              <div className="pt-2 border-t border-stone-100 flex items-center justify-between text-[11px]">
+                <p className="text-stone-600 italic truncate mr-2">
+                  &ldquo;Nurturing authentic voices from Kolkata to the world.&rdquo;
+                </p>
+                <a
+                  href="#what-is-speaksmart"
+                  className="font-bold text-[#1f5e5e] hover:text-[#3dabab] whitespace-nowrap hover:underline flex items-center gap-1 shrink-0"
+                >
+                  <span>Meet Founders</span>
+                  <span>→</span>
+                </a>
+              </div>
+
             </div>
           </div>
 

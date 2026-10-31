@@ -144,6 +144,173 @@ export const WhatIsSpeakSmart: React.FC<WhatIsSpeakSmartProps> = ({
           </div>
         </div>
 
+        {/* ======================================================== */}
+        {/* FOUNDING LEADERSHIP SHOWCASE (FOUNDER & CO-FOUNDER) */}
+        {/* ======================================================== */}
+        <div className="mb-16">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+            <div>
+              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#1f5e5e] mb-1">
+                <Sparkles className="w-4 h-4 text-[#3dabab]" />
+                <span>Founding Leadership &amp; Direction</span>
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-stone-950 font-display">
+                Meet the Founders of <span className="font-script text-3xl sm:text-4xl text-[#3dabab]">SpeakSmart</span>
+              </h3>
+              <p className="text-xs sm:text-sm text-stone-600 mt-1 max-w-2xl">
+                The visionary leadership pioneering communication as an essential, transformative life skill for youth and emerging leaders.
+              </p>
+            </div>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#f2f9f9] border border-[#3dabab]/30 text-[#1f5e5e] text-xs font-bold">
+              <span>Kolkata Centre</span>
+              <span className="text-stone-300">·</span>
+              <span className="font-mono text-stone-600">LLPIN: ACO-6485</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+            
+            {/* 1. FOUNDER: Mrs. Sreela Mitra (Green Dress) */}
+            <div className="group rounded-3xl bg-gradient-to-br from-[#f2f9f9] via-white to-stone-50 border border-[#3dabab]/30 p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#3dabab]/10 rounded-bl-full pointer-events-none" />
+              
+              <div className="space-y-6">
+                {/* Header Badge */}
+                <div className="flex items-center justify-between">
+                  <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-[#3dabab] text-white shadow-sm">
+                    ★ Founder
+                  </span>
+                  <span className="text-[11px] font-mono font-bold text-[#1f5e5e]">
+                    Pedagogical Architect
+                  </span>
+                </div>
+
+                {/* Cutout Portrait Showcase */}
+                <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5">
+                  <div className="relative w-36 h-48 sm:w-40 sm:h-52 rounded-2xl overflow-hidden border-2 border-white shadow-xl shrink-0 bg-stone-100 ring-2 ring-[#3dabab]/30">
+                    <img
+                      src="/assets/aistudio/founder_sreela_mitra.jpeg"
+                      alt="Founder Mrs. Sreela Mitra in green dress"
+                      className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                    <span className="absolute bottom-2 left-2 right-2 text-center text-[10px] font-extrabold text-white uppercase tracking-wider bg-black/60 backdrop-blur-xs py-0.5 rounded">
+                      Founder
+                    </span>
+                  </div>
+
+                  <div className="space-y-2 text-center sm:text-left">
+                    <h4 className="text-xl sm:text-2xl font-extrabold text-stone-950 font-display">
+                      Mrs. Sreela Mitra
+                    </h4>
+                    <p className="text-xs font-bold text-[#1f5e5e] uppercase tracking-wide">
+                      Founder &amp; Chief Pedagogical Director
+                    </p>
+                    <p className="text-xs text-stone-600 leading-relaxed pt-1">
+                      Conceiver and author of the copyrighted <strong>ARISTRI™ Framework</strong> (Express • Evolve • Excel) and the SpeakSmart pedagogy.
+                    </p>
+                    <div className="pt-2 flex flex-wrap gap-1.5 justify-center sm:justify-start">
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-white text-stone-700 border border-stone-200">
+                        Educator
+                      </span>
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-white text-stone-700 border border-stone-200">
+                        Entrepreneur
+                      </span>
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-white text-stone-700 border border-stone-200">
+                        Visionary
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Founder Quote */}
+                <blockquote className="p-4 rounded-xl bg-white border border-[#3dabab]/20 text-xs text-stone-700 italic leading-relaxed relative">
+                  <Quote className="w-4 h-4 text-[#3dabab]/40 absolute top-2 right-2" />
+                  &ldquo;At SpeakSmart, we don&apos;t just train podium speakers; we teach communication as an empowering life skill that shapes how children connect, empathize, and lead.&rdquo;
+                </blockquote>
+              </div>
+
+              <div className="mt-6 pt-4 border-t border-stone-200/80 flex items-center justify-between text-xs">
+                <span className="text-stone-500 font-medium">Conceived ARISTRI™</span>
+                <span className="font-bold text-[#1f5e5e] flex items-center gap-1">
+                  <span>Pedagogical Leader</span>
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#3dabab]" />
+                </span>
+              </div>
+            </div>
+
+            {/* 2. CO-FOUNDER (Printed Dress) */}
+            <div className="group rounded-3xl bg-gradient-to-br from-stone-50 via-white to-[#f2f9f9] border border-stone-300 p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-stone-200/40 rounded-bl-full pointer-events-none" />
+              
+              <div className="space-y-6">
+                {/* Header Badge */}
+                <div className="flex items-center justify-between">
+                  <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-stone-900 text-white shadow-sm">
+                    Co-Founder
+                  </span>
+                  <span className="text-xs font-semibold text-stone-600">
+                    Executive Operations
+                  </span>
+                </div>
+
+                {/* Cutout Portrait Showcase */}
+                <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5">
+                  <div className="relative w-36 h-48 sm:w-40 sm:h-52 rounded-2xl overflow-hidden border-2 border-white shadow-xl shrink-0 bg-stone-100 ring-2 ring-stone-300">
+                    <img
+                      src="/assets/aistudio/co_founder_speaksmart.jpeg"
+                      alt="Co-Founder of SpeakSmart Centre for Communication"
+                      className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                    <span className="absolute bottom-2 left-2 right-2 text-center text-[10px] font-extrabold text-white uppercase tracking-wider bg-black/60 backdrop-blur-xs py-0.5 rounded">
+                      Co-Founder
+                    </span>
+                  </div>
+
+                  <div className="space-y-2 text-center sm:text-left">
+                    <h4 className="text-xl sm:text-2xl font-extrabold text-stone-950 font-display">
+                      Co-Founder
+                    </h4>
+                    <p className="text-xs font-bold text-[#1f5e5e] uppercase tracking-wide">
+                      Co-Founder &amp; Executive Director
+                    </p>
+                    <p className="text-xs text-stone-600 leading-relaxed pt-1">
+                      Directing institutional development, parent engagement, cohort expansion, and student performance showcases across SpeakSmart studios.
+                    </p>
+                    <div className="pt-2 flex flex-wrap gap-1.5 justify-center sm:justify-start">
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-white text-stone-700 border border-stone-200">
+                        Student Growth
+                      </span>
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-white text-stone-700 border border-stone-200">
+                        Studio Mentorship
+                      </span>
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-white text-stone-700 border border-stone-200">
+                        Operations
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Co-Founder Quote */}
+                <blockquote className="p-4 rounded-xl bg-white border border-stone-200 text-xs text-stone-700 italic leading-relaxed relative">
+                  <Quote className="w-4 h-4 text-stone-400 absolute top-2 right-2" />
+                  &ldquo;Every student possesses an authentic, powerful voice. Our mission is providing the encouraging environment, podium practice, and guidance so they blossom with confidence.&rdquo;
+                </blockquote>
+              </div>
+
+              <div className="mt-6 pt-4 border-t border-stone-200/80 flex items-center justify-between text-xs">
+                <span className="text-stone-500 font-medium">Student &amp; Institutional Growth</span>
+                <span className="font-bold text-stone-900 flex items-center gap-1">
+                  <span>Executive Director</span>
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#3dabab]" />
+                </span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
         {/* FEATURED FOUNDER VIDEO BROADCAST PLAYER (YOUTUBE READY) */}
         <div className="mb-16 rounded-2xl bg-stone-950 text-white border border-stone-800 shadow-2xl overflow-hidden">
           <div className="p-4 sm:p-5 border-b border-stone-800 bg-stone-900/90 flex flex-wrap items-center justify-between gap-4">

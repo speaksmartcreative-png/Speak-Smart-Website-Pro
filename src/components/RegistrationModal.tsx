@@ -443,7 +443,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
               <div className="space-y-4">
                 <div>
                   <label className="block text-xs font-bold text-black mb-2">
-                    Primary Oratory Goals (Select all that apply)
+                    Primary Communication &amp; Speaking Goals (Select all that apply)
                   </label>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {goalOptions.map((goal) => {
@@ -489,7 +489,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                     <span>Institute Rules & Attendance Acknowledgment</span>
                   </div>
                   <p className="text-[11px] text-stone-600 leading-snug">
-                    I acknowledge that oratory proficiency requires consistent practice. I agree to the SpeakSmart <strong>85% attendance policy</strong> for showcase qualification, weekly 2-minute speech practice recordings, and the podium etiquette code.
+                    I acknowledge that communication proficiency requires consistent practice. I agree to the SpeakSmart <strong>85% attendance policy</strong> for showcase qualification, weekly 2-minute speech practice recordings, and the podium etiquette code.
                   </p>
                   <label className="flex items-center gap-2 pt-2 cursor-pointer">
                     <input

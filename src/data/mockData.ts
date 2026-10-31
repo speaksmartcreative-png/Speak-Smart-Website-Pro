@@ -3,20 +3,20 @@ import { NoticeItem, StudentTestimonial, ParentTestimonial, RuleCategory } from 
 export const NOTICES: NoticeItem[] = [
   {
     id: 'notice-01',
-    title: 'Semester Final Oratory Jury Examination & Podium Assessments',
+    title: 'Semester Final Communication Jury Examination & Podium Assessments',
     category: 'Exam',
     date: 'Nov 14 – Nov 16, 2026',
     effectiveDate: '2026-11-14',
     isUrgent: true,
     summary: 'Official schedule for the end-of-semester formal jury evaluations across all junior and senior cohorts.',
     details: [
-      'Junior Orators (Level 1 & 2): Saturday, Nov 14, 09:30 AM – 01:00 PM (Auditorium A)',
+      'Junior Communicators (Level 1 & 2): Saturday, Nov 14, 09:30 AM – 01:00 PM (Auditorium A)',
       'Teen Communicators & Rhetoric: Sunday, Nov 15, 10:00 AM – 02:30 PM (Main Chamber)',
       'ARISTRI™ Live Examination & Assessments: Monday, Nov 16, 04:00 PM – 07:30 PM (Individual examiners assess live on the spot with Double Certification from GOI and SpeakSmart).',
       'Evaluation criteria: Presentation of ideas & arguments (30%), Live questions & handling on feet (25%), Vocal resonance & modulation (25%), Objective-focussed communication (20%).',
       'All candidates receive meaningful written feedback for every task along with their score card.'
     ],
-    venue: 'Grand Oratory Hall & ARISTRI Examination Chamber, SpeakSmart Campus',
+    venue: 'Grand Auditorium & ARISTRI Examination Chamber, SpeakSmart Campus',
     attachmentName: 'ARISTRI_Exam_Jury_Schedule_Nov2026.pdf'
   },
   {
@@ -62,7 +62,7 @@ export const NOTICES: NoticeItem[] = [
     isUrgent: true,
     summary: 'Early seat reservation for the upcoming 16-week spring term with complimentary stage diagnostic.',
     details: [
-      'Batches available for Junior Orators (7-10 yrs), Teen Rhetoric (11-14 yrs), and Aristri Fellows (15-19 yrs).',
+      'Batches available for Junior Communicators (7-10 yrs), Teen Rhetoric (11-14 yrs), and Aristri Fellows (15-19 yrs).',
       'Batch size strictly capped at 12 students per studio to ensure weekly individual podium time.',
       'Complimentary 15-minute voice & confidence diagnostic evaluation included with early registration.'
     ],
@@ -111,7 +111,7 @@ export const STUDENT_TESTIMONIALS: StudentTestimonial[] = [
     cohort: 'Cohort Fall 2025',
     speechTopic: '"The Ethics of Gene Editing: Voice for the Unspoken"',
     quote: 'Before SpeakSmart, standing in front of a class felt paralyzing. My hands would tremor and I would rush through my slides. At Aristri, they taught me that pause is power. Last month, I took 1st place at the National Youth Forensics Invitational with a 7-minute speech.',
-    achievement: '1st Place Orator · National Youth Forensics 2026',
+    achievement: '1st Place Speaker · National Youth Forensics 2026',
     avatarInitials: 'SJ',
     accentColor: 'from-amber-600 to-amber-700'
   },
@@ -143,11 +143,11 @@ export const STUDENT_TESTIMONIALS: StudentTestimonial[] = [
     id: 'st-04',
     name: 'David Adebayo',
     ageOrGrade: 'Grade 5 · 10 years',
-    program: 'SpeakSmart Junior Orators',
+    program: 'SpeakSmart Junior Communicators',
     cohort: 'Cohort Summer 2026',
     speechTopic: '"If Animals Could Talk: My Campaign for Wildlife"',
     quote: 'I used to whisper when talking to adults because I thought my voice sounded squeaky. Coach Maya taught me how to breathe like a lion and use facial expressions. Doing my speech in front of 200 parents at the graduation gala was the best day ever!',
-    achievement: 'Junior Orator of the Year · SpeakSmart Gala 2026',
+    achievement: 'Junior Speaker of the Year · SpeakSmart Gala 2026',
     avatarInitials: 'DA',
     accentColor: 'from-indigo-600 to-indigo-700'
   },
@@ -205,7 +205,7 @@ export const PARENT_TESTIMONIALS: ParentTestimonial[] = [
     parentName: 'Dr. Marcus Adebayo',
     childName: 'David Adebayo',
     childGrade: 'Elementary School · 10 yrs',
-    programEnrolled: 'Junior Orators Foundation',
+    programEnrolled: 'Junior Communicators Foundation',
     quote: 'Children today spend so much time on digital screens that verbal eloquence is becoming a lost art. SpeakSmart bridges that gap with incredible energy and warmth. David now speaks with clarity, looks people in the eye, and articulates his points with mature logic.',
     outcomeMetric: 'Exceptional verbal expression & leadership growth',
     location: 'West Campus Area',
@@ -412,13 +412,13 @@ export const RULES_AND_REGULATIONS: RuleCategory[] = [
 export const PROGRAMS_LIST = [
   {
     id: 'prog-junior',
-    name: 'SpeakSmart Junior Orators',
+    name: 'SpeakSmart Junior Communicators',
     ageRange: 'Ages 7 – 10 (Grades 2 – 5)',
     duration: '16-Week Semester · 2 hrs / week',
     focus: 'Overcoming Shyness, Vocal Projection, Creative Storytelling & Stage Body Language',
     batches: ['Saturday 09:30 AM – 11:30 AM', 'Sunday 10:00 AM – 12:00 PM', 'Tuesday 04:30 PM – 06:30 PM'],
     fee: '$480 / semester (Includes workbook, studio recordings & showcase entry)',
-    badge: 'Foundation Oratory'
+    badge: 'Foundation Speaking'
   },
   {
     id: 'prog-teen',
@@ -428,7 +428,7 @@ export const PROGRAMS_LIST = [
     focus: 'Thought Architecture, Extempore Speaking, Class Presentations, Debate Basics & Interview Composure',
     batches: ['Saturday 01:00 PM – 03:30 PM', 'Sunday 02:00 PM – 04:30 PM', 'Thursday 05:00 PM – 07:30 PM'],
     fee: '$560 / semester (Includes studio diagnostics & mid-term jury)',
-    badge: 'Core Oratory'
+    badge: 'Core Speaking'
   },
   {
     id: 'prog-aristri',

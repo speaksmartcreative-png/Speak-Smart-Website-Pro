@@ -162,7 +162,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     </div>
                     <div>
                       <span className="block font-bold text-stone-900">Student Testimonials</span>
-                      <span className="text-[10px] text-stone-500 font-normal">Orator stories &amp; victories</span>
+                      <span className="text-[10px] text-stone-500 font-normal">Student speaker journeys &amp; victories</span>
                     </div>
                   </button>
 
