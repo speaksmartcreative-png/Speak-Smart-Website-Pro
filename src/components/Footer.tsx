@@ -102,9 +102,12 @@ export const Footer: React.FC<FooterProps> = () => {
                 <ExternalLink className="w-3 h-3" />
               </a>
             </div>
-            <div className="pt-2 text-xs text-stone-500 flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5 text-stone-400" />
-              <span>Tue – Sun: 9:00 AM – 8:00 PM (Mon Closed)</span>
+            <div className="pt-2 text-xs text-stone-600 flex items-start gap-1.5">
+              <Clock className="w-3.5 h-3.5 text-stone-400 shrink-0 mt-0.5" />
+              <span className="leading-snug">
+                <span className="font-semibold text-stone-800">Mon – Fri:</span> 11:00 AM – 6:30 PM<br />
+                <span className="font-semibold text-stone-800">Sat:</span> 10:00 AM – 5:30 PM
+              </span>
             </div>
           </div>
 

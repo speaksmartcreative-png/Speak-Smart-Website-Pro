@@ -1,5 +1,5 @@
-import React from 'react';
-import { ArrowRight, ShieldCheck, Award, Mic2, Sparkles, BookOpen, Clock, Calendar } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowRight, ShieldCheck, Award, Mic2, Sparkles, BookOpen, Clock, Calendar, Star, ChevronLeft, ChevronRight, Trophy } from 'lucide-react';
 import { PageView } from '../types';
 
 interface HeroProps {
@@ -8,11 +8,55 @@ interface HeroProps {
   onSelectRuleCategory?: (ruleId: string) => void;
 }
 
+const STAR_STUDENTS = [
+  {
+    id: 'star-1',
+    name: 'Ishita S.',
+    grade: 'Grade 9 · Teen Cohort',
+    achievement: 'National Youth Debate Winner',
+    tag: 'Spotlight Speaker',
+    image: '/assets/aistudio/ISHITA__c535712c.jpg',
+    speechHighlight: 'Mastered impromptu argumentation and stage poise across 16 weeks of studio training.',
+    badge: '🏆 1st Prize · Forensics'
+  },
+  {
+    id: 'star-2',
+    name: 'Aarav Sharma',
+    grade: 'Grade 8 · 13 Years',
+    achievement: 'Best Speaker & School Assembly Host',
+    tag: 'Core Communication',
+    image: '/src/assets/images/student_showcase_trophy_1793341838129.jpg',
+    speechHighlight: 'Overcame paralyzing stage fright; now leads assemblies and captains inter-school debates.',
+    badge: '⭐ Stage Breakthrough'
+  },
+  {
+    id: 'star-3',
+    name: 'Chloe Vance',
+    grade: 'High School Senior · 17 Years',
+    achievement: 'ARISTRI™ Fellowship Distinction',
+    tag: 'Advanced Rhetoric',
+    image: '/src/assets/images/aristri_rhetoric_workshop_1793341838445.jpg',
+    speechHighlight: 'Earned distinction in live on-the-spot jury examinations with GOI and SpeakSmart certification.',
+    badge: '🎖️ Double Certified'
+  },
+  {
+    id: 'star-4',
+    name: 'David Adebayo',
+    grade: 'Grade 5 · Junior Communicator',
+    achievement: 'Junior Speaker of the Year',
+    tag: 'Foundation Track',
+    image: '/src/assets/images/parent_student_coaching_1793341838500.jpg',
+    speechHighlight: 'Delivered keynote speech in front of 200 parents at the SpeakSmart Semester Gala.',
+    badge: '🌟 Young Achiever'
+  }
+];
+
 export const Hero: React.FC<HeroProps> = ({
   onOpenRegister,
   onNavigate,
   onSelectRuleCategory,
 }) => {
+  const [activeStarIdx, setActiveStarIdx] = useState(0);
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-[#f2f9f9] via-white to-stone-50 text-stone-900 py-12 md:py-20 lg:py-24 border-b border-stone-200">
       {/* Background glow accents in brand colour #3dabab */}
@@ -39,7 +83,7 @@ export const Hero: React.FC<HeroProps> = ({
                 className="text-[#1f5e5e] hover:text-[#3dabab] font-bold lowercase sm:normal-case hover:underline inline-flex items-center gap-1"
                 title="View campus location in Google Maps"
               >
-                <span>📍 Shivam Chambers, Kolkata</span>
+                <span>📍 SpeakSmart, Kolkata</span>
               </a>
             </div>
 
@@ -48,7 +92,7 @@ export const Hero: React.FC<HeroProps> = ({
             </h1>
 
             <p className="text-base sm:text-lg text-stone-600 leading-relaxed max-w-2xl">
-              <strong className="text-stone-900">SpeakSmart Centre for Communication</strong> (LLPIN: ACO-6485) — conceived by Founder <strong className="text-stone-900">Mrs. Sreela Mitra</strong> at Shivam Chambers, Kolkata. We prepare students for every human communication format: debates, interviews, business negotiations, storytelling, media soundbites, and the <strong className="text-stone-900">ARISTRI™ Examination System</strong>.
+              <strong className="text-stone-900">SpeakSmart Centre for Communication</strong> (LLPIN: ACO-6485) — conceived by Founder <strong className="text-stone-900">Mrs. Sreela Mitra</strong> at SpeakSmart, Kolkata. We prepare students for every human communication format: debates, interviews, business negotiations, storytelling, media soundbites, and the <strong className="text-stone-900">ARISTRI™ Examination System</strong>.
             </p>
 
             {/* Primary Action Buttons */}
@@ -99,105 +143,134 @@ export const Hero: React.FC<HeroProps> = ({
             </div>
           </div>
 
-          {/* Right Column: Leadership Showcase (Founder & Co-Founder Cutouts) */}
+          {/* Right Column: Star Students Showcase */}
           <div className="lg:col-span-5 relative">
-            {/* Subtle background glow */}
-            <div className="absolute -inset-2 bg-gradient-to-r from-[#3dabab]/20 to-teal-100 rounded-3xl blur-xl opacity-70 pointer-events-none" />
+            {/* Subtle card glow */}
+            <div className="absolute -inset-1.5 bg-gradient-to-r from-amber-200/50 via-[#3dabab]/20 to-teal-100 rounded-3xl blur-lg opacity-70 pointer-events-none" />
 
-            <div className="relative rounded-3xl overflow-hidden border border-stone-200/90 shadow-2xl bg-white p-5 sm:p-6 space-y-4">
+            <div className="relative rounded-3xl overflow-hidden border border-stone-200 shadow-xl bg-white p-5 sm:p-6 space-y-4">
               
-              {/* Card Header */}
+              {/* Header */}
               <div className="flex items-center justify-between pb-3 border-b border-stone-100">
                 <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#3dabab] animate-pulse" />
-                  <span className="text-[11px] font-bold tracking-widest uppercase text-[#1f5e5e]">
-                    SpeakSmart Leadership
+                  <div className="w-8 h-8 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center shadow-xs">
+                    <Star className="w-4 h-4 fill-amber-500 text-amber-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-extrabold text-stone-950 font-display leading-tight flex items-center gap-1.5">
+                      <span>Star Students</span>
+                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-200 font-sans font-bold">
+                        Hall of Fame
+                      </span>
+                    </h3>
+                    <p className="text-[11px] text-stone-500 font-medium">
+                      Student breakthroughs &amp; stage honors
+                    </p>
+                  </div>
+                </div>
+
+                {/* Carousel Navigation Buttons */}
+                <div className="flex items-center gap-1">
+                  <button
+                    onClick={() => setActiveStarIdx((prev) => (prev === 0 ? STAR_STUDENTS.length - 1 : prev - 1))}
+                    className="p-1.5 rounded-lg border border-stone-200 hover:bg-stone-100 text-stone-600 transition-colors cursor-pointer"
+                    aria-label="Previous star student"
+                    title="Previous student"
+                  >
+                    <ChevronLeft className="w-3.5 h-3.5" />
+                  </button>
+                  <span className="text-[11px] font-mono text-stone-500 px-1 font-semibold">
+                    {activeStarIdx + 1}/{STAR_STUDENTS.length}
                   </span>
+                  <button
+                    onClick={() => setActiveStarIdx((prev) => (prev === STAR_STUDENTS.length - 1 ? 0 : prev + 1))}
+                    className="p-1.5 rounded-lg border border-stone-200 hover:bg-stone-100 text-stone-600 transition-colors cursor-pointer"
+                    aria-label="Next star student"
+                    title="Next student"
+                  >
+                    <ChevronRight className="w-3.5 h-3.5" />
+                  </button>
                 </div>
-                <span className="text-[10px] font-mono text-stone-500 bg-stone-100 px-2 py-0.5 rounded-md border border-stone-200">
-                  LLPIN: ACO-6485
+              </div>
+
+              {/* Active Star Student Feature Card */}
+              {(() => {
+                const student = STAR_STUDENTS[activeStarIdx];
+                return (
+                  <div className="space-y-3.5">
+                    <div className="flex items-start gap-3.5">
+                      {/* Student Portrait / Photo */}
+                      <div className="relative w-20 h-24 sm:w-22 sm:h-28 rounded-xl overflow-hidden shrink-0 border border-stone-200 shadow-sm bg-stone-100">
+                        <img
+                          src={student.image}
+                          alt={student.name}
+                          className="w-full h-full object-cover object-top"
+                        />
+                        <div className="absolute top-1 left-1">
+                          <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-black/70 text-white backdrop-blur-xs">
+                            {student.tag}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Info & Achievements */}
+                      <div className="space-y-1 flex-1 min-w-0">
+                        <div className="flex items-center gap-1.5 flex-wrap">
+                          <h4 className="text-base font-extrabold text-stone-950 font-display truncate">
+                            {student.name}
+                          </h4>
+                          <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#f2f9f9] text-[#1f5e5e] border border-[#3dabab]/30 font-bold">
+                            {student.badge}
+                          </span>
+                        </div>
+                        <p className="text-[11px] font-bold text-[#1f5e5e]">
+                          {student.grade}
+                        </p>
+                        <p className="text-xs font-semibold text-stone-900 leading-snug">
+                          {student.achievement}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Speech Highlight / Testimonial Quote */}
+                    <div className="p-3 rounded-xl bg-gradient-to-r from-stone-50 via-white to-stone-50 border border-stone-200 text-xs text-stone-700 leading-snug">
+                      <p className="italic">
+                        &ldquo;{student.speechHighlight}&rdquo;
+                      </p>
+                    </div>
+                  </div>
+                );
+              })()}
+
+              {/* Student Quick Pill Selectors */}
+              <div className="grid grid-cols-4 gap-1.5 pt-1">
+                {STAR_STUDENTS.map((st, idx) => (
+                  <button
+                    key={st.id}
+                    onClick={() => setActiveStarIdx(idx)}
+                    className={`py-1.5 px-1 rounded-lg text-center transition-all cursor-pointer border text-[11px] font-bold truncate ${
+                      activeStarIdx === idx
+                        ? 'bg-[#3dabab]/15 border-[#3dabab] text-[#1f5e5e] shadow-xs'
+                        : 'bg-stone-50 border-stone-200 text-stone-600 hover:bg-stone-100'
+                    }`}
+                  >
+                    {st.name.split(' ')[0]}
+                  </button>
+                ))}
+              </div>
+
+              {/* Footer CTA */}
+              <div className="pt-2 border-t border-stone-100 flex items-center justify-between text-xs">
+                <span className="text-[11px] text-stone-500">
+                  More student honorees being added
                 </span>
-              </div>
-
-              {/* Dual Cutout Portraits Grid */}
-              <div className="grid grid-cols-2 gap-3 sm:gap-4">
-                
-                {/* 1. FOUNDER (Green Dress) */}
-                <div className="group relative rounded-2xl overflow-hidden bg-gradient-to-b from-[#e6f4f4] via-stone-50 to-white border border-[#3dabab]/30 p-2 sm:p-3 flex flex-col transition-all hover:shadow-md hover:border-[#3dabab]">
-                  {/* Cutout Image Container */}
-                  <div className="relative aspect-[3/4] w-full rounded-xl overflow-hidden bg-stone-100 shadow-inner">
-                    <img
-                      src="/assets/aistudio/founder_sreela_mitra.jpeg"
-                      alt="Founder Mrs. Sreela Mitra in green dress"
-                      className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                    />
-                    {/* Founder Badge Overlay */}
-                    <div className="absolute top-2 left-2">
-                      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-[#3dabab] text-white shadow-md">
-                        ★ Founder
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Profile Details */}
-                  <div className="pt-3 text-center sm:text-left space-y-0.5">
-                    <h4 className="text-xs sm:text-sm font-extrabold text-stone-950 font-display leading-tight">
-                      Mrs. Sreela Mitra
-                    </h4>
-                    <p className="text-[11px] font-bold text-[#1f5e5e]">
-                      Founder &amp; Director
-                    </p>
-                    <p className="text-[10px] text-stone-500 leading-snug pt-1 line-clamp-2">
-                      Conceiver of ARISTRI™ framework &amp; pedagogy
-                    </p>
-                  </div>
-                </div>
-
-                {/* 2. CO-FOUNDER (Printed Dress) */}
-                <div className="group relative rounded-2xl overflow-hidden bg-gradient-to-b from-stone-50 via-stone-50 to-white border border-stone-200 p-2 sm:p-3 flex flex-col transition-all hover:shadow-md hover:border-[#3dabab]">
-                  {/* Cutout Image Container */}
-                  <div className="relative aspect-[3/4] w-full rounded-xl overflow-hidden bg-stone-100 shadow-inner">
-                    <img
-                      src="/assets/aistudio/co_founder_speaksmart.jpeg"
-                      alt="Co-Founder SpeakSmart Centre for Communication"
-                      className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                    />
-                    {/* Co-Founder Badge Overlay */}
-                    <div className="absolute top-2 left-2">
-                      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-stone-900 text-white shadow-md">
-                        Co-Founder
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Profile Details */}
-                  <div className="pt-3 text-center sm:text-left space-y-0.5">
-                    <h4 className="text-xs sm:text-sm font-extrabold text-stone-950 font-display leading-tight">
-                      Co-Founder
-                    </h4>
-                    <p className="text-[11px] font-bold text-[#1f5e5e]">
-                      Executive Director
-                    </p>
-                    <p className="text-[10px] text-stone-500 leading-snug pt-1 line-clamp-2">
-                      Operations, mentorship &amp; student growth
-                    </p>
-                  </div>
-                </div>
-
-              </div>
-
-              {/* Bottom Quote / Institutional Note */}
-              <div className="pt-2 border-t border-stone-100 flex items-center justify-between text-[11px]">
-                <p className="text-stone-600 italic truncate mr-2">
-                  &ldquo;Nurturing authentic voices from Kolkata to the world.&rdquo;
-                </p>
-                <a
-                  href="#what-is-speaksmart"
-                  className="font-bold text-[#1f5e5e] hover:text-[#3dabab] whitespace-nowrap hover:underline flex items-center gap-1 shrink-0"
+                <button
+                  onClick={() => onNavigate('student-testimonials')}
+                  className="font-bold text-[#1f5e5e] hover:text-[#3dabab] hover:underline flex items-center gap-1 text-[11px] cursor-pointer"
                 >
-                  <span>Meet Founders</span>
+                  <span>All Student Stories</span>
                   <span>→</span>
-                </a>
+                </button>
               </div>
 
             </div>
