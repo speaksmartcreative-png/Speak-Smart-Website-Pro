@@ -19,7 +19,7 @@ jobs:
         node-version: '22'
 
     - name: Install dependencies
-      run: npm install
+      run: npm i --no-package-lock
 
     - name: Build production assets
       run: npm run build
