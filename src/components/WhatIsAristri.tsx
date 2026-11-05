@@ -23,37 +23,51 @@ export const WhatIsAristri: React.FC<WhatIsAristriProps> = ({ onOpenRegister }) 
   const highResImagePath = '/assets/aistudio/ISHITA__c535712c.jpg';
 
   return (
-    <section id="what-is-aristri" className="py-16 md:py-24 bg-white text-stone-900 border-b border-stone-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="what-is-aristri" className="relative py-16 md:py-24 bg-gradient-to-b from-[#e3f2f4] via-[#ecf6f8] to-[#e0eff2] dark:from-[#051316] dark:via-[#081d21] dark:to-[#051417] text-stone-900 dark:text-stone-100 border-b border-stone-200/80 dark:border-stone-800 overflow-hidden">
+      {/* Ambient background glowing elements */}
+      <div className="absolute top-10 right-10 w-96 h-96 bg-[#3dabab]/15 dark:bg-[#3dabab]/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-20 left-10 w-[30rem] h-[30rem] bg-[#1f5e5e]/10 dark:bg-[#1f5e5e]/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[45rem] h-[45rem] bg-teal-200/15 dark:bg-teal-900/15 rounded-full blur-3xl pointer-events-none" />
+
+      {/* Micro-grid pattern overlay */}
+      <div 
+        className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none"
+        style={{
+          backgroundImage: 'radial-gradient(#1f5e5e 1px, transparent 1px)',
+          backgroundSize: '24px 24px'
+        }}
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Top Header Badge & Official Trademark Lockup */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12">
           <div className="max-w-3xl">
-            <div className="flex flex-wrap items-center gap-2 text-xs font-semibold tracking-wider uppercase text-[#1f5e5e] mb-3">
-              <span className="bg-[#3dabab]/15 border border-[#3dabab]/30 px-3 py-1 rounded-full text-[#1f5e5e] font-mono font-bold">
+            <div className="flex flex-wrap items-center gap-2 text-xs font-semibold tracking-wider uppercase text-[#1f5e5e] dark:text-[#4fd1d1] mb-3">
+              <span className="bg-[#3dabab]/15 border border-[#3dabab]/30 px-3 py-1 rounded-full text-[#1f5e5e] dark:text-[#4fd1d1] font-mono font-bold">
                 Official Certification System
               </span>
               <span className="text-stone-400">·</span>
-              <span className="text-stone-600 font-mono font-bold">EXPRESS • EVOLVE • EXCEL</span>
+              <span className="text-stone-600 dark:text-stone-400 font-mono font-bold">EXPRESS • EVOLVE • EXCEL</span>
             </div>
 
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-stone-950 font-display tracking-tight leading-tight">
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-stone-950 dark:text-white font-display tracking-tight leading-tight">
               ARISTRI<span className="text-[#3dabab] text-2xl sm:text-3xl font-sans align-top">™</span>
             </h2>
-            <p className="text-lg sm:text-xl font-bold text-[#1f5e5e] tracking-wide mt-1 uppercase">
+            <p className="text-lg sm:text-xl font-bold text-[#1f5e5e] dark:text-[#4fd1d1] tracking-wide mt-1 uppercase">
               Public Speaking & Communication Skills Examination
             </p>
-            <p className="mt-3 text-sm sm:text-base text-stone-600 leading-relaxed">
+            <p className="mt-3 text-sm sm:text-base text-stone-600 dark:text-stone-300 leading-relaxed">
               A live spoken, fully practical test of presentations and interactions. Conceived as a multilevel customised and progressive skill building system, ARISTRI™ is your gateway to think sharper, speak clearer, and lead with confidence in diverse settings.
             </p>
           </div>
 
           {/* Quick View Mode Switcher */}
-          <div className="flex items-center gap-2 p-1.5 bg-stone-100 border border-stone-200 rounded-xl shrink-0 self-start lg:self-auto max-w-full overflow-x-auto">
+          <div className="flex items-center gap-2 p-1.5 bg-stone-100 dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl shrink-0 self-start lg:self-auto max-w-full overflow-x-auto">
             <button
               onClick={() => setActiveViewMode('both')}
               className={`px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer whitespace-nowrap ${
-                activeViewMode === 'both' ? 'bg-[#3dabab] text-white shadow-xs' : 'text-stone-600 hover:text-stone-950'
+                activeViewMode === 'both' ? 'bg-[#3dabab] text-white shadow-xs' : 'text-stone-600 dark:text-stone-400 hover:text-stone-950 dark:hover:text-white'
               }`}
             >
               Side-by-Side View
@@ -61,7 +75,7 @@ export const WhatIsAristri: React.FC<WhatIsAristriProps> = ({ onOpenRegister }) 
             <button
               onClick={() => setActiveViewMode('document')}
               className={`px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer whitespace-nowrap ${
-                activeViewMode === 'document' ? 'bg-[#3dabab] text-white shadow-xs' : 'text-stone-600 hover:text-stone-950'
+                activeViewMode === 'document' ? 'bg-[#3dabab] text-white shadow-xs' : 'text-stone-600 dark:text-stone-400 hover:text-stone-950 dark:hover:text-white'
               }`}
             >
               Official Document Only
@@ -69,7 +83,7 @@ export const WhatIsAristri: React.FC<WhatIsAristriProps> = ({ onOpenRegister }) 
             <button
               onClick={() => setActiveViewMode('interactive')}
               className={`px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer whitespace-nowrap ${
-                activeViewMode === 'interactive' ? 'bg-[#3dabab] text-white shadow-xs' : 'text-stone-600 hover:text-stone-950'
+                activeViewMode === 'interactive' ? 'bg-[#3dabab] text-white shadow-xs' : 'text-stone-600 dark:text-stone-400 hover:text-stone-950 dark:hover:text-white'
               }`}
             >
               Interactive Guide
@@ -82,15 +96,15 @@ export const WhatIsAristri: React.FC<WhatIsAristriProps> = ({ onOpenRegister }) 
           
           {/* HIGH RESOLUTION OFFICIAL DOCUMENT CARRIER */}
           {(activeViewMode === 'both' || activeViewMode === 'document') && (
-            <div className={`${activeViewMode === 'both' ? 'lg:col-span-5' : 'max-w-3xl mx-auto w-full'} bg-stone-50 rounded-2xl border border-stone-200 p-5 shadow-sm relative`}>
-              <div className="flex items-center justify-between text-xs text-stone-600 border-b border-stone-200 pb-3 mb-4">
+            <div className={`${activeViewMode === 'both' ? 'lg:col-span-5' : 'max-w-3xl mx-auto w-full'} bg-white/90 dark:bg-[#0c2024]/90 backdrop-blur-md rounded-2xl border border-stone-200/90 dark:border-stone-800 p-5 shadow-lg relative`}>
+              <div className="flex items-center justify-between text-xs text-stone-600 dark:text-stone-300 border-b border-stone-200/80 dark:border-stone-800 pb-3 mb-4">
                 <div className="flex items-center gap-2">
                   <FileText className="w-4 h-4 text-[#3dabab]" />
-                  <span className="font-mono text-[#1f5e5e] font-bold">HIGH-RES OFFICIAL DOCUMENT</span>
+                  <span className="font-mono text-[#1f5e5e] dark:text-[#4fd1d1] font-bold">HIGH-RES OFFICIAL DOCUMENT</span>
                 </div>
                 <button
                   onClick={() => setShowFullResolutionModal(true)}
-                  className="text-xs font-bold text-stone-800 bg-white hover:bg-[#3dabab] hover:text-white px-2.5 py-1 rounded border border-stone-300 hover:border-[#3dabab] transition-colors flex items-center gap-1.5 cursor-pointer shadow-xs"
+                  className="text-xs font-bold text-stone-800 dark:text-stone-200 bg-white dark:bg-stone-900 hover:bg-[#3dabab] hover:text-white px-2.5 py-1 rounded border border-stone-300 dark:border-stone-700 hover:border-[#3dabab] transition-colors flex items-center gap-1.5 cursor-pointer shadow-xs"
                 >
                   <ZoomIn className="w-3.5 h-3.5 text-[#3dabab]" />
                   <span>Inspect Full Resolution</span>
@@ -100,7 +114,7 @@ export const WhatIsAristri: React.FC<WhatIsAristriProps> = ({ onOpenRegister }) 
               {/* The high-res image embedded directly */}
               <div 
                 onClick={() => setShowFullResolutionModal(true)}
-                className="relative rounded-xl overflow-hidden border border-stone-200 bg-white cursor-pointer group shadow-sm"
+                className="relative rounded-xl overflow-hidden border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-900 cursor-pointer group shadow-sm"
               >
                 <img
                   src={highResImagePath}
@@ -109,20 +123,20 @@ export const WhatIsAristri: React.FC<WhatIsAristriProps> = ({ onOpenRegister }) 
                 />
                 
                 <div className="absolute inset-0 bg-stone-900/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-4">
-                  <span className="px-4 py-2.5 rounded-lg bg-white text-stone-900 text-xs font-bold border border-[#3dabab] shadow-xl backdrop-blur-sm flex items-center gap-2">
+                  <span className="px-4 py-2.5 rounded-lg bg-white dark:bg-stone-900 text-stone-900 dark:text-white text-xs font-bold border border-[#3dabab] shadow-xl backdrop-blur-sm flex items-center gap-2">
                     <Eye className="w-4 h-4 text-[#3dabab]" />
                     <span>Click to Zoom & View High-Res Poster</span>
                   </span>
                 </div>
               </div>
 
-              <div className="mt-4 p-3.5 rounded-xl bg-white border border-stone-200 text-xs text-stone-700 space-y-1">
+              <div className="mt-4 p-3.5 rounded-xl bg-white dark:bg-stone-900/90 border border-stone-200 dark:border-stone-800 text-xs text-stone-700 dark:text-stone-300 space-y-1">
                 <div className="flex items-center justify-between">
-                  <span className="font-bold text-stone-900">Double Certification Authenticated</span>
-                  <span className="text-[11px] font-mono text-[#1f5e5e] font-bold">GOI & SpeakSmart</span>
+                  <span className="font-bold text-stone-900 dark:text-white">Double Certification Authenticated</span>
+                  <span className="text-[11px] font-mono text-[#1f5e5e] dark:text-[#4fd1d1] font-bold">GOI & SpeakSmart</span>
                 </div>
-                <p className="text-[11px] text-stone-500 leading-relaxed">
-                  Conceived and Copyrighted by <strong className="text-stone-900">Sreela Mitra</strong> (Educator · Entrepreneur · Visionary).
+                <p className="text-[11px] text-stone-500 dark:text-stone-400 leading-relaxed">
+                  Conceived and Copyrighted by <strong className="text-stone-900 dark:text-white">Sreela Mitra</strong> (Educator · Entrepreneur · Visionary).
                 </p>
               </div>
             </div>
@@ -242,8 +256,8 @@ export const WhatIsAristri: React.FC<WhatIsAristriProps> = ({ onOpenRegister }) 
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Express */}
-            <div className="p-6 rounded-2xl bg-stone-50 border border-stone-200 hover:border-[#3dabab] hover:bg-white transition-all shadow-xs space-y-3">
-              <div className="w-12 h-12 rounded-xl bg-[#3dabab]/10 text-[#1f5e5e] flex items-center justify-center font-display text-xl font-bold border border-[#3dabab]/30">
+            <div className="p-6 rounded-2xl bg-white/90 backdrop-blur-md border border-stone-200/90 hover:border-[#3dabab] hover:bg-white transition-all shadow-md hover:shadow-xl space-y-3">
+              <div className="w-12 h-12 rounded-xl bg-[#3dabab]/15 text-[#1f5e5e] flex items-center justify-center font-display text-xl font-bold border border-[#3dabab]/30 shadow-xs">
                 01
               </div>
               <h4 className="text-xl font-extrabold text-stone-950 font-display">
@@ -258,8 +272,8 @@ export const WhatIsAristri: React.FC<WhatIsAristriProps> = ({ onOpenRegister }) 
             </div>
 
             {/* Evolve */}
-            <div className="p-6 rounded-2xl bg-stone-50 border border-stone-200 hover:border-[#3dabab] hover:bg-white transition-all shadow-xs space-y-3">
-              <div className="w-12 h-12 rounded-xl bg-[#3dabab]/10 text-[#1f5e5e] flex items-center justify-center font-display text-xl font-bold border border-[#3dabab]/30">
+            <div className="p-6 rounded-2xl bg-white/90 backdrop-blur-md border border-stone-200/90 hover:border-[#3dabab] hover:bg-white transition-all shadow-md hover:shadow-xl space-y-3">
+              <div className="w-12 h-12 rounded-xl bg-[#3dabab]/15 text-[#1f5e5e] flex items-center justify-center font-display text-xl font-bold border border-[#3dabab]/30 shadow-xs">
                 02
               </div>
               <h4 className="text-xl font-extrabold text-stone-950 font-display">
@@ -274,8 +288,8 @@ export const WhatIsAristri: React.FC<WhatIsAristriProps> = ({ onOpenRegister }) 
             </div>
 
             {/* Excel */}
-            <div className="p-6 rounded-2xl bg-stone-50 border border-stone-200 hover:border-[#3dabab] hover:bg-white transition-all shadow-xs space-y-3">
-              <div className="w-12 h-12 rounded-xl bg-[#3dabab]/10 text-[#1f5e5e] flex items-center justify-center font-display text-xl font-bold border border-[#3dabab]/30">
+            <div className="p-6 rounded-2xl bg-white/90 backdrop-blur-md border border-stone-200/90 hover:border-[#3dabab] hover:bg-white transition-all shadow-md hover:shadow-xl space-y-3">
+              <div className="w-12 h-12 rounded-xl bg-[#3dabab]/15 text-[#1f5e5e] flex items-center justify-center font-display text-xl font-bold border border-[#3dabab]/30 shadow-xs">
                 03
               </div>
               <h4 className="text-xl font-extrabold text-stone-950 font-display">

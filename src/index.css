@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-brand: #3dabab;
   --color-brand-hover: #329696;
@@ -8,24 +10,6 @@
   --color-brand-tint: #c5ebeb;
   --color-brand-dark: #1f5e5e;
   --color-brand-deep: #0c2121;
-}
-
-@font-face {
-  font-family: 'Hand of Sean';
-  font-style: normal;
-  font-weight: 100 900;
-  src: url('/fonts/handsean.woff') format('woff'),
-       url('https://fonts.cdnfonts.com/s/9309/handsean.woff') format('woff');
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Hand Of Sean';
-  font-style: normal;
-  font-weight: 100 900;
-  src: url('/fonts/handsean.woff') format('woff'),
-       url('https://fonts.cdnfonts.com/s/9309/handsean.woff') format('woff');
-  font-display: swap;
 }
 
 @layer base {
@@ -37,8 +21,14 @@
 
   body {
     font-family: var(--font-sans);
-    color: #000000;
-    background-color: #ffffff;
+    color: #1c1917;
+    background-color: #f8fafb;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  .dark body {
+    color: #f5f5f4;
+    background-color: #071518;
   }
 
   h1, h2, h3, h4, .font-display {

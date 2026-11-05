@@ -1,179 +1,246 @@
 import { NoticeItem, StudentTestimonial, ParentTestimonial, RuleCategory } from '../types';
 
-export const NOTICES: NoticeItem[] = [
-  {
-    id: 'notice-01',
-    title: 'Semester Final Communication Jury Examination & Podium Assessments',
-    category: 'Exam',
-    date: 'Nov 14 – Nov 16, 2026',
-    effectiveDate: '2026-11-14',
-    isUrgent: true,
-    summary: 'Official schedule for the end-of-semester formal jury evaluations across all junior and senior cohorts.',
-    details: [
-      'Junior Communicators (Level 1 & 2): Saturday, Nov 14, 09:30 AM – 01:00 PM (Auditorium A)',
-      'Teen Communicators & Rhetoric: Sunday, Nov 15, 10:00 AM – 02:30 PM (Main Chamber)',
-      'ARISTRI™ Live Examination & Assessments: Monday, Nov 16, 04:00 PM – 07:30 PM (Individual examiners assess live on the spot with Double Certification from GOI and SpeakSmart).',
-      'Evaluation criteria: Presentation of ideas & arguments (30%), Live questions & handling on feet (25%), Vocal resonance & modulation (25%), Objective-focussed communication (20%).',
-      'All candidates receive meaningful written feedback for every task along with their score card.'
-    ],
-    venue: 'Grand Auditorium & ARISTRI Examination Chamber, SpeakSmart Campus',
-    attachmentName: 'ARISTRI_Exam_Jury_Schedule_Nov2026.pdf'
-  },
-  {
-    id: 'notice-02',
-    title: 'Autumn Mid-Term Break & Public Holiday Institute Closure',
-    category: 'Holiday',
-    date: 'Nov 01 – Nov 03, 2026',
-    effectiveDate: '2026-11-01',
-    isUrgent: false,
-    summary: 'All weekend workshops, practice studio booths, and administrative desks will be closed for the Fall Break.',
-    details: [
-      'Campus offices closed from Friday 6:00 PM, Oct 31 through Tuesday morning, Nov 04.',
-      'Regular weekday and weekend batches resume promptly on Wednesday, Nov 04, 2026.',
-      'Students are encouraged to practice their 3-minute jury speeches via the asynchronous audio portal.',
-      'For emergency academic scheduling requests, email registrar@speaksmart.org.'
-    ],
-    venue: 'All Physical Studios & Video Labs',
-    attachmentName: 'Holiday_Calendar_Fall_2026.pdf'
-  },
-  {
-    id: 'notice-03',
-    title: 'Aristri National Youth Parliamentary Debate Invitational 2026',
-    category: 'Competition',
-    date: 'Dec 05 – Dec 07, 2026',
-    effectiveDate: '2026-12-05',
-    isUrgent: true,
-    summary: 'SpeakSmart will host 32 delegate schools for the Aristri Invitational Cup. Team registration is open.',
-    details: [
-      'Format: Asian Parliamentary 3v3 format with 7-minute substantive speeches.',
-      'Themes: Global AI Governance, Ethics of Bioengineering, and Constitutional Rights.',
-      'SpeakSmart internal tryouts to select the 4 institutional squads take place on Nov 21.',
-      'Trophies, scholarships, and citations awarded by guest international adjudicators.'
-    ],
-    venue: 'Aristri Debating Chamber, SpeakSmart Building',
-    attachmentName: 'Aristri_Cup_Debate_Prospectus_2026.pdf'
-  },
-  {
-    id: 'notice-04',
-    title: 'Spring 2027 Semester Early Admissions & Diagnostic Open House',
-    category: 'General',
-    date: 'Admissions Open: Oct 25 – Nov 30, 2026',
-    effectiveDate: '2026-10-25',
-    isUrgent: true,
-    summary: 'Early seat reservation for the upcoming 16-week spring term with complimentary stage diagnostic.',
-    details: [
-      'Batches available for Junior Communicators (7-10 yrs), Teen Rhetoric (11-14 yrs), and Aristri Fellows (15-19 yrs).',
-      'Batch size strictly capped at 12 students per studio to ensure weekly individual podium time.',
-      'Complimentary 15-minute voice & confidence diagnostic evaluation included with early registration.'
-    ],
-    venue: 'Online Registration Portal & Admissions Office',
-    attachmentName: 'Spring_2027_Syllabus_Overview.pdf'
-  },
-  {
-    id: 'notice-05',
-    title: 'Masterclass: "The Architecture of a 3-Minute TED-Style Keynote"',
-    category: 'Workshop',
-    date: 'Nov 22, 2026 · 03:00 PM – 06:00 PM',
-    effectiveDate: '2026-11-22',
-    isUrgent: false,
-    summary: 'Exclusive weekend intensive masterclass conducted by international keynote speaker Marcus Cole.',
-    details: [
-      'Open to all enrolled SpeakSmart and Aristri students and parents.',
-      'Focus: Crafting unforgettable opening hooks, rhetorical cadences, and overcoming spontaneous blank-outs.',
-      'Live onstage coaching for 6 selected student volunteers.'
-    ],
-    venue: 'Studio Amphitheater & Virtual Broadcast',
-    attachmentName: 'Keynote_Masterclass_Handout.pdf'
-  },
-  {
-    id: 'notice-06',
-    title: 'Winter Vacation & Year-End Recess Dates Announced',
-    category: 'Holiday',
-    date: 'Dec 23, 2026 – Jan 03, 2027',
-    effectiveDate: '2026-12-23',
-    isUrgent: false,
-    summary: 'Year-end recess announcement for faculty, administrative staff, and student bodies.',
-    details: [
-      'Studio sessions suspend from Wednesday, Dec 23, 2026.',
-      'Campus resumes on Monday, Jan 04, 2027 with orientation for the Winter Intensive Bootcamps.'
-    ],
-    venue: 'Main Campus',
-    attachmentName: 'Academic_Recess_Notice_2026.pdf'
-  }
-];
+export const NOTICES: NoticeItem[] = [];
 
 export const STUDENT_TESTIMONIALS: StudentTestimonial[] = [
   {
-    id: 'st-01',
-    name: 'Sarah Jenkins',
-    ageOrGrade: 'Grade 11 · 16 years',
-    program: 'Aristri Honors Fellowship',
-    cohort: 'Cohort Fall 2025',
-    speechTopic: '"The Ethics of Gene Editing: Voice for the Unspoken"',
-    quote: 'Before SpeakSmart, standing in front of a class felt paralyzing. My hands would tremor and I would rush through my slides. At Aristri, they taught me that pause is power. Last month, I took 1st place at the National Youth Forensics Invitational with a 7-minute speech.',
-    achievement: '1st Place Speaker · National Youth Forensics 2026',
-    avatarInitials: 'SJ',
-    accentColor: 'from-amber-600 to-amber-700'
+    id: 'st-ekagra',
+    name: 'Ekagra Jhunjhunwala',
+    ageOrGrade: 'Junior Scholars · Ages 10-11',
+    school: 'The Doon School (Selected)',
+    program: 'SpeakSmart Interview & Elite Admissions',
+    cohort: 'Doon School Selection Batch',
+    speechTopic: 'Boarding School Interview Demeanor & Spontaneous Q&A',
+    quote: 'When I was born, my mother’s dream was I would go to Doon School. When I researched it, it became my dream too. I joined SpeakSmart and it helped me a lot for my interview, especially Vishakha Ma’am—she was very kind. Today, I got through Doon! Getting to Doon was not easy, but SpeakSmart made it possible.',
+    achievement: 'Selected for The Doon School, Dehradun (Cleared Interview)',
+    avatarInitials: 'EJ',
+    accentColor: 'from-[#1f5e5e] to-[#3dabab]',
+    image: '/assets/testimonials/student_doon_school_cropped.jpg',
+    featured: true
   },
   {
-    id: 'st-02',
-    name: 'Aarav Sharma',
-    ageOrGrade: 'Grade 8 · 13 years',
-    program: 'SpeakSmart Teen Communicators',
-    cohort: 'Cohort Spring 2026',
-    speechTopic: '"Why Clean Oceans Need Youth Action"',
-    quote: 'The weekly podium camera playback changed everything for me. You see yourself clearly—where you look, how you stand, and how you breathe. SpeakSmart made public speaking fun instead of scary. Now I am the captain of my school debate club.',
-    achievement: 'Captain of School Debate Club & Best Speaker Award',
-    avatarInitials: 'AS',
-    accentColor: 'from-blue-600 to-blue-700'
-  },
-  {
-    id: 'st-03',
-    name: 'Chloe Vance',
-    ageOrGrade: 'Grade 12 · 17 years',
-    program: 'Aristri Parliamentary Debate Wing',
-    cohort: 'Cohort Fall 2025',
-    speechTopic: '"Economic Sovereignty in the Age of Digital Currencies"',
-    quote: 'The Aristri curriculum goes way beyond typical speech classes. We learned classical Aristotelian rhetoric, syllogisms, and rapid impromptu refutations. When I interviewed for university scholarships, the panel specifically noted my composure and articulate argumentation.',
-    achievement: 'Presidential Scholarship Recipient · Model UN Best Delegate',
-    avatarInitials: 'CV',
-    accentColor: 'from-emerald-600 to-emerald-700'
-  },
-  {
-    id: 'st-04',
-    name: 'David Adebayo',
-    ageOrGrade: 'Grade 5 · 10 years',
+    id: 'st-dhriti',
+    name: 'Dhriti Agrawal',
+    ageOrGrade: 'Grade 2 · Junior Communicator',
+    school: 'Kolkata Campus',
     program: 'SpeakSmart Junior Communicators',
-    cohort: 'Cohort Summer 2026',
-    speechTopic: '"If Animals Could Talk: My Campaign for Wildlife"',
-    quote: 'I used to whisper when talking to adults because I thought my voice sounded squeaky. Coach Maya taught me how to breathe like a lion and use facial expressions. Doing my speech in front of 200 parents at the graduation gala was the best day ever!',
-    achievement: 'Junior Speaker of the Year · SpeakSmart Gala 2026',
+    cohort: 'Trinity Grade 2 Exam Batch',
+    speechTopic: 'Personal Storytelling & Conversational Fluency',
+    quote: 'At first I was so nervous... But today when I spoke with the examiner, he was extremely sweet and kind and I did not even hesitate a bit! SpeakSmart is something which will encourage you. The examination was a big thumbs up!',
+    achievement: 'Completed Trinity College London Grade 2 with Thumbs Up',
     avatarInitials: 'DA',
-    accentColor: 'from-indigo-600 to-indigo-700'
+    accentColor: 'from-amber-600 to-amber-700',
+    image: '/assets/testimonials/student_vidya_garodia_cropped.jpg'
   },
   {
-    id: 'st-05',
-    name: 'Rhea Merchant',
-    ageOrGrade: 'Grade 10 · 15 years',
-    program: 'Aristri Model UN & Leadership Cohort',
-    cohort: 'Cohort Spring 2026',
-    speechTopic: '"Bridging the Urban-Rural Digital Divide"',
-    quote: 'Aristri gave me the toolkit to turn messy thoughts into structured, compelling narratives. You learn to listen just as keenly as you speak. It gave me the self-belief to run for student council president, and I won!',
-    achievement: 'Elected Student Council President 2026-2027',
-    avatarInitials: 'RM',
-    accentColor: 'from-rose-600 to-rose-700'
+    id: 'st-hriday',
+    name: 'Hriday Jain',
+    ageOrGrade: 'Grade 3 · 3 Years at SpeakSmart',
+    school: 'Kolkata',
+    program: 'SpeakSmart Junior Communicators',
+    cohort: 'Trinity Grade 3 Exam Batch',
+    speechTopic: 'Speech Structure, Vocabulary & Eliminating Unnecessary Fillers',
+    quote: 'When I wrote my speech, it didn’t have the right content. SpeakSmart cut the unnecessary things, gave me more advanced language, and gave me feedbacks that helped me a lot. That is why I am standing here with a smile on my face!',
+    achievement: '3-Year SpeakSmart Scholar · Grade 3 Trinity Distinction Track',
+    avatarInitials: 'HJ',
+    accentColor: 'from-blue-600 to-blue-700',
+    image: '/assets/testimonials/student_hriday_jain_cropped.jpg'
   },
   {
-    id: 'st-06',
-    name: 'Zackary Chen',
-    ageOrGrade: 'Grade 7 · 12 years',
-    program: 'SpeakSmart Impromptu & Extempore Lab',
-    cohort: 'Cohort Fall 2025',
-    speechTopic: '"The Science of Space Colonization"',
-    quote: 'My favorite part is Table Topics where you get a random topic and have to speak for 2 minutes without hesitation. It eliminated all my "umms" and "likes". Now giving presentations at school is effortless.',
-    achievement: 'Zero Filler-Word Certification · Impromptu Gold Medal',
-    avatarInitials: 'ZC',
-    accentColor: 'from-teal-600 to-teal-700'
+    id: 'st-samika',
+    name: 'Samika Singhal',
+    ageOrGrade: 'Grade 5 · ICSE Board Candidate',
+    school: 'Kolkata',
+    program: 'SpeakSmart Teen Communicators',
+    cohort: 'Trinity Grade 5 Advanced Cohort',
+    speechTopic: 'Balancing Board Examination Pressures with Public Discourse',
+    quote: 'Learning from Vishakha Ma’am and Sreela Ma’am means truly the world to me. With my ICSE boards knocking at the door, prep was demanding, but with help from Vishakha Ma’am, I did it! Speaking to an examiner was a wonderful new experience.',
+    achievement: 'Trinity Grade 5 Examination Completed amidst Board Exams',
+    avatarInitials: 'SS',
+    accentColor: 'from-emerald-600 to-emerald-700',
+    image: '/assets/testimonials/student_rajveer_chakraborty_cropped.jpg'
+  },
+  {
+    id: 'st-hridan',
+    name: 'Hridan Mehta Dalmia',
+    ageOrGrade: 'Grade 2 · Junior Communicator',
+    school: 'Kolkata',
+    program: 'SpeakSmart Foundation & Stage Mastery',
+    cohort: 'Exam Batch 2026',
+    speechTopic: 'Hand Gestures, Voice Modulation & Pacing on Stage',
+    quote: 'When I first went in I was pretty nervous, but today after completing the exam, I feel confident and proud to be in SpeakSmart! They taught me what to add, what to cut out, keep to time limit, and use voice modulation.',
+    achievement: 'Progressed from Level 1 to Confident Level 2 Podium Presenter',
+    avatarInitials: 'HD',
+    accentColor: 'from-indigo-600 to-indigo-700',
+    image: '/assets/testimonials/student_vedant_kejariwal_cropped.jpg'
+  },
+  {
+    id: 'st-meenakshi',
+    name: 'Meenakshi Banerjee',
+    ageOrGrade: 'Grade 3 · Trinity Aspirant',
+    school: 'Kolkata',
+    program: 'SpeakSmart Junior Communicators',
+    cohort: 'Trinity Grade 3 Cohort',
+    speechTopic: 'Global Concerns & Describing Memorable Places of Interest',
+    quote: 'My first task was presenting something we want to see less of in the world, and second was describing a memorable place of interest. The examiner was very friendly. SpeakSmart truly helps hone your public speaking skills!',
+    achievement: 'Grade 3 Trinity Speech & Communication Assessment Completed',
+    avatarInitials: 'MB',
+    accentColor: 'from-rose-600 to-rose-700',
+    image: '/assets/testimonials/student_minakshi_banerjee_cropped.jpg'
+  },
+  {
+    id: 'st-sheehan',
+    name: 'Sheehan Nag',
+    ageOrGrade: 'Grade 8 · Teen Rhetoric',
+    school: 'St. Xavier’s Collegiate School',
+    program: 'SpeakSmart Teen Communicators',
+    cohort: 'Trinity Grade 5 Examination Wing',
+    speechTopic: 'PowerPoint Argumentation & Flashcard-Assisted Live Delivery',
+    quote: 'I prepared for one month with flashcards and PowerPoint presentations. The exam went pretty well. The examiner asked about the points where I focused and how I learned to structure my speeches.',
+    achievement: 'Grade 5 Trinity Examination Completed · St. Xavier’s Collegiate School',
+    avatarInitials: 'SN',
+    accentColor: 'from-cyan-600 to-cyan-700',
+    image: '/assets/testimonials/student_aaryan_chakraborty_cropped.jpg'
+  },
+  {
+    id: 'st-raiyan',
+    name: 'Raiyan Nawaz',
+    ageOrGrade: 'Grade 5 · Trinity Advanced Track',
+    school: 'Kolkata',
+    program: 'SpeakSmart Teen Communicators',
+    cohort: 'Trinity Grade 5 Cohort',
+    speechTopic: 'Environmental Causes: Marine Pollution & Hard vs Soft News',
+    quote: 'My first task was about preventing marine pollution, and my second was presenting hard news versus soft news broadcasts. The examiner was very supportive and helped draw out my best arguments.',
+    achievement: 'Grade 5 Trinity Live Presentation & Media Analysis Completed',
+    avatarInitials: 'RN',
+    accentColor: 'from-teal-600 to-teal-700',
+    image: '/assets/testimonials/student_rayan_nawaz_cropped.jpg'
+  },
+  {
+    id: 'st-advik-9',
+    name: 'Advik',
+    ageOrGrade: 'Grade 5 · Public Speaking Track',
+    school: 'Kolkata',
+    program: 'SpeakSmart Teen Communicators',
+    cohort: 'Trinity Grade 5 Cohort',
+    speechTopic: 'Iterative Speech Refinement & Audience Feedback Integration',
+    quote: 'The teachers helped me practice a lot and gave feedback which I developed upon. SpeakSmart helped me prepare the speech so much better from the first draft.',
+    achievement: 'Grade 5 Speech & Communication Practical Examination Completed',
+    avatarInitials: 'AD',
+    accentColor: 'from-blue-600 to-blue-700',
+    image: '/assets/testimonials/student_neel_jethwani_cropped.jpg'
+  },
+  {
+    id: 'st-vivaan',
+    name: 'Vivaan Srisrimal',
+    ageOrGrade: 'Grade 4 · 3 Years at SpeakSmart',
+    school: 'Kolkata',
+    program: 'SpeakSmart Junior Communicators',
+    cohort: 'Trinity Grade 4 Examination Track',
+    speechTopic: 'Mastery of Vocal Dynamics, Timing, and Stage Presence',
+    quote: 'I have been practicing here for 3 years. The teachers helped me prepare and explained how vocal tools and physical actions should be used at the correct time. I confidently completed it!',
+    achievement: 'Grade 4 Trinity Examination Completed with Confident Poise',
+    avatarInitials: 'VS',
+    accentColor: 'from-violet-600 to-violet-700',
+    image: '/assets/testimonials/student_aahil_shivkumar_cropped.jpg'
+  },
+  {
+    id: 'st-neel-12',
+    name: 'Neel Jethwani',
+    ageOrGrade: 'Grade 3 · Trinity Aspirant',
+    school: 'Kolkata',
+    program: 'SpeakSmart Junior Communicators',
+    cohort: 'Trinity Grade 3 Cohort',
+    speechTopic: 'Overcoming Last-Minute Stage Fright & Pacing Delivery',
+    quote: 'Before the exam I was quite nervous, but SpeakSmart provided extra classes during exam time which was really helpful! My advice: do not get too nervous because then you forget; speak with calm and joy.',
+    achievement: 'Grade 3 Trinity Examination Completed with Natural Composure',
+    avatarInitials: 'NJ',
+    accentColor: 'from-amber-600 to-amber-700',
+    image: '/assets/testimonials/student_sarthak_agarwal_cropped.jpg'
+  },
+  {
+    id: 'st-kiyaan',
+    name: 'Kiyaan Ahmed',
+    ageOrGrade: 'Grade 3 · St. Xavier’s Collegiate School',
+    school: 'St. Xavier’s Collegiate School',
+    program: 'SpeakSmart Junior Communicators',
+    cohort: 'Grade 3 Speech Cohort',
+    speechTopic: 'Stage Breakthrough: From Fearful Beginner to Bold Speaker',
+    quote: 'The exam was so awesome and absolutely delightful! First when I came in, I thought that I would not be able to do it and was so nervous. But now I am a confident speaker who can speak in public!',
+    achievement: 'Transformed into an Outspoken Public Speaker · Friday Batch',
+    avatarInitials: 'KA',
+    accentColor: 'from-green-600 to-green-700',
+    image: '/assets/testimonials/student_adhiraj_cropped.jpg'
+  },
+  {
+    id: 'st-naira-2',
+    name: 'Naira Khanna',
+    ageOrGrade: 'Grade 1 · Budding Speaker',
+    school: 'Kolkata',
+    program: 'SpeakSmart Junior Foundation',
+    cohort: 'Grade 1 Early Communicators',
+    speechTopic: 'Favorite Storybooks & Early Childhood Expression',
+    quote: 'SpeakSmart is so nice—it teaches us everything to do, it never leaves anything! Practicing our speeches together was so much fun and my examiner was very sweet.',
+    achievement: 'Grade 1 Speech Presentation Completed with Radiant Confidence',
+    avatarInitials: 'NK',
+    accentColor: 'from-rose-600 to-rose-700',
+    image: '/assets/testimonials/student_anaya_cropped.jpg'
+  },
+  {
+    id: 'st-kanvika',
+    name: 'Kanvika Gupta',
+    ageOrGrade: 'Teen Rhetoric Cohort',
+    school: 'Kolkata',
+    program: 'SpeakSmart Teen Communicators',
+    cohort: 'Trinity Speech & Presentation Batch',
+    speechTopic: 'Vocal Modulation: Pace, Emphasis, Phrasing & Strategic Pauses',
+    quote: 'I reworked my speech multiple times until it clicked. Then Sreela Ma’am and Vishakha Ma’am helped me master vocal tools—pace, emphasis, phrasing, and pauses—giving me total command during my examination!',
+    achievement: 'Mastered 4 Key Vocal Tools · Distinction Examination Delivery',
+    avatarInitials: 'KG',
+    accentColor: 'from-orange-600 to-orange-700',
+    image: '/assets/testimonials/student_shreyan_cropped.jpg'
+  },
+  {
+    id: 'st-pavika',
+    name: 'Pavika Jaitha',
+    ageOrGrade: 'Intermediate Speech Cohort',
+    school: 'Kolkata',
+    program: 'SpeakSmart Communication Wing',
+    cohort: 'Trinity Live Presentation Cohort',
+    speechTopic: 'Face-to-Face Evaluation & Conversational Presence',
+    quote: 'Today was a great experience, I had so much fun! Communicating face-to-face with an examiner boosted my confidence so much. I enjoyed every bit of our preparation with our mentors.',
+    achievement: 'Trinity College London Face-to-Face Live Evaluation Completed',
+    avatarInitials: 'PJ',
+    accentColor: 'from-purple-600 to-purple-700',
+    image: '/assets/testimonials/student_shanaya_cropped.jpg'
+  },
+  {
+    id: 'st-yuvaan',
+    name: 'Yuvaan Nahata',
+    ageOrGrade: 'Junior Reader & Speaker',
+    school: 'Kolkata',
+    program: 'SpeakSmart Junior Communicators',
+    cohort: 'Speech Examination Batch',
+    speechTopic: 'Geronimo Stilton, Book Reviews & Passion for 100+ Stories',
+    quote: 'The examiner told me I did good! We talked about the books I read—Geronimo and Thea Stilton—and I told him I have read more than 100 books! It was so cool, I just felt like I’m on top of the world!',
+    achievement: 'Awarded Star Sticker & Commendation for Literary Presentation',
+    avatarInitials: 'YN',
+    accentColor: 'from-yellow-600 to-yellow-700',
+    image: '/assets/testimonials/student_advik_books_cropped.jpg'
+  },
+  {
+    id: 'st-sampriti',
+    name: 'Sampriti',
+    ageOrGrade: 'Grade 4 · Speech & Drama',
+    school: 'Kolkata',
+    program: 'SpeakSmart Junior Communicators',
+    cohort: 'Trinity Grade 4 Cohort',
+    speechTopic: 'Balancing Busy School Calendars with Presentation Focus',
+    quote: 'My exam was hectic and I was quite nervous because of school exams and annual day, but our mentors showed me that if I just focused with clarity, I could deliver seamlessly.',
+    achievement: 'Grade 4 Trinity Presentation Completed with Poise',
+    avatarInitials: 'SM',
+    accentColor: 'from-teal-600 to-teal-700',
+    image: '/assets/testimonials/student_kanika_cropped.jpg'
   }
 ];
 
@@ -245,7 +312,7 @@ export const RULES_AND_REGULATIONS: RuleCategory[] = [
       {
         ruleTitle: 'Step 1: Online Student Enrolment Form',
         description: 'Complete our official online enrolment form with the student\'s complete demographic, school, and guardian details prior to the first studio session.',
-        enforcement: 'Mandatory before batch allocation. Official link: https://forms.gle/iNh9eT4JTG2xDNRAA'
+        enforcement: 'Mandatory before batch allocation. Official link: https://forms.gle/amSFYJ7xTY1oi97u8'
       },
       {
         ruleTitle: 'Step 2: Digital Rules & Fee Acknowledgment',

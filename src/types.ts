@@ -33,6 +33,10 @@ export interface StudentTestimonial {
   achievement: string;
   avatarInitials: string;
   accentColor: string;
+  image?: string;
+  videoUrl?: string;
+  school?: string;
+  featured?: boolean;
 }
 
 export interface ParentTestimonial {

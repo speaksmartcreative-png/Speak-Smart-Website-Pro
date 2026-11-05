@@ -1,12 +1,13 @@
 {
-  "name": "react-example",
+  "name": "speaksmart-centre-for-communication",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "SpeakSmart Centre for Communication official web portal",
   "type": "module",
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
     "build": "vite build",
-    "preview": "vite preview",
+    "preview": "vite preview --port=3000 --host=0.0.0.0",
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit"
   },

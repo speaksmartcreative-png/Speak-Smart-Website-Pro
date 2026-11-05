@@ -7,7 +7,8 @@ import {
   Calendar, 
   ShieldCheck, 
   ArrowRight, 
-  ChevronLeft 
+  ChevronLeft,
+  ExternalLink
 } from 'lucide-react';
 import { RegistrationFormData, SubmittedRegistration } from '../types';
 import { PROGRAMS_LIST } from '../data/mockData';
@@ -149,12 +150,12 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-sm p-4 overflow-y-auto">
-      <div className="bg-white rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl border border-stone-200 relative my-8 max-h-[92vh] overflow-y-auto animate-in fade-in zoom-in-95 duration-200 text-black">
+      <div className="bg-gradient-to-b from-[#fbfdfd] via-white to-[#f5fafb] dark:from-[#0a181b] dark:via-[#0c1f23] dark:to-[#081518] rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl border border-stone-200/90 dark:border-stone-700 relative my-8 max-h-[92vh] overflow-y-auto animate-in fade-in zoom-in-95 duration-200 text-stone-900 dark:text-stone-100">
         
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 text-stone-400 hover:text-black p-1 rounded-full cursor-pointer transition-colors"
+          className="absolute top-5 right-5 text-stone-400 hover:text-black dark:hover:text-white p-1 rounded-full cursor-pointer transition-colors"
           aria-label="Close registration modal"
         >
           <X className="w-5 h-5" />
@@ -162,34 +163,50 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
 
         {/* Header with Official Logo */}
         {!submittedData ? (
-          <div className="mb-6 border-b border-stone-200 pb-4">
+          <div className="mb-6 border-b border-stone-200 dark:border-stone-800 pb-4">
             <div className="flex items-center gap-3 mb-2">
               <img
-                src="/assets/aistudio/SpeakSmart_Logo_-_2_-_Edited_93b5e3a3.png"
+                src="/assets/aistudio/SpeakSmart_Logo_transparent.png"
                 alt="SpeakSmart Centre for Communication"
                 className="h-11 w-auto object-contain"
               />
               <div>
                 <div className="flex items-baseline leading-none font-display">
-                  <span className="font-script text-2xl font-bold text-stone-950">Speak</span>
+                  <span className="font-script text-2xl font-bold text-stone-950 dark:text-white">Speak</span>
                   <span className="font-script text-2xl font-bold text-[#3dabab]">Smart</span>
-                  <span className="text-[10px] uppercase font-bold text-stone-500 ml-1.5 font-sans">
+                  <span className="text-[10px] uppercase font-bold text-stone-500 dark:text-stone-400 ml-1.5 font-sans">
                     Centre for Communication
                   </span>
                 </div>
-                <div className="flex items-center gap-2 text-[10px] text-stone-500 mt-0.5">
-                  <span className="text-[#1f5e5e] font-bold">Think • Speak • Lead</span>
+                <div className="flex items-center gap-2 text-[10px] text-stone-500 dark:text-stone-400 mt-0.5">
+                  <span className="text-[#1f5e5e] dark:text-[#4fd1d1] font-bold">Think • Speak • Lead</span>
                   <span>·</span>
                   <span className="font-mono">LLPIN: ACO-6485</span>
                 </div>
               </div>
             </div>
-            <h2 className="text-xl sm:text-2xl font-extrabold text-black font-display">
+            <h2 className="text-xl sm:text-2xl font-extrabold text-black dark:text-white font-display">
               Student Registration for New Semester
             </h2>
-            <p className="text-xs text-stone-600 mt-1">
+            <p className="text-xs text-stone-600 dark:text-stone-300 mt-1">
               Step {step} of 4: {step === 1 ? 'Student Profile' : step === 2 ? 'Guardian Contact' : step === 3 ? 'Program & Batch Schedule' : 'Goals & Agreement'}
             </p>
+
+            {/* Official Online Registration Form Link Callout */}
+            <div className="mt-3 p-3 rounded-xl bg-[#ebf7f7] dark:bg-[#0c262a] border border-[#3dabab]/35 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+              <div className="text-xs text-stone-800 dark:text-stone-200">
+                <span className="font-bold text-[#1f5e5e] dark:text-[#4fd1d1]">Official Google Enrolment Form:</span> Prefer to submit the form on Google Forms directly?
+              </div>
+              <a
+                href="https://forms.gle/amSFYJ7xTY1oi97u8"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#3dabab] hover:bg-[#329696] text-white text-xs font-bold shrink-0 transition-colors shadow-2xs"
+              >
+                <span>Open Google Form</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            </div>
 
             {/* Stepper Dots */}
             <div className="flex items-center gap-2 mt-4">
@@ -200,20 +217,20 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                     s === step
                       ? 'w-10 bg-[#3dabab]'
                       : s < step
-                      ? 'w-6 bg-black'
-                      : 'w-4 bg-stone-200'
+                      ? 'w-6 bg-black dark:bg-stone-300'
+                      : 'w-4 bg-stone-200 dark:bg-stone-700'
                   }`}
                 />
               ))}
             </div>
           </div>
         ) : (
-          <div className="mb-6 border-b border-stone-200 pb-4">
+          <div className="mb-6 border-b border-stone-200 dark:border-stone-800 pb-4">
             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#3dabab] mb-1">
               <CheckCircle2 className="w-4 h-4 text-[#3dabab]" />
               <span>Registration Confirmed</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-black font-display">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-black dark:text-white font-display">
               Admission Slip & Diagnostic Pass
             </h2>
           </div>
@@ -551,7 +568,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
               <div className="flex items-center justify-between pb-3 border-b border-stone-200">
                 <div className="flex items-center gap-3">
                   <img
-                    src="/assets/aistudio/SpeakSmart_Logo_-_2_-_Edited_93b5e3a3.png"
+                    src="/assets/aistudio/SpeakSmart_Logo_transparent.png"
                     alt="SpeakSmart Logo"
                     className="h-10 w-auto object-contain"
                   />

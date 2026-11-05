@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Sparkles, 
   CheckCircle2, 
@@ -14,8 +14,12 @@ import {
   ArrowRight,
   Video as VideoIcon,
   Scale,
+  Award,
   BookOpen,
-  MessageSquare
+  MessageSquare,
+  X,
+  Maximize2,
+  ExternalLink
 } from 'lucide-react';
 
 interface WhatIsSpeakSmartProps {
@@ -62,6 +66,54 @@ const VIDEO_CHAPTERS: Chapter[] = [
   },
 ];
 
+const SREELA_STAGE_GALLERY = [
+  {
+    src: '/assets/aistudio/Sreela_8_4be0e9b9.png',
+    title: 'Live Keynote on Stage',
+    badge: '★ Founder & Director',
+    caption: 'Sreela Mitra addressing attendees on the main stage with SpeakSmart banner.'
+  },
+  {
+    src: '/assets/aistudio/Sreela_12_d2d2977d.jpeg',
+    title: 'Masterclass Public Speaking',
+    badge: 'Masterclass',
+    caption: 'Directing debate, voice modulation, and rhetorical delivery with conviction.'
+  },
+  {
+    src: '/assets/aistudio/Sreela_7_6aaece40.jpeg',
+    title: 'Academic & Trinity Direction',
+    badge: 'Trinity Certified',
+    caption: 'Trinity College London certified pedagogy and speech curriculum design.'
+  },
+  {
+    src: '/assets/aistudio/Sreela_and_Vishakha_14084757.jpeg',
+    title: 'Founders Together',
+    badge: 'Institutional Growth',
+    caption: 'Founders Sreela Mitra & Vishakha Agarwal at SpeakSmart Academy \'In the Spotlight\'.'
+  }
+];
+
+const VISHAKHA_STAGE_GALLERY = [
+  {
+    src: '/assets/aistudio/Vishakha_1_eafab282.jpeg',
+    title: 'Executive Partner',
+    badge: 'Partner · Co-Founder',
+    caption: 'Vishakha Agarwal, Partner & Co-Founder, EDHEC Business School France Alum.'
+  },
+  {
+    src: '/assets/aistudio/Sreela_and_Vishakha_14084757.jpeg',
+    title: 'Founders at \'In the Spotlight\'',
+    badge: 'In the Spotlight',
+    caption: 'Leading strategic expansion and institutional youth communication showcases.'
+  },
+  {
+    src: '/assets/aistudio/Sreela_4_b4ca305e.jpeg',
+    title: 'Studio Event Direction',
+    badge: 'Studio Direction',
+    caption: 'Managing interactive tech, audio diagnostics, and student performance reviews.'
+  }
+];
+
 export const WhatIsSpeakSmart: React.FC<WhatIsSpeakSmartProps> = ({
   onOpenRegister,
   onNavigateAristri,
@@ -75,6 +127,28 @@ export const WhatIsSpeakSmart: React.FC<WhatIsSpeakSmartProps> = ({
   const [startSeconds, setStartSeconds] = useState(0);
   const [isAutoPlay, setIsAutoPlay] = useState(false);
   const [activeChapterIndex, setActiveChapterIndex] = useState(0);
+  const [selectedLeaderModal, setSelectedLeaderModal] = useState<'sreela' | 'vishakha' | null>(null);
+  const [modalPhotoIdx, setModalPhotoIdx] = useState(0);
+  const [previewMomentsPhoto, setPreviewMomentsPhoto] = useState<{ src: string; title: string; subtitle: string } | null>(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setSelectedLeaderModal(null);
+        setPreviewMomentsPhoto(null);
+      }
+    };
+    if (selectedLeaderModal || previewMomentsPhoto) {
+      window.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [selectedLeaderModal, previewMomentsPhoto]);
 
   const transcriptPdfUrl = '/assets/aistudio/What_is_SpeakSmart_b1e4544e.pdf';
 
@@ -106,15 +180,21 @@ export const WhatIsSpeakSmart: React.FC<WhatIsSpeakSmartProps> = ({
   };
 
   return (
-    <section id="what-is-speaksmart" className="py-16 md:py-24 bg-white text-black border-b border-stone-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="what-is-speaksmart" className="relative py-16 md:py-24 bg-gradient-to-b from-[#eef7f8] via-[#e5f1f3] to-[#eaf4f6] text-stone-900 border-b border-stone-200/80 overflow-hidden">
+      {/* Decorative Aurora Ambient Orbs & Subtle Matrix Grid */}
+      <div className="absolute top-0 right-10 w-[500px] h-[400px] bg-gradient-to-br from-[#3dabab]/20 via-teal-200/25 to-transparent rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/3 left-0 w-80 h-80 bg-gradient-to-tr from-cyan-300/20 to-[#3dabab]/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-20 right-1/4 w-96 h-96 bg-teal-200/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(#3dabab_0.75px,transparent_0.75px)] [background-size:28px_28px] opacity-15 pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header with Official Brand Credentials */}
         <div className="mb-10 pb-8 border-b border-stone-200">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
             <div className="flex items-center gap-4">
               <img
-                src="/assets/aistudio/SpeakSmart_Logo_-_2_-_Edited_93b5e3a3.png"
+                src="/assets/aistudio/SpeakSmart_Logo_transparent.png"
                 alt="SpeakSmart Centre for Communication"
                 className="h-16 sm:h-20 w-auto object-contain shrink-0"
               />
@@ -145,171 +225,640 @@ export const WhatIsSpeakSmart: React.FC<WhatIsSpeakSmartProps> = ({
         </div>
 
         {/* ======================================================== */}
-        {/* FOUNDING LEADERSHIP SHOWCASE (FOUNDER & CO-FOUNDER) */}
+        {/* CINEMATIC STAGE LEADERSHIP SHOWCASE (VINH GIANG STYLE) */}
         {/* ======================================================== */}
-        <div className="mb-16">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
-            <div>
-              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#1f5e5e] mb-1">
-                <Sparkles className="w-4 h-4 text-[#3dabab]" />
-                <span>Founding Leadership &amp; Direction</span>
-              </div>
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-stone-950 font-display">
-                Meet the Founders of <span className="font-script text-3xl sm:text-4xl text-[#3dabab]">SpeakSmart</span>
-              </h3>
-              <p className="text-xs sm:text-sm text-stone-600 mt-1 max-w-2xl">
-                The visionary leadership pioneering communication as an essential, transformative life skill for youth and emerging leaders.
-              </p>
-            </div>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#f2f9f9] border border-[#3dabab]/30 text-[#1f5e5e] text-xs font-bold">
-              <span>Kolkata Centre</span>
-              <span className="text-stone-300">·</span>
-              <span className="font-mono text-stone-600">LLPIN: ACO-6485</span>
-            </div>
-          </div>
+        <div className="mb-20 rounded-3xl overflow-hidden bg-gradient-to-b from-[#060c0e] via-[#0b171a] to-[#070e10] text-white border border-[#3dabab]/40 shadow-2xl relative">
+          {/* Ambient Spotlight & Stage Glow Effects */}
+          <div className="absolute top-0 left-1/4 w-[600px] h-[350px] bg-gradient-to-b from-[#3dabab]/25 via-teal-500/10 to-transparent rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 right-10 w-[450px] h-[300px] bg-[#1f5e5e]/25 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute inset-0 bg-[radial-gradient(#3dabab_1px,transparent_1px)] [background-size:28px_28px] opacity-10 pointer-events-none" />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-            
-            {/* 1. FOUNDER: Sreela Mitra (Green Dress) */}
-            <div className="group rounded-3xl bg-gradient-to-br from-[#f2f9f9] via-white to-stone-50 border border-[#3dabab]/30 p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#3dabab]/10 rounded-bl-full pointer-events-none" />
-              
-              <div className="space-y-6">
-                {/* Header Badge */}
-                <div className="flex items-center justify-between">
-                  <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-[#3dabab] text-white shadow-sm">
-                    ★ Founder
-                  </span>
-                  <span className="text-xs font-semibold text-[#1f5e5e]">
-                    Trinity College London Certified
-                  </span>
+          <div className="p-6 sm:p-10 lg:p-12 relative z-10">
+            {/* Stage Header */}
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 pb-8 border-b border-stone-800/80">
+              <div className="space-y-2">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-widest bg-[#3dabab]/20 text-[#4fd1d1] border border-[#3dabab]/40 backdrop-blur-md shadow-[0_0_20px_rgba(61,171,171,0.25)]">
+                  <span className="w-2 h-2 rounded-full bg-[#3dabab] animate-pulse" />
+                  <span>Founding Leadership &amp; Direction</span>
                 </div>
+                <h3 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white font-display tracking-tight leading-tight">
+                  The Architects of <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-teal-200 to-[#3dabab]">SpeakSmart Centre for Communication</span>
+                </h3>
+                <p className="text-xs sm:text-sm text-stone-300 max-w-2xl leading-relaxed">
+                  Treating communication not as routine stage theatricals, but as a calibrated, lifelong instrument of influence, empathy, and intellectual leadership.
+                </p>
+              </div>
 
-                {/* Cutout Portrait Showcase */}
-                <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5">
-                  <div className="relative w-36 h-48 sm:w-44 sm:h-56 rounded-2xl overflow-hidden border-2 border-white shadow-xl shrink-0 bg-stone-100 ring-2 ring-[#3dabab]/30">
-                    <img
-                      src="/assets/aistudio/founder_sreela_mitra.jpeg"
-                      alt="Sreela Mitra, Founder and Director, SpeakSmart School of Communication"
-                      className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-                    <span className="absolute bottom-2 left-2 right-2 text-center text-[10px] font-extrabold text-white uppercase tracking-wider bg-black/60 backdrop-blur-xs py-0.5 rounded">
-                      Founder &amp; Director
+              <div className="flex items-center gap-3 shrink-0">
+                <div className="px-3.5 py-1.5 rounded-full bg-stone-900/90 border border-stone-700/80 text-stone-300 text-xs font-mono font-bold flex items-center gap-2 shadow-inner">
+                  <span className="w-2 h-2 rounded-full bg-[#3dabab]" />
+                  <span>LLPIN: ACO-6485 · Kolkata Centre</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Asymmetric 12-Column Grid: Sreela Mitra (lg:col-span-8) & Vishakha Agarwal (lg:col-span-4) */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+              
+              {/* 1. PRIMARY FLAGSHIP KEYNOTE CARD: Sreela Mitra (Takes ~67% Dominant Space) */}
+              <div className="lg:col-span-7 xl:col-span-8 group rounded-3xl bg-gradient-to-br from-stone-900/95 via-stone-950 to-stone-900/90 border-2 border-[#3dabab]/50 p-6 sm:p-9 lg:p-10 shadow-2xl hover:border-[#3dabab] transition-all duration-500 flex flex-col justify-between relative overflow-hidden backdrop-blur-xl">
+                {/* Luminous Keynote Backlight */}
+                <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-bl from-[#3dabab]/20 to-transparent rounded-bl-full pointer-events-none" />
+                <div className="absolute bottom-0 left-0 w-48 h-48 bg-teal-500/10 rounded-tr-full pointer-events-none" />
+                
+                <div className="space-y-6 relative z-10">
+                  {/* Top Badge Row */}
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <div className="flex items-center gap-2">
+                      <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-gradient-to-r from-[#3dabab] to-[#277979] text-white shadow-[0_0_15px_rgba(61,171,171,0.4)]">
+                        ★ Founder &amp; Chief Pedagogical Director
+                      </span>
+                      <span className="hidden sm:inline-flex items-center gap-1 text-[11px] font-bold text-teal-200 bg-stone-900/90 px-2.5 py-0.5 rounded-full border border-[#3dabab]/30">
+                        Pedagogical Architect
+                      </span>
+                    </div>
+                    <span className="text-xs font-bold text-teal-200 flex items-center gap-1.5 bg-stone-900/90 px-3 py-1 rounded-full border border-stone-700/80">
+                      <Award className="w-3.5 h-3.5 text-[#3dabab]" />
+                      Trinity College London Certified
                     </span>
                   </div>
 
-                  <div className="space-y-2 text-center sm:text-left">
-                    <h4 className="text-xl sm:text-2xl font-extrabold text-stone-950 font-display">
-                      Sreela Mitra
-                    </h4>
-                    <p className="text-xs font-bold text-[#1f5e5e] uppercase tracking-wide">
-                      Founder and Director, SpeakSmart School of Communication
-                    </p>
-                    <p className="text-xs text-stone-700 leading-relaxed pt-1">
-                      A pioneer in communication education, Sreela Mitra has spent over two decades shaping the way India learns to think, speak, and lead. As a communication coach, moderator, and Trinity College London certified educator, she has mentored thousands of students and professionals to express with confidence, clarity, and conviction.
-                    </p>
-                    <div className="pt-2 flex flex-wrap gap-1.5 justify-center sm:justify-start">
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-white text-stone-700 border border-stone-200">
-                        20+ Years Mentorship
-                      </span>
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-white text-stone-700 border border-stone-200">
-                        ARISTRI™ Author
-                      </span>
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-white text-stone-700 border border-stone-200">
-                        Trinity Certified
-                      </span>
+                  {/* Cutout Portrait Showcase & Bio */}
+                  <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 lg:gap-8">
+                    {/* 3D Elevated Cutout Aperture */}
+                    <div className="relative group/photo shrink-0 cursor-pointer" onClick={() => { setSelectedLeaderModal('sreela'); setModalPhotoIdx(0); }}>
+                      {/* Backlight Halo */}
+                      <div className="absolute -inset-2 bg-gradient-to-t from-[#3dabab]/50 via-teal-400/20 to-transparent rounded-3xl blur-md opacity-80 group-hover/photo:opacity-100 transition-opacity" />
+                      
+                      <div className="relative w-48 h-64 sm:w-56 sm:h-76 rounded-2xl overflow-hidden border-2 border-[#3dabab]/60 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] bg-stone-950 ring-4 ring-[#3dabab]/20 transform group-hover/photo:-translate-y-2 transition-transform duration-500">
+                        <img
+                          src="/assets/aistudio/Sreela_8_4be0e9b9.png"
+                          alt="Sreela Mitra, Founder and Director, SpeakSmart Centre for Communication"
+                          className="w-full h-full object-cover object-top transition-transform duration-700 group-hover/photo:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent pointer-events-none" />
+                        
+                        {/* Overlay Tag */}
+                        <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between bg-stone-950/80 backdrop-blur-md px-2.5 py-1 rounded-lg border border-stone-800">
+                          <span className="text-[10px] font-extrabold text-white uppercase tracking-wider">
+                            Founder &amp; Director
+                          </span>
+                          <span className="text-[9px] font-bold text-[#4fd1d1] flex items-center gap-0.5">
+                            <Maximize2 className="w-3 h-3" />
+                            <span>Zoom</span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Profile Description */}
+                    <div className="space-y-3 text-center sm:text-left flex-1">
+                      <div>
+                        <h4 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white font-display leading-tight">
+                          Sreela Mitra
+                        </h4>
+                        <p className="text-xs sm:text-sm font-bold text-[#4fd1d1] uppercase tracking-wider mt-1">
+                          Founder and Director, SpeakSmart Centre for Communication
+                        </p>
+                      </div>
+
+                      <p className="text-xs sm:text-sm text-stone-300 leading-relaxed">
+                        A pioneer in communication education, Sreela Mitra has spent over two decades shaping the way India learns to think, speak, and lead. As a communication coach, moderator, and Trinity College London certified educator, she has mentored thousands of students and professionals to express with confidence, clarity, and conviction.
+                      </p>
+
+                      {/* Credential Tags */}
+                      <div className="pt-1 flex flex-wrap gap-2 justify-center sm:justify-start">
+                        <span className="text-[11px] font-bold px-3 py-1 rounded-lg bg-stone-900/90 text-stone-200 border border-stone-700/80 shadow-inner">
+                          20+ Years Mentorship
+                        </span>
+                        <span className="text-[11px] font-bold px-3 py-1 rounded-lg bg-[#3dabab]/20 text-[#4fd1d1] border border-[#3dabab]/40 shadow-inner">
+                          Conceiver of ARISTRI™
+                        </span>
+                        <span className="text-[11px] font-bold px-3 py-1 rounded-lg bg-stone-900/90 text-stone-200 border border-stone-700/80 shadow-inner">
+                          Trinity Certified Educator
+                        </span>
+                        <span className="text-[11px] font-bold px-3 py-1 rounded-lg bg-stone-900/90 text-stone-200 border border-stone-700/80 shadow-inner">
+                          Executive Moderator
+                        </span>
+                      </div>
                     </div>
                   </div>
+
+                  {/* Cinematic Stage Pull-Quote */}
+                  <blockquote className="p-4 sm:p-5 rounded-2xl bg-stone-900/80 border border-[#3dabab]/30 text-xs sm:text-sm text-teal-100 italic leading-relaxed relative shadow-lg">
+                    <Quote className="w-5 h-5 text-[#3dabab] absolute top-3 right-3 opacity-60" />
+                    &ldquo;Her vision for SpeakSmart goes beyond public speaking — it&apos;s about empowering individuals to communicate with empathy, authenticity, and purpose.&rdquo;
+                  </blockquote>
                 </div>
 
-                {/* Founder Vision & Quote */}
-                <blockquote className="p-4 rounded-xl bg-white border border-[#3dabab]/20 text-xs text-stone-700 italic leading-relaxed relative">
-                  <Quote className="w-4 h-4 text-[#3dabab]/40 absolute top-2 right-2" />
-                  &ldquo;Her vision for SpeakSmart goes beyond public speaking — it&apos;s about empowering individuals to communicate with empathy, authenticity, and purpose.&rdquo;
-                </blockquote>
-              </div>
-
-              <div className="mt-6 pt-4 border-t border-stone-200/80 flex items-center justify-between text-xs">
-                <span className="text-stone-500 font-medium">Conceived ARISTRI™ Framework</span>
-                <span className="font-bold text-[#1f5e5e] flex items-center gap-1">
-                  <span>Founder &amp; Director</span>
-                  <CheckCircle2 className="w-3.5 h-3.5 text-[#3dabab]" />
-                </span>
-              </div>
-            </div>
-
-            {/* 2. CO-FOUNDER / PARTNER: Vishakha Agarwal (Printed Dress) */}
-            <div className="group rounded-3xl bg-gradient-to-br from-stone-50 via-white to-[#f2f9f9] border border-stone-300 p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-stone-200/40 rounded-bl-full pointer-events-none" />
-              
-              <div className="space-y-6">
-                {/* Header Badge */}
-                <div className="flex items-center justify-between">
-                  <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-stone-900 text-white shadow-sm">
-                    Co-Founder &amp; Partner
-                  </span>
-                  <span className="text-xs font-semibold text-stone-600">
-                    EDHEC Business School, France
-                  </span>
+                {/* Founder Card Footer & Interactive Action */}
+                <div className="mt-8 pt-4 border-t border-stone-800 flex flex-wrap items-center justify-between gap-3 text-xs relative z-10">
+                  <div className="text-stone-400 font-medium">
+                    Author of Copyrighted <strong className="text-white">ARISTRI™ Examination System</strong>
+                  </div>
+                  <button
+                    onClick={() => { setSelectedLeaderModal('sreela'); setModalPhotoIdx(0); }}
+                    className="px-4 py-2 rounded-xl text-xs font-bold text-white bg-[#3dabab] hover:bg-[#329696] transition-all shadow-[0_0_15px_rgba(61,171,171,0.4)] flex items-center gap-1.5 cursor-pointer"
+                  >
+                    <span>View Keynote Profile (Pop-up)</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
                 </div>
+              </div>
 
-                {/* Cutout Portrait Showcase */}
-                <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5">
-                  <div className="relative w-36 h-48 sm:w-44 sm:h-56 rounded-2xl overflow-hidden border-2 border-white shadow-xl shrink-0 bg-stone-100 ring-2 ring-stone-300">
-                    <img
-                      src="/assets/aistudio/co_founder_speaksmart.jpeg"
-                      alt="Vishakha Agarwal, Partner, SpeakSmart School of Communication"
-                      className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-                    <span className="absolute bottom-2 left-2 right-2 text-center text-[10px] font-extrabold text-white uppercase tracking-wider bg-black/60 backdrop-blur-xs py-0.5 rounded">
-                      Co-Founder &amp; Partner
+              {/* 2. EXECUTIVE PARTNER CARD: Vishakha Agarwal (Takes ~33% Compact Space) */}
+              <div className="lg:col-span-5 xl:col-span-4 group rounded-3xl bg-gradient-to-br from-stone-900/95 via-stone-950 to-stone-900/90 border border-stone-800 hover:border-[#3dabab]/50 p-6 sm:p-7 shadow-xl transition-all duration-500 flex flex-col justify-between relative overflow-hidden backdrop-blur-xl">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-stone-800/40 rounded-bl-full pointer-events-none" />
+                
+                <div className="space-y-5 relative z-10">
+                  {/* Top Header Badge */}
+                  <div className="flex items-center justify-between">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-stone-800 text-stone-200 border border-stone-700 shadow-sm">
+                      Partner &amp; Co-Founder
+                    </span>
+                    <span className="text-[11px] font-bold text-teal-300 bg-stone-900/90 px-2.5 py-0.5 rounded-full border border-stone-700">
+                      EDHEC France
                     </span>
                   </div>
 
-                  <div className="space-y-2 text-center sm:text-left">
-                    <h4 className="text-xl sm:text-2xl font-extrabold text-stone-950 font-display">
-                      Vishakha Agarwal
-                    </h4>
-                    <p className="text-xs font-bold text-[#1f5e5e] uppercase tracking-wide">
-                      Partner, SpeakSmart School of Communication
-                    </p>
-                    <p className="text-xs text-stone-700 leading-relaxed pt-1">
-                      An educator, strategist, and creative force, Vishakha brings a global perspective to SpeakSmart’s mission. A graduate of EDHEC Business School, France, she began her career as an asset manager in Paris before returning to India to pursue her true calling — transforming communication education. At SpeakSmart, she leads innovation and brand development, ensuring every learner discovers the power of thoughtful, effective expression.
-                    </p>
-                    <div className="pt-2 flex flex-wrap gap-1.5 justify-center sm:justify-start">
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-white text-stone-700 border border-stone-200">
-                        EDHEC Paris Alum
-                      </span>
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-white text-stone-700 border border-stone-200">
-                        Brand &amp; Innovation
-                      </span>
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-white text-stone-700 border border-stone-200">
-                        Strategy
-                      </span>
+                  {/* Cutout Portrait with Stage Lighting */}
+                  <div className="flex flex-col sm:flex-row lg:flex-col items-center sm:items-start lg:items-center gap-4 text-center lg:text-center sm:text-left">
+                    <div className="relative group/vphoto cursor-pointer shrink-0" onClick={() => { setSelectedLeaderModal('vishakha'); setModalPhotoIdx(0); }}>
+                      <div className="absolute -inset-1.5 bg-gradient-to-t from-teal-500/30 to-transparent rounded-2xl blur-xs opacity-75 group-hover/vphoto:opacity-100" />
+                      <div className="relative w-32 h-40 sm:w-36 sm:h-46 rounded-xl overflow-hidden border-2 border-stone-700 group-hover/vphoto:border-[#3dabab] shadow-xl bg-stone-950 ring-2 ring-stone-800 transform group-hover/vphoto:-translate-y-1.5 transition-all duration-500">
+                        <img
+                          src="/assets/aistudio/Vishakha_1_eafab282.jpeg"
+                          alt="Vishakha Agarwal, Partner, SpeakSmart Centre for Communication"
+                          className="w-full h-full object-cover object-top transition-transform duration-700 group-hover/vphoto:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-stone-950/70 via-transparent to-transparent pointer-events-none" />
+                        <span className="absolute bottom-1.5 left-1.5 right-1.5 text-center text-[9px] font-extrabold text-white uppercase tracking-wider bg-stone-900/80 backdrop-blur-xs py-0.5 rounded border border-stone-700">
+                          Partner · Co-Founder
+                        </span>
+                      </div>
                     </div>
+
+                    <div className="space-y-1">
+                      <h4 className="text-2xl font-extrabold text-white font-display">
+                        Vishakha Agarwal
+                      </h4>
+                      <p className="text-xs font-bold text-[#4fd1d1] uppercase tracking-wide">
+                        Partner, SpeakSmart Centre for Communication
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Biography */}
+                  <p className="text-xs text-stone-300 leading-relaxed">
+                    An educator, strategist, and creative force, Vishakha brings a global perspective to SpeakSmart’s mission. A graduate of EDHEC Business School, France, she began her career as an asset manager in Paris before returning to India to pursue her true calling — transforming communication education. At SpeakSmart, she leads innovation and brand development, ensuring every learner discovers the power of thoughtful, effective expression.
+                  </p>
+
+                  {/* Focus Badges */}
+                  <div className="flex flex-wrap gap-1.5 justify-center sm:justify-start lg:justify-center">
+                    <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-md bg-stone-800 text-stone-300 border border-stone-700">
+                      EDHEC Paris Alum
+                    </span>
+                    <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-md bg-stone-800 text-teal-300 border border-stone-700">
+                      Brand &amp; Innovation
+                    </span>
+                    <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-md bg-stone-800 text-stone-300 border border-stone-700">
+                      Strategy
+                    </span>
+                  </div>
+
+                  {/* Quote */}
+                  <blockquote className="p-3.5 rounded-xl bg-stone-900/80 border border-stone-800 text-xs text-stone-300 italic leading-relaxed relative">
+                    <Quote className="w-3.5 h-3.5 text-stone-500 absolute top-2 right-2" />
+                    &ldquo;She loves teaching and watching her students grow — not just as speakers, but as individuals who learn to think deeply and communicate meaningfully.&rdquo;
+                  </blockquote>
+                </div>
+
+                {/* Partner Card Footer */}
+                <div className="mt-6 pt-3.5 border-t border-stone-800 text-xs flex items-center justify-between text-stone-400 relative z-10">
+                  <span className="font-medium">Global Strategy &amp; Innovation</span>
+                  <button
+                    onClick={() => { setSelectedLeaderModal('vishakha'); setModalPhotoIdx(0); }}
+                    className="font-bold text-[#4fd1d1] hover:text-white flex items-center gap-1 hover:underline cursor-pointer"
+                  >
+                    <span>View Profile</span>
+                    <span>→</span>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Live Studio Sessions & Workshop Gallery (Real Authentic Photos) */}
+            <div className="mt-12 pt-8 border-t border-stone-800/80">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
+                <div>
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-extrabold uppercase tracking-wider bg-[#3dabab]/20 text-[#4fd1d1] border border-[#3dabab]/40 mb-1.5">
+                    <Sparkles className="w-3.5 h-3.5 text-[#3dabab]" />
+                    <span>Live Mentorship in Action</span>
+                  </div>
+                  <h4 className="text-xl sm:text-2xl font-extrabold text-white font-display">
+                    Inside the SpeakSmart Classroom &amp; Debate Arena
+                  </h4>
+                </div>
+                <p className="text-xs text-stone-400 max-w-sm">
+                  Real students, certificates, and podium breakthroughs captured live at the Kolkata Centre.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {/* Moment 1 */}
+                <div 
+                  className="group/m rounded-2xl overflow-hidden bg-stone-900 border border-stone-800 hover:border-[#3dabab]/60 transition-all cursor-pointer flex flex-col"
+                  onClick={() => setPreviewMomentsPhoto({
+                    src: '/assets/aistudio/Students_3_ff311d71.jpeg',
+                    title: 'Live Certificate Conferment',
+                    subtitle: 'Founder Sreela Mitra & Partner Vishakha Agarwal awarding the SpeakSmart Debate Workshop Certificate of Participation to star student Manis Dave.'
+                  })}
+                >
+                  <div className="relative aspect-4/3 overflow-hidden bg-stone-950">
+                    <img
+                      src="/assets/aistudio/Students_3_ff311d71.jpeg"
+                      alt="Sreela Mitra and Vishakha Agarwal awarding debate workshop certificate to student"
+                      className="w-full h-full object-cover group-hover/m:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent opacity-80" />
+                    <span className="absolute top-2 left-2 text-[10px] font-bold px-2 py-0.5 rounded bg-[#3dabab] text-white">
+                      Certificate Award
+                    </span>
+                    <span className="absolute bottom-2 right-2 text-white/80 group-hover/m:text-white p-1 rounded-lg bg-black/60">
+                      <Maximize2 className="w-3.5 h-3.5" />
+                    </span>
+                  </div>
+                  <div className="p-3.5 flex-1 flex flex-col justify-between">
+                    <h5 className="text-xs font-bold text-white group-hover/m:text-[#4fd1d1] transition-colors leading-snug">
+                      Debate Certificate Ceremony
+                    </h5>
+                    <p className="text-[11px] text-stone-400 mt-1 line-clamp-2">
+                      Sreela Mitra &amp; Vishakha Agarwal presenting debate honors to star debater Manis Dave.
+                    </p>
                   </div>
                 </div>
 
-                {/* Co-Founder Quote */}
-                <blockquote className="p-4 rounded-xl bg-white border border-stone-200 text-xs text-stone-700 italic leading-relaxed relative">
-                  <Quote className="w-4 h-4 text-stone-400 absolute top-2 right-2" />
-                  &ldquo;She loves teaching and watching her students grow — not just as speakers, but as individuals who learn to think deeply and communicate meaningfully.&rdquo;
-                </blockquote>
-              </div>
+                {/* Moment 2 */}
+                <div 
+                  className="group/m rounded-2xl overflow-hidden bg-stone-900 border border-stone-800 hover:border-[#3dabab]/60 transition-all cursor-pointer flex flex-col"
+                  onClick={() => setPreviewMomentsPhoto({
+                    src: '/assets/aistudio/Students_2_843b39b5.jpeg',
+                    title: 'Debate Workshop Certificate Cohort',
+                    subtitle: 'Students proudly displaying their official SpeakSmart Debate Workshop participation certificates.'
+                  })}
+                >
+                  <div className="relative aspect-4/3 overflow-hidden bg-stone-950">
+                    <img
+                      src="/assets/aistudio/Students_2_843b39b5.jpeg"
+                      alt="Debate workshop students holding certificates with founders"
+                      className="w-full h-full object-cover group-hover/m:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent opacity-80" />
+                    <span className="absolute top-2 left-2 text-[10px] font-bold px-2 py-0.5 rounded bg-teal-600 text-white">
+                      Debate Cohort
+                    </span>
+                    <span className="absolute bottom-2 right-2 text-white/80 group-hover/m:text-white p-1 rounded-lg bg-black/60">
+                      <Maximize2 className="w-3.5 h-3.5" />
+                    </span>
+                  </div>
+                  <div className="p-3.5 flex-1 flex flex-col justify-between">
+                    <h5 className="text-xs font-bold text-white group-hover/m:text-[#4fd1d1] transition-colors leading-snug">
+                      Debate Workshop Cohort
+                    </h5>
+                    <p className="text-[11px] text-stone-400 mt-1 line-clamp-2">
+                      Learners mastering structured rebuttal, cross-questioning, and poise.
+                    </p>
+                  </div>
+                </div>
 
-              <div className="mt-6 pt-4 border-t border-stone-200/80 flex items-center justify-between text-xs">
-                <span className="text-stone-500 font-medium">Global Strategy &amp; Brand Innovation</span>
-                <span className="font-bold text-stone-900 flex items-center gap-1">
-                  <span>Co-Founder &amp; Partner</span>
-                  <CheckCircle2 className="w-3.5 h-3.5 text-[#3dabab]" />
-                </span>
+                {/* Moment 3 */}
+                <div 
+                  className="group/m rounded-2xl overflow-hidden bg-stone-900 border border-stone-800 hover:border-[#3dabab]/60 transition-all cursor-pointer flex flex-col"
+                  onClick={() => setPreviewMomentsPhoto({
+                    src: '/assets/aistudio/Sreela_and_Vishakha_14084757.jpeg',
+                    title: 'SpeakSmart Academy "In the Spotlight"',
+                    subtitle: 'Founders Sreela Mitra & Vishakha Agarwal inaugurating institutional youth communication showcases.'
+                  })}
+                >
+                  <div className="relative aspect-4/3 overflow-hidden bg-stone-950">
+                    <img
+                      src="/assets/aistudio/Sreela_and_Vishakha_14084757.jpeg"
+                      alt="Founders Sreela Mitra and Vishakha Agarwal at SpeakSmart Academy In the Spotlight"
+                      className="w-full h-full object-cover group-hover/m:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent opacity-80" />
+                    <span className="absolute top-2 left-2 text-[10px] font-bold px-2 py-0.5 rounded bg-amber-600 text-white">
+                      Spotlight Gala
+                    </span>
+                    <span className="absolute bottom-2 right-2 text-white/80 group-hover/m:text-white p-1 rounded-lg bg-black/60">
+                      <Maximize2 className="w-3.5 h-3.5" />
+                    </span>
+                  </div>
+                  <div className="p-3.5 flex-1 flex flex-col justify-between">
+                    <h5 className="text-xs font-bold text-white group-hover/m:text-[#4fd1d1] transition-colors leading-snug">
+                      Founders at &quot;In the Spotlight&quot;
+                    </h5>
+                    <p className="text-[11px] text-stone-400 mt-1 line-clamp-2">
+                      Sreela Mitra &amp; Vishakha Agarwal leading the Think.Speak.Lead mission.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Moment 4 */}
+                <div 
+                  className="group/m rounded-2xl overflow-hidden bg-stone-900 border border-stone-800 hover:border-[#3dabab]/60 transition-all cursor-pointer flex flex-col"
+                  onClick={() => setPreviewMomentsPhoto({
+                    src: '/assets/aistudio/Students_1_7f69b5c8.jpeg',
+                    title: 'Junior Communication Workshop',
+                    subtitle: 'Young communicators holding certificates after completing intensive podium training.'
+                  })}
+                >
+                  <div className="relative aspect-4/3 overflow-hidden bg-stone-950">
+                    <img
+                      src="/assets/aistudio/Students_1_7f69b5c8.jpeg"
+                      alt="Junior students with certificates at SpeakSmart Centre"
+                      className="w-full h-full object-cover group-hover/m:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent opacity-80" />
+                    <span className="absolute top-2 left-2 text-[10px] font-bold px-2 py-0.5 rounded bg-[#3dabab] text-white">
+                      Junior Communicators
+                    </span>
+                    <span className="absolute bottom-2 right-2 text-white/80 group-hover/m:text-white p-1 rounded-lg bg-black/60">
+                      <Maximize2 className="w-3.5 h-3.5" />
+                    </span>
+                  </div>
+                  <div className="p-3.5 flex-1 flex flex-col justify-between">
+                    <h5 className="text-xs font-bold text-white group-hover/m:text-[#4fd1d1] transition-colors leading-snug">
+                      Junior Communication Honorees
+                    </h5>
+                    <p className="text-[11px] text-stone-400 mt-1 line-clamp-2">
+                      Empowering children to articulate their thoughts without hesitation.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
-
           </div>
         </div>
+
+        {/* ======================================================== */}
+        {/* INTERACTIVE LEADERSHIP DETAIL POP-UP MODAL (VINH GIANG STYLE) */}
+        {/* ======================================================== */}
+        {selectedLeaderModal && (
+          <div 
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-950/85 backdrop-blur-md animate-fadeIn cursor-pointer"
+            onClick={() => setSelectedLeaderModal(null)}
+          >
+            <div 
+              className="relative w-full max-w-3xl bg-gradient-to-b from-[#0a1518] to-[#070e10] border border-[#3dabab]/60 rounded-3xl shadow-2xl p-6 sm:p-8 text-white overflow-hidden max-h-[90vh] overflow-y-auto cursor-default"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Background ambient stage glow */}
+              <div className="absolute top-0 right-1/4 w-80 h-80 bg-[#3dabab]/20 rounded-full blur-3xl pointer-events-none" />
+              
+              {/* Close Button */}
+              <button
+                onClick={() => setSelectedLeaderModal(null)}
+                className="absolute top-4 right-4 p-2 rounded-full bg-stone-900/80 hover:bg-stone-800 text-stone-400 hover:text-white border border-stone-700 transition-colors cursor-pointer z-20"
+                aria-label="Close modal"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              {selectedLeaderModal === 'sreela' ? (
+                <div className="space-y-6 relative z-10">
+                  {(() => {
+                    const activePhoto = SREELA_STAGE_GALLERY[modalPhotoIdx] || SREELA_STAGE_GALLERY[0];
+                    return (
+                      <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+                        {/* Cutout Portrait & Gallery Switcher */}
+                        <div className="shrink-0 flex flex-col items-center sm:items-start">
+                          <div className="relative w-44 h-60 sm:w-52 sm:h-72 rounded-2xl overflow-hidden border-2 border-[#3dabab] shadow-2xl bg-stone-950 ring-4 ring-[#3dabab]/30">
+                            <img
+                              src={activePhoto.src}
+                              alt={activePhoto.title}
+                              className="w-full h-full object-cover object-top transition-all duration-300"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                            <span className="absolute bottom-2 left-2 right-2 text-center text-[10px] font-extrabold text-white uppercase tracking-wider bg-[#3dabab] py-1 rounded">
+                              {activePhoto.badge}
+                            </span>
+                          </div>
+
+                          {/* Thumbnail Selectors */}
+                          <div className="flex items-center gap-1.5 mt-3 max-w-[208px]">
+                            {SREELA_STAGE_GALLERY.map((item, idx) => (
+                              <button
+                                key={item.title}
+                                onClick={() => setModalPhotoIdx(idx)}
+                                className={`relative w-11 h-12 rounded-lg overflow-hidden border-2 transition-all cursor-pointer shrink-0 ${
+                                  modalPhotoIdx === idx
+                                    ? 'border-[#3dabab] ring-2 ring-[#3dabab]/50 scale-105'
+                                    : 'border-stone-700 opacity-60 hover:opacity-100'
+                                }`}
+                                title={item.title}
+                              >
+                                <img src={item.src} alt={item.title} className="w-full h-full object-cover" />
+                              </button>
+                            ))}
+                          </div>
+                          <p className="text-[10px] text-teal-300 mt-1.5 max-w-[208px] text-center sm:text-left leading-tight">
+                            {activePhoto.caption}
+                          </p>
+                        </div>
+
+                        <div className="space-y-3 text-center sm:text-left flex-1">
+                          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-[#3dabab]/20 text-[#4fd1d1] border border-[#3dabab]/40">
+                            <Award className="w-3.5 h-3.5 text-[#3dabab]" />
+                            <span>Trinity College London Certified Educator</span>
+                          </div>
+                          
+                          <h3 className="text-3xl sm:text-4xl font-extrabold text-white font-display">
+                            Sreela Mitra
+                          </h3>
+                          <p className="text-xs sm:text-sm font-bold text-[#4fd1d1] uppercase tracking-wide">
+                            Founder and Director, SpeakSmart Centre for Communication
+                          </p>
+
+                          <p className="text-xs sm:text-sm text-stone-300 leading-relaxed">
+                            A pioneer in communication education, Sreela Mitra has spent over two decades shaping the way India learns to think, speak, and lead. As a communication coach, moderator, and Trinity College London certified educator, she has mentored thousands of students and professionals to express with confidence, clarity, and conviction.
+                          </p>
+
+                          <div className="pt-2 flex flex-wrap gap-2 justify-center sm:justify-start">
+                            <span className="text-xs font-bold px-3 py-1 rounded-lg bg-stone-900 text-stone-200 border border-stone-700">
+                              20+ Years Mentorship
+                            </span>
+                            <span className="text-xs font-bold px-3 py-1 rounded-lg bg-[#3dabab]/20 text-[#4fd1d1] border border-[#3dabab]/40">
+                              Author of ARISTRI™
+                            </span>
+                            <span className="text-xs font-bold px-3 py-1 rounded-lg bg-stone-900 text-stone-200 border border-stone-700">
+                              Master Pedagogist
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })()}
+
+                  <blockquote className="p-4 sm:p-5 rounded-2xl bg-stone-900/90 border border-[#3dabab]/40 text-xs sm:text-sm text-teal-100 italic leading-relaxed relative">
+                    <Quote className="w-5 h-5 text-[#3dabab] absolute top-3 right-3 opacity-60" />
+                    &ldquo;Her vision for SpeakSmart goes beyond public speaking — it&apos;s about empowering individuals to communicate with empathy, authenticity, and purpose.&rdquo;
+                  </blockquote>
+
+                  <div className="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-stone-800">
+                    <span className="text-xs text-stone-400">
+                      Conceived the 4 C&apos;s (Confidence, Competence, Clarity, Connectivity) &amp; ARISTRI™
+                    </span>
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => {
+                          setSelectedLeaderModal(null);
+                          document.getElementById('broadcast-player')?.scrollIntoView({ behavior: 'smooth' });
+                        }}
+                        className="px-4 py-2 rounded-xl text-xs font-bold text-white bg-[#3dabab] hover:bg-[#329696] transition-colors flex items-center gap-1.5 cursor-pointer"
+                      >
+                        <Play className="w-3.5 h-3.5 fill-white" />
+                        <span>Watch Video Address</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="space-y-6 relative z-10">
+                  {(() => {
+                    const activeVPhoto = VISHAKHA_STAGE_GALLERY[modalPhotoIdx] || VISHAKHA_STAGE_GALLERY[0];
+                    return (
+                      <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+                        {/* Cutout Portrait & Gallery Switcher */}
+                        <div className="shrink-0 flex flex-col items-center sm:items-start">
+                          <div className="relative w-44 h-60 sm:w-52 sm:h-72 rounded-2xl overflow-hidden border-2 border-stone-600 shadow-2xl bg-stone-950 ring-4 ring-stone-800">
+                            <img
+                              src={activeVPhoto.src}
+                              alt={activeVPhoto.title}
+                              className="w-full h-full object-cover object-top transition-all duration-300"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                            <span className="absolute bottom-2 left-2 right-2 text-center text-[10px] font-extrabold text-white uppercase tracking-wider bg-stone-800 py-1 rounded">
+                              {activeVPhoto.badge}
+                            </span>
+                          </div>
+
+                          {/* Thumbnail Selectors */}
+                          <div className="flex items-center gap-1.5 mt-3 max-w-[208px]">
+                            {VISHAKHA_STAGE_GALLERY.map((item, idx) => (
+                              <button
+                                key={item.title}
+                                onClick={() => setModalPhotoIdx(idx)}
+                                className={`relative w-12 h-12 rounded-lg overflow-hidden border-2 transition-all cursor-pointer shrink-0 ${
+                                  modalPhotoIdx === idx
+                                    ? 'border-[#3dabab] ring-2 ring-[#3dabab]/50 scale-105'
+                                    : 'border-stone-700 opacity-60 hover:opacity-100'
+                                }`}
+                                title={item.title}
+                              >
+                                <img src={item.src} alt={item.title} className="w-full h-full object-cover" />
+                              </button>
+                            ))}
+                          </div>
+                          <p className="text-[10px] text-stone-300 mt-1.5 max-w-[208px] text-center sm:text-left leading-tight">
+                            {activeVPhoto.caption}
+                          </p>
+                        </div>
+
+                        <div className="space-y-3 text-center sm:text-left flex-1">
+                          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-stone-800 text-teal-300 border border-stone-700">
+                            <span>EDHEC Business School, France</span>
+                          </div>
+                          
+                          <h3 className="text-3xl sm:text-4xl font-extrabold text-white font-display">
+                            Vishakha Agarwal
+                          </h3>
+                          <p className="text-xs sm:text-sm font-bold text-[#4fd1d1] uppercase tracking-wide">
+                            Partner, SpeakSmart Centre for Communication
+                          </p>
+
+                          <p className="text-xs sm:text-sm text-stone-300 leading-relaxed">
+                            An educator, strategist, and creative force, Vishakha brings a global perspective to SpeakSmart’s mission. A graduate of EDHEC Business School, France, she began her career as an asset manager in Paris before returning to India to pursue her true calling — transforming communication education. At SpeakSmart, she leads innovation and brand development, ensuring every learner discovers the power of thoughtful, effective expression.
+                          </p>
+
+                          <div className="pt-2 flex flex-wrap gap-2 justify-center sm:justify-start">
+                            <span className="text-xs font-bold px-3 py-1 rounded-lg bg-stone-900 text-stone-200 border border-stone-700">
+                              EDHEC Paris Alum
+                            </span>
+                            <span className="text-xs font-bold px-3 py-1 rounded-lg bg-stone-900 text-teal-300 border border-stone-700">
+                              Brand &amp; Innovation
+                            </span>
+                            <span className="text-xs font-bold px-3 py-1 rounded-lg bg-stone-900 text-stone-200 border border-stone-700">
+                              Strategic Expansion
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })()}
+
+                  <blockquote className="p-4 sm:p-5 rounded-2xl bg-stone-900/90 border border-stone-800 text-xs sm:text-sm text-stone-300 italic leading-relaxed relative">
+                    <Quote className="w-5 h-5 text-stone-500 absolute top-2 right-2" />
+                    &ldquo;She loves teaching and watching her students grow — not just as speakers, but as individuals who learn to think deeply and communicate meaningfully.&rdquo;
+                  </blockquote>
+
+                  <div className="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-stone-800">
+                    <span className="text-xs text-stone-400">
+                      Directing Institutional Growth &amp; Real-World Student Showcases
+                    </span>
+                    <a
+                      href="https://forms.gle/amSFYJ7xTY1oi97u8"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 py-2 rounded-xl text-xs font-bold text-white bg-[#3dabab] hover:bg-[#329696] transition-colors flex items-center gap-1.5 cursor-pointer shadow-2xs"
+                    >
+                      <span>Register for New Semester</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Live Studio Moments Lightbox Modal */}
+        {previewMomentsPhoto && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-950/85 backdrop-blur-md animate-fadeIn cursor-pointer"
+            onClick={() => setPreviewMomentsPhoto(null)}
+          >
+            <div
+              className="relative max-w-4xl w-full bg-stone-900 border border-stone-700 rounded-3xl overflow-hidden shadow-2xl p-4 sm:p-6 text-white cursor-default"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setPreviewMomentsPhoto(null)}
+                className="absolute top-6 right-6 p-2 rounded-full bg-stone-950/80 hover:bg-stone-800 text-stone-300 hover:text-white transition-colors cursor-pointer z-10"
+                aria-label="Close photo preview"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              <div className="rounded-2xl overflow-hidden bg-black max-h-[72vh] flex items-center justify-center">
+                <img
+                  src={previewMomentsPhoto.src}
+                  alt={previewMomentsPhoto.title}
+                  className="max-h-[72vh] w-auto object-contain mx-auto"
+                />
+              </div>
+              <div className="pt-4 px-2 space-y-1">
+                <div className="flex items-center justify-between">
+                  <h4 className="text-base font-bold text-white font-display">{previewMomentsPhoto.title}</h4>
+                  <span className="text-[11px] font-mono font-bold text-[#4fd1d1] bg-[#3dabab]/20 px-2.5 py-0.5 rounded-full border border-[#3dabab]/40">
+                    SpeakSmart Kolkata Centre
+                  </span>
+                </div>
+                <p className="text-xs text-stone-300">{previewMomentsPhoto.subtitle}</p>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* FEATURED FOUNDER VIDEO BROADCAST PLAYER (YOUTUBE READY) */}
         <div className="mb-16 rounded-2xl bg-stone-950 text-white border border-stone-800 shadow-2xl overflow-hidden">
@@ -1000,12 +1549,15 @@ export const WhatIsSpeakSmart: React.FC<WhatIsSpeakSmartProps> = ({
           </div>
 
           <div className="flex items-center gap-3 shrink-0">
-            <button
-              onClick={onOpenRegister}
-              className="px-6 py-3 text-xs sm:text-sm font-bold text-white bg-[#3dabab] hover:bg-[#329696] rounded-md transition-all shadow-md cursor-pointer"
+            <a
+              href="https://forms.gle/amSFYJ7xTY1oi97u8"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-3 text-xs sm:text-sm font-bold text-white bg-[#3dabab] hover:bg-[#329696] rounded-md transition-all shadow-md cursor-pointer inline-flex items-center gap-2"
             >
-              Register for New Semester
-            </button>
+              <span>Register for New Semester</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
             <button
               onClick={onNavigateAristri}
               className="px-5 py-3 text-xs sm:text-sm font-bold text-stone-200 hover:text-white border border-stone-700 hover:border-stone-500 rounded-md transition-colors cursor-pointer bg-stone-800"

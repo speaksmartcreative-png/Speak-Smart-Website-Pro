@@ -83,7 +83,7 @@ export default function App() {
   const urgentNotice = NOTICES.find((n) => n.isUrgent) || NOTICES[0];
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-black selection:bg-[#3dabab] selection:text-white font-sans overflow-x-hidden">
+    <div className="min-h-screen flex flex-col bg-[#f8fafb] dark:bg-[#071618] text-stone-900 dark:text-stone-100 selection:bg-[#3dabab] selection:text-white font-sans overflow-x-hidden transition-colors duration-200">
       {/* 1. Top Announcement Bar */}
       <AnnouncementBar
         urgentNotice={urgentNotice}
@@ -98,46 +98,90 @@ export default function App() {
         onOpenRegister={() => setIsRegisterOpen(true)}
       />
 
-      {/* Breadcrumb banner when viewing a dedicated sub-page */}
+      {/* Dedicated Page Hero Header Banner with Distinct Atmospheric Gradient per Page */}
       {currentView !== 'home' && (
-        <nav aria-label="Breadcrumb" className="bg-stone-50 border-b border-stone-200 px-4 py-3 text-xs text-stone-600">
-          <div className="max-w-7xl mx-auto flex items-center justify-between">
-            <div className="flex items-center gap-2">
+        <div className={`relative overflow-hidden border-b transition-colors duration-500 ${
+          currentView === 'speaksmart'
+            ? 'bg-gradient-to-r from-[#06181b] via-[#0b292e] to-[#061416] text-white border-[#3dabab]/40 shadow-xl'
+            : currentView === 'aristri'
+            ? 'bg-gradient-to-r from-[#051c1a] via-[#082d27] to-[#041614] text-white border-teal-500/40 shadow-xl'
+            : currentView.includes('testimonial')
+            ? 'bg-gradient-to-r from-[#142226] via-[#1a2e33] to-[#121c1f] text-white border-amber-500/40 shadow-xl'
+            : currentView === 'updates'
+            ? 'bg-gradient-to-r from-[#0b1c24] via-[#102732] to-[#09171e] text-white border-sky-500/40 shadow-xl'
+            : 'bg-gradient-to-r from-[#0c1c19] via-[#122823] to-[#0a1714] text-white border-emerald-500/40 shadow-xl'
+        }`}>
+          {/* Ambient Lighting Orbs */}
+          <div className="absolute top-0 right-1/4 w-96 h-40 bg-gradient-to-b from-[#3dabab]/25 to-transparent rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-10 w-72 h-32 bg-teal-400/15 rounded-full blur-2xl pointer-events-none" />
+          <div className="absolute inset-0 bg-[radial-gradient(#ffffff_0.75px,transparent_0.75px)] [background-size:24px_24px] opacity-10 pointer-events-none" />
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 relative z-10">
+            {/* Breadcrumb line */}
+            <div className="flex items-center justify-between text-xs mb-3 text-stone-300">
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => handleNavigate('home')}
+                  className="text-stone-300 hover:text-white hover:underline cursor-pointer font-bold font-display flex items-center gap-1"
+                >
+                  <span>SpeakSmart</span>
+                </button>
+                <ChevronRight className="w-3 h-3 text-stone-500" />
+                <span className="font-bold text-[#4fd1d1] capitalize">
+                  {currentView === 'speaksmart'
+                    ? 'What is SpeakSmart'
+                    : currentView === 'aristri'
+                    ? 'What is ARISTRI™'
+                    : currentView === 'testimonials'
+                    ? 'Testimonials'
+                    : currentView === 'student-testimonials'
+                    ? 'Testimonials · Student Stories'
+                    : currentView === 'parent-testimonials'
+                    ? 'Testimonials · Parent Feedback'
+                    : currentView === 'updates'
+                    ? 'Updates & Exam Dates'
+                    : currentView === 'rules'
+                    ? 'Rules and Regulations'
+                    : currentView}
+                </span>
+              </div>
+
               <button
                 onClick={() => handleNavigate('home')}
-                className="text-stone-700 hover:text-black hover:underline cursor-pointer font-bold font-display"
-                title="Return to main page"
+                className="text-xs font-bold text-teal-200 hover:text-white bg-white/10 hover:bg-white/20 border border-white/15 px-3 py-1 rounded-full transition-colors cursor-pointer flex items-center gap-1"
               >
-                SpeakSmart
+                <span>← Back to Overview</span>
               </button>
-              <ChevronRight className="w-3 h-3 text-stone-400" />
-              <span className="font-bold text-black capitalize">
-                {currentView === 'speaksmart'
-                  ? 'What is SpeakSmart'
-                  : currentView === 'aristri'
-                  ? 'What is ARISTRI™'
-                  : currentView === 'testimonials'
-                  ? 'Testimonials'
-                  : currentView === 'student-testimonials'
-                  ? 'Testimonials · Student Stories'
-                  : currentView === 'parent-testimonials'
-                  ? 'Testimonials · Parent Feedback'
-                  : currentView === 'updates'
-                  ? 'Updates & Exam Dates'
-                  : currentView === 'rules'
-                  ? 'Rules and Regulations'
-                  : currentView}
-              </span>
             </div>
 
-            <button
-              onClick={() => handleNavigate('home')}
-              className="text-[#3dabab] hover:text-[#277979] font-bold cursor-pointer"
-            >
-              ← Back to Main Institute Overview
-            </button>
+            {/* Title & Tagline in Banner */}
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+              <div>
+                <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-[11px] font-extrabold uppercase tracking-wider bg-[#3dabab]/20 text-[#4fd1d1] border border-[#3dabab]/40 mb-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#4fd1d1] animate-pulse" />
+                  {currentView === 'speaksmart' && 'Institute Identity & Pedagogy'}
+                  {currentView === 'aristri' && 'Official Trademarked Certification'}
+                  {currentView.includes('testimonial') && 'Hall of Fame & Real Reviews'}
+                  {currentView === 'updates' && 'Official Academic Bulletin'}
+                  {currentView === 'rules' && 'Official Handbook & Operational Code'}
+                </span>
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white font-display tracking-tight">
+                  {currentView === 'speaksmart' && 'What is SpeakSmart Centre for Communication?'}
+                  {currentView === 'aristri' && 'ARISTRI™ Practical Examination System'}
+                  {currentView === 'testimonials' && 'Testimonials & Student Breakthroughs'}
+                  {currentView === 'student-testimonials' && 'Student Showcases & Speech Achievements'}
+                  {currentView === 'parent-testimonials' && 'Parent Reviews & Family Perspectives'}
+                  {currentView === 'updates' && 'Academic Calendar, Holiday Notices & Exam Schedules'}
+                  {currentView === 'rules' && 'SpeakSmart Operational Rules & Student Guidelines'}
+                </h1>
+              </div>
+
+              <div className="text-xs text-stone-300 font-mono hidden lg:block shrink-0">
+                LLPIN: ACO-6485 · Kolkata Centre
+              </div>
+            </div>
           </div>
-        </nav>
+        </div>
       )}
 
       {/* Main Content Area */}

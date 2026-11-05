@@ -1,6 +1,6 @@
 {
-  "name": "SpeakSmart Institute of Public Speaking & Oratory",
-  "description": "Premier Public Speaking & Aristri Rhetoric Institute offering youth oratory training, semester admissions, student and parent reviews, academic notices, and rules.",
+  "name": "SpeakSmart Centre for Communication",
+  "description": "Premier Public Speaking & Aristri Rhetoric Institute offering youth communication training, semester admissions, student and parent reviews, academic notices, and rules.",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
