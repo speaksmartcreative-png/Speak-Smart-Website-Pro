@@ -57,20 +57,15 @@ export const NoticeBoard: React.FC<NoticeBoardProps> = ({
   };
 
   return (
-    <section id="updates" className="relative py-16 md:py-24 bg-gradient-to-b from-[#eaf2f6] via-[#f1f6f9] to-[#e3edf2] dark:from-[#051417] dark:via-[#091f23] dark:to-[#061619] text-stone-900 dark:text-stone-100 border-b border-stone-200/80 dark:border-stone-800 overflow-hidden">
+    <section id="updates" className="relative py-16 md:py-24 bg-gradient-to-b from-[#edf5f8]/85 via-[#f6fbfc]/80 to-[#eaf3f7]/85 dark:from-[#051417]/90 dark:via-[#092025]/85 dark:to-[#061619]/90 text-stone-900 dark:text-stone-100 border-b border-stone-200/80 dark:border-stone-800 overflow-hidden">
       {/* Ambient background glow accents */}
-      <div className="absolute top-10 right-10 w-[30rem] h-[30rem] bg-[#3dabab]/15 dark:bg-[#3dabab]/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 left-10 w-[32rem] h-[32rem] bg-[#1f5e5e]/12 dark:bg-[#1f5e5e]/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/2 left-1/3 w-80 h-80 bg-sky-200/20 dark:bg-teal-900/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-10 right-10 w-[32rem] h-[32rem] bg-gradient-to-bl from-sky-400/20 via-[#3dabab]/15 to-transparent dark:from-sky-500/15 dark:via-teal-800/10 rounded-full blur-3xl pointer-events-none animate-aurora" />
+      <div className="absolute bottom-10 left-10 w-[30rem] h-[30rem] bg-gradient-to-tr from-[#3dabab]/20 via-teal-300/10 to-transparent dark:from-[#1f5e5e]/20 rounded-full blur-3xl pointer-events-none animate-float-slow" />
+      <div className="absolute top-1/2 left-1/3 w-80 h-80 bg-amber-200/15 dark:bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
 
-      {/* Micro-dot texture overlay */}
-      <div 
-        className="absolute inset-0 opacity-[0.035] dark:opacity-[0.05] pointer-events-none"
-        style={{
-          backgroundImage: 'radial-gradient(#1f5e5e 1px, transparent 1px)',
-          backgroundSize: '24px 24px'
-        }}
-      />
+      {/* Stage Pattern Texture */}
+      <div className="absolute inset-0 bg-stage-pattern opacity-40 dark:opacity-60 pointer-events-none" />
+
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         

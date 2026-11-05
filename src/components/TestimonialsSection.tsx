@@ -13,7 +13,10 @@ import {
   ZoomIn,
   X,
   MapPin,
-  Check
+  Check,
+  ExternalLink,
+  Settings,
+  Link2
 } from 'lucide-react';
 import { STUDENT_TESTIMONIALS, PARENT_TESTIMONIALS } from '../data/mockData';
 import { StudentTestimonial, ParentTestimonial } from '../types';
@@ -34,6 +37,45 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
   const [showSubmitModal, setShowSubmitModal] = useState(false);
   const [submittedReview, setSubmittedReview] = useState(false);
   const [selectedPhoto, setSelectedPhoto] = useState<{ src: string; name: string; quote: string; achievement: string } | null>(null);
+
+  // Google Form Review redirection state (configurable by user/admin)
+  const DEFAULT_GOOGLE_FORM_REVIEW_URL = 'https://forms.gle/amSFYJ7xTY1oi97u8';
+  const [googleFormReviewUrl, setGoogleFormReviewUrl] = useState<string>(() => {
+    return localStorage.getItem('speaksmart_review_google_form_url') || DEFAULT_GOOGLE_FORM_REVIEW_URL;
+  });
+  const [isConfiguringReviewUrl, setIsConfiguringReviewUrl] = useState(false);
+  const [tempReviewUrl, setTempReviewUrl] = useState(googleFormReviewUrl);
+  const [urlSaveSuccess, setUrlSaveSuccess] = useState(false);
+
+  const handleSaveReviewUrl = (e: React.FormEvent) => {
+    e.preventDefault();
+    let url = tempReviewUrl.trim();
+    if (!url) {
+      url = DEFAULT_GOOGLE_FORM_REVIEW_URL;
+    }
+    if (!url.startsWith('http://') && !url.startsWith('https://')) {
+      url = 'https://' + url;
+    }
+    setGoogleFormReviewUrl(url);
+    setTempReviewUrl(url);
+    localStorage.setItem('speaksmart_review_google_form_url', url);
+    setUrlSaveSuccess(true);
+    setTimeout(() => {
+      setUrlSaveSuccess(false);
+      setIsConfiguringReviewUrl(false);
+    }, 1500);
+  };
+
+  const handleResetReviewUrl = () => {
+    setGoogleFormReviewUrl(DEFAULT_GOOGLE_FORM_REVIEW_URL);
+    setTempReviewUrl(DEFAULT_GOOGLE_FORM_REVIEW_URL);
+    localStorage.removeItem('speaksmart_review_google_form_url');
+    setUrlSaveSuccess(true);
+    setTimeout(() => {
+      setUrlSaveSuccess(false);
+      setIsConfiguringReviewUrl(false);
+    }, 1500);
+  };
 
   useEffect(() => {
     setActiveTab(initialTab);
@@ -150,20 +192,15 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
   });
 
   return (
-    <section id="testimonials" className="relative py-16 md:py-24 bg-gradient-to-b from-[#fcf7f0] via-[#f2f8f9] to-[#e7f2f4] dark:from-[#061517] dark:via-[#091e22] dark:to-[#071618] text-stone-900 dark:text-stone-100 border-b border-stone-200/80 dark:border-stone-800 overflow-hidden">
-      {/* Ambient background glowing elements */}
-      <div className="absolute top-10 left-1/4 w-[32rem] h-[32rem] bg-amber-200/25 dark:bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 right-10 w-[30rem] h-[30rem] bg-[#3dabab]/15 dark:bg-[#3dabab]/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/2 right-1/3 w-80 h-80 bg-teal-300/15 dark:bg-teal-700/10 rounded-full blur-3xl pointer-events-none" />
+    <section id="testimonials" className="relative py-16 md:py-24 bg-gradient-to-b from-[#fefbf6]/80 via-[#f0f9fa]/75 to-[#e9f6f7]/80 dark:from-[#061517]/85 dark:via-[#092226]/85 dark:to-[#07171a]/90 text-stone-900 dark:text-stone-100 border-b border-stone-200/80 dark:border-stone-800/80 overflow-hidden">
+      {/* Radiant Stage Spotlight Accents */}
+      <div className="absolute top-10 left-10 w-[36rem] h-[36rem] bg-gradient-to-br from-amber-300/25 via-amber-400/10 to-transparent dark:from-amber-500/15 dark:via-amber-600/5 rounded-full blur-3xl pointer-events-none animate-aurora" />
+      <div className="absolute bottom-10 right-10 w-[34rem] h-[34rem] bg-gradient-to-tl from-[#3dabab]/25 via-teal-400/15 to-transparent dark:from-[#3dabab]/20 dark:via-teal-600/10 rounded-full blur-3xl pointer-events-none animate-aurora" style={{ animationDelay: '-5s' }} />
+      <div className="absolute top-1/2 left-1/3 w-96 h-96 bg-cyan-400/15 dark:bg-cyan-600/10 rounded-full blur-3xl pointer-events-none" />
 
-      {/* Micro-dot texture overlay */}
-      <div 
-        className="absolute inset-0 opacity-[0.035] dark:opacity-[0.05] pointer-events-none"
-        style={{
-          backgroundImage: 'radial-gradient(#1f5e5e 1px, transparent 1px)',
-          backgroundSize: '24px 24px'
-        }}
-      />
+      {/* Acoustic Stage Pattern Overlay */}
+      <div className="absolute inset-0 bg-stage-pattern opacity-40 dark:opacity-60 pointer-events-none" />
+
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -260,13 +297,14 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
           <div className="space-y-12">
             
             {/* Spotlight Banner: Real Student Ekagra Jhunjhunwala (Cleared The Doon School Interview) */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white dark:bg-[#0c2024]/90 p-6 sm:p-8 rounded-2xl border-2 border-[#3dabab]/30 shadow-lg relative overflow-hidden">
-              <div className="absolute top-0 right-0 bg-[#3dabab] text-white text-[11px] font-bold px-4 py-1 rounded-bl-lg tracking-wider uppercase">
-                ★ Featured Success Story
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-gradient-to-br from-white via-[#f4fafb] to-[#fef8ee] dark:from-[#092125] dark:via-[#0c262a] dark:to-[#081a1d] p-6 sm:p-8 md:p-10 rounded-3xl border-2 border-amber-400/70 dark:border-amber-500/60 shadow-2xl relative overflow-hidden ring-4 ring-amber-400/10">
+              <div className="absolute top-0 right-0 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 text-stone-950 text-xs font-black px-5 py-1.5 rounded-bl-2xl tracking-wider uppercase shadow-md flex items-center gap-1.5">
+                <Star className="w-3.5 h-3.5 fill-stone-950 text-stone-950" />
+                <span>Premier Success Story</span>
               </div>
 
               {/* Student Portrait */}
-              <div className="lg:col-span-5 relative group rounded-xl overflow-hidden border border-stone-200 dark:border-stone-700 shadow-sm bg-stone-100 dark:bg-stone-800">
+              <div className="lg:col-span-5 relative group rounded-2xl overflow-hidden border-2 border-amber-400/50 dark:border-amber-500/40 shadow-lg bg-stone-100 dark:bg-stone-800 ring-2 ring-[#0ea5a5]/30">
                 <div className="relative aspect-square w-full">
                   <img
                     src="/assets/testimonials/student_doon_school_cropped.jpg"
@@ -275,7 +313,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute top-3 left-3">
-                    <span className="text-xs font-bold text-stone-900 dark:text-stone-100 bg-white/95 dark:bg-stone-900/90 backdrop-blur-md px-3 py-1 rounded-full shadow-xs border border-stone-200 dark:border-stone-700">
+                    <span className="text-xs font-black text-white bg-black/85 backdrop-blur-md px-3 py-1.5 rounded-full shadow-md border border-white/20">
                       Junior Scholars · Age 11
                     </span>
                   </div>
@@ -287,15 +325,15 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
                         quote: 'When I was born, my mother’s dream was I would go to Doon School. When I researched it, it became my dream too. I joined SpeakSmart and it helped me a lot for my interview, especially Vishakha Ma’am—she was very kind. Today, I got through Doon! Getting to Doon was not easy, but SpeakSmart made it possible.',
                         achievement: 'Selected for The Doon School, Dehradun (Cleared Interview)'
                       })}
-                      className="p-1.5 rounded-full bg-white/90 dark:bg-stone-800/90 hover:bg-white dark:hover:bg-stone-700 text-stone-700 dark:text-stone-200 shadow-xs border border-stone-200 dark:border-stone-700 transition-colors cursor-pointer"
+                      className="p-2 rounded-full bg-white/95 dark:bg-stone-800/95 hover:bg-white text-stone-800 dark:text-stone-100 shadow-md border border-stone-200 dark:border-stone-700 transition-colors cursor-pointer"
                       title="Enlarge portrait"
                     >
-                      <ZoomIn className="w-4 h-4" />
+                      <ZoomIn className="w-4 h-4 text-[#0ea5a5]" />
                     </button>
                   </div>
                   <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
-                    <span className="text-xs font-bold text-stone-900 dark:text-stone-100 bg-white/95 dark:bg-stone-900/90 backdrop-blur-sm px-3 py-1 rounded-full shadow-xs border border-stone-200 dark:border-stone-700 flex items-center gap-1">
-                      <MapPin className="w-3 h-3 text-[#3dabab]" />
+                    <span className="text-xs font-black text-stone-900 dark:text-stone-100 bg-white/95 dark:bg-stone-900/95 backdrop-blur-sm px-3.5 py-1.5 rounded-full shadow-md border border-amber-400/50 flex items-center gap-1.5">
+                      <MapPin className="w-3.5 h-3.5 text-amber-500" />
                       <span>The Doon School, Dehradun (Selected)</span>
                     </span>
                   </div>
@@ -304,32 +342,33 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
 
               {/* Quotation & Details */}
               <div className="lg:col-span-7 space-y-4">
-                <div className="flex items-center gap-2 text-xs text-[#1f5e5e] dark:text-[#4fd1d1] font-bold uppercase tracking-wider">
-                  <Award className="w-4 h-4 text-[#3dabab]" />
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-amber-400/20 to-teal-400/20 border border-amber-400/40 text-xs text-[#0f766e] dark:text-[#4fd1d1] font-black uppercase tracking-wider">
+                  <Award className="w-4 h-4 text-amber-500" />
                   <span>Elite Boarding School Admissions · Kolkata Centre</span>
                 </div>
 
                 <div className="relative">
-                  <Quote className="w-10 h-10 text-[#3dabab]/20 absolute -top-4 -left-2 pointer-events-none" />
-                  <h3 className="text-xl sm:text-2xl font-bold text-black dark:text-white font-display leading-snug pl-4">
+                  <Quote className="w-12 h-12 text-amber-400/20 absolute -top-5 -left-2 pointer-events-none" />
+                  <h3 className="text-2xl sm:text-3xl font-black text-stone-950 dark:text-white font-display leading-tight pl-4">
                     &ldquo;Getting to The Doon School was not easy, but SpeakSmart made it possible!&rdquo;
                   </h3>
                 </div>
 
-                <div className="bg-[#ebf7f7]/70 dark:bg-[#092226]/70 p-5 rounded-xl border border-[#3dabab]/20 relative">
-                  <p className="text-sm sm:text-base text-stone-800 dark:text-stone-200 leading-relaxed italic">
+                <div className="bg-gradient-to-r from-amber-50/80 via-white to-teal-50/80 dark:from-[#092226] dark:via-[#0c2a2f] dark:to-[#081f23] p-5 sm:p-6 rounded-2xl border-2 border-amber-400/35 relative shadow-sm">
+                  <p className="text-sm sm:text-base text-stone-800 dark:text-stone-100 leading-relaxed italic font-medium">
                     &ldquo;When I was born, my mother’s dream was that I would go to Doon School. When I researched it, it became my dream too. I joined SpeakSmart and it helped me a lot for my interview, especially Vishakha Ma’am—she was very kind and guided me on demeanor, poise, and spontaneous answers. Today, I got through Doon!&rdquo;
                   </p>
                 </div>
 
-                <div className="pt-2 flex flex-wrap items-center justify-between gap-4 border-t border-stone-200 dark:border-stone-800 text-xs">
+                <div className="pt-2 flex flex-wrap items-center justify-between gap-4 border-t-2 border-stone-200 dark:border-stone-800 text-xs">
                   <div>
-                    <p className="font-extrabold text-base text-black dark:text-white">Ekagra Jhunjhunwala</p>
-                    <p className="text-[#1f5e5e] dark:text-[#4fd1d1] font-bold">Selected for The Doon School, Dehradun</p>
-                    <p className="text-stone-500 dark:text-stone-400 text-[11px]">SpeakSmart Interview & Demeanor Coaching</p>
+                    <p className="font-black text-lg text-stone-950 dark:text-white">Ekagra Jhunjhunwala</p>
+                    <p className="text-[#0d9488] dark:text-[#2dd4bf] font-extrabold">Selected for The Doon School, Dehradun</p>
+                    <p className="text-stone-600 dark:text-stone-400 text-xs font-semibold">SpeakSmart Interview & Demeanor Coaching</p>
                   </div>
-                  <span className="font-bold text-[#1f5e5e] dark:text-[#4fd1d1] bg-[#3dabab]/10 px-3 py-1.5 rounded-full border border-[#3dabab]/30 text-xs">
-                    ★ Successfully Cleared Interview
+                  <span className="font-black text-stone-950 bg-gradient-to-r from-amber-400 to-amber-500 px-4 py-2 rounded-xl border border-amber-500 text-xs shadow-sm flex items-center gap-1.5">
+                    <Award className="w-4 h-4 fill-stone-950" />
+                    <span>Successfully Cleared Interview</span>
                   </span>
                 </div>
               </div>
@@ -337,32 +376,35 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
 
             {/* Grid of Verified Student Portraits & Quotations */}
             <div>
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-8">
                 <div>
-                  <h4 className="text-lg font-bold text-black dark:text-white flex items-center gap-2">
-                    <GraduationCap className="w-5 h-5 text-[#3dabab]" />
+                  <h4 className="text-2xl font-black text-stone-950 dark:text-white flex items-center gap-2.5">
+                    <GraduationCap className="w-6 h-6 text-[#0ea5a5]" />
                     <span>Verified Student Scholars & Words ({filteredStudents.length})</span>
                   </h4>
-                  <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
-                    Authentic feedback and milestone statements directly from our students in Kolkata
+                  <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-300 font-medium mt-0.5">
+                    Authentic milestone reflections directly from our podium scholars in Kolkata
                   </p>
                 </div>
-                <div className="flex items-center gap-1.5 text-xs text-[#1f5e5e] dark:text-[#4fd1d1] font-bold bg-[#ebf7f7] dark:bg-[#0c2428] px-3 py-1.5 rounded-full border border-[#3dabab]/20 self-start sm:self-auto">
-                  <Check className="w-3.5 h-3.5 text-[#3dabab]" />
-                  <span>100% Verified Community Scholars</span>
+                <div className="flex items-center gap-2 text-xs text-[#0f766e] dark:text-[#4fd1d1] font-black bg-gradient-to-r from-teal-500/15 via-emerald-500/15 to-transparent px-4 py-2 rounded-xl border-2 border-[#0ea5a5]/30 self-start sm:self-auto shadow-2xs">
+                  <Check className="w-4 h-4 text-[#0ea5a5]" />
+                  <span>100% Authentic Community Scholars</span>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
                 {filteredStudents.map((st) => (
                   <div
                     key={st.id}
-                    className="rounded-2xl bg-white dark:bg-[#0c2024]/90 border border-stone-200/90 dark:border-stone-800 hover:border-[#3dabab] hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group shadow-xs"
+                    className="rounded-3xl bg-white/95 dark:bg-[#091f23]/95 border-2 border-stone-200/90 dark:border-teal-500/20 hover:border-[#0ea5a5] hover:shadow-2xl hover:shadow-[#0ea5a5]/20 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between overflow-hidden group shadow-md"
                   >
+                    {/* Top Multi-Chromatic Accent Ribbon per student */}
+                    <div className={`h-2.5 w-full bg-gradient-to-r ${st.accentColor || 'from-[#0ea5a5] via-teal-400 to-[#0284c7]'}`} />
+
                     {/* Dedicated Face Portrait Window with 1:1 Aspect Ratio */}
-                    <div className="p-4 pb-0">
+                    <div className="p-4 sm:p-5 pb-0">
                       <div
-                        className="relative aspect-square w-full rounded-xl overflow-hidden bg-stone-100 dark:bg-stone-800 border border-stone-200/80 dark:border-stone-700 shadow-inner cursor-pointer"
+                        className="relative aspect-square w-full rounded-2xl overflow-hidden bg-stone-100 dark:bg-stone-800 border-2 border-stone-200 dark:border-stone-700 shadow-inner cursor-pointer ring-2 ring-transparent group-hover:ring-[#0ea5a5]/40 transition-all"
                         onClick={() => setSelectedPhoto({
                           src: st.image || '/assets/testimonials/student_hriday_jain_cropped.jpg',
                           name: st.name,
@@ -374,13 +416,13 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
                         <img
                           src={st.image || '/assets/testimonials/student_hriday_jain_cropped.jpg'}
                           alt={`${st.name} - SpeakSmart Student`}
-                          className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                          className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
                           loading="lazy"
                         />
 
                         {/* Top floating badge */}
                         <div className="absolute top-2.5 left-2.5 pointer-events-none">
-                          <span className="text-[10px] font-bold text-stone-900 dark:text-stone-100 bg-white/95 dark:bg-stone-900/90 backdrop-blur-md px-2.5 py-1 rounded-full shadow-xs border border-stone-200 dark:border-stone-700">
+                          <span className="text-[10px] font-black text-white bg-black/85 backdrop-blur-md px-3 py-1 rounded-full shadow-md border border-white/20">
                             {st.ageOrGrade}
                           </span>
                         </div>
@@ -396,56 +438,57 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
                               achievement: st.achievement
                             });
                           }}
-                          className="absolute top-2.5 right-2.5 p-1.5 rounded-full bg-white/90 dark:bg-stone-800/90 hover:bg-white dark:hover:bg-stone-700 text-stone-700 dark:text-stone-200 shadow-xs border border-stone-200 dark:border-stone-700 transition-colors cursor-pointer"
+                          className="absolute top-2.5 right-2.5 p-2 rounded-full bg-white/95 dark:bg-stone-800/95 hover:bg-white text-stone-800 dark:text-stone-100 shadow-md border border-stone-200 dark:border-stone-700 transition-colors cursor-pointer"
                           title="Enlarge portrait"
                         >
-                          <ZoomIn className="w-3.5 h-3.5" />
+                          <ZoomIn className="w-3.5 h-3.5 text-[#0ea5a5]" />
                         </button>
                       </div>
                     </div>
 
-                    {/* Quotation & Details Body (Cleanly placed below the photo) */}
-                    <div className="p-5 flex-1 flex flex-col justify-between space-y-3.5">
+                    {/* Quotation & Details Body */}
+                    <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
                       <div>
                         {/* Header with Name, School & Star Rating */}
                         <div className="flex items-start justify-between gap-2 mb-2">
                           <div className="min-w-0">
-                            <h4 className="font-extrabold text-base text-stone-950 dark:text-white truncate font-display">
+                            <h4 className="font-black text-lg text-stone-950 dark:text-white truncate font-display group-hover:text-[#0d9488] dark:group-hover:text-[#2dd4bf] transition-colors">
                               {st.name}
                             </h4>
-                            <p className="text-[11px] text-[#1f5e5e] dark:text-[#4fd1d1] font-semibold truncate mt-0.5">
+                            <p className="text-xs text-[#0d9488] dark:text-[#2dd4bf] font-extrabold truncate mt-0.5">
                               {st.school ? st.school : st.cohort}
                             </p>
                           </div>
                           <div className="flex items-center gap-0.5 text-amber-500 shrink-0 mt-0.5">
                             {[...Array(5)].map((_, i) => (
-                              <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                              <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400 drop-shadow-2xs" />
                             ))}
                           </div>
                         </div>
 
-                        {/* Speech Topic */}
+                        {/* Speech Topic with Colorful Tag */}
                         {st.speechTopic && (
-                          <div className="mb-2.5">
-                            <span className="inline-block text-[11px] font-bold text-stone-800 dark:text-stone-200 bg-[#ebf7f7] dark:bg-[#0d2a2f] px-2.5 py-1 rounded-md border border-[#3dabab]/20 line-clamp-1">
+                          <div className="mb-3">
+                            <span className="inline-block text-[11px] font-extrabold text-teal-950 dark:text-teal-200 bg-gradient-to-r from-teal-500/15 via-cyan-500/10 to-transparent px-3 py-1 rounded-lg border border-teal-500/30 line-clamp-1 shadow-2xs">
                               🎯 Topic: {st.speechTopic}
                             </span>
                           </div>
                         )}
 
-                        {/* Student Authentic Quotation */}
-                        <div className="relative pl-3 border-l-2 border-[#3dabab]/70">
-                          <blockquote className="text-xs sm:text-sm text-stone-800 dark:text-stone-200 leading-relaxed italic line-clamp-4">
+                        {/* Student Authentic Quotation with Bold Border */}
+                        <div className="relative pl-3.5 border-l-4 border-amber-400 dark:border-amber-500 py-0.5">
+                          <blockquote className="text-xs sm:text-sm text-stone-800 dark:text-stone-100 font-medium leading-relaxed italic line-clamp-4">
                             &ldquo;{st.quote}&rdquo;
                           </blockquote>
                         </div>
                       </div>
 
-                      {/* Milestone Pill */}
-                      <div className="pt-3 border-t border-stone-100 dark:border-stone-800">
+                      {/* Colorful Milestone Achievement Box */}
+                      <div className="pt-3 border-t-2 border-stone-100 dark:border-stone-800">
                         {st.achievement && (
-                          <div className="text-[11px] font-semibold text-[#1f5e5e] dark:text-[#4fd1d1] bg-[#3dabab]/10 px-2.5 py-1.5 rounded-lg border border-[#3dabab]/30">
-                            ★ {st.achievement}
+                          <div className="text-xs font-black text-stone-900 dark:text-stone-100 bg-gradient-to-r from-amber-400/20 via-teal-400/15 to-indigo-500/15 px-3 py-2 rounded-xl border border-amber-400/40 shadow-2xs flex items-center gap-1.5">
+                            <Award className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+                            <span className="truncate">{st.achievement}</span>
                           </div>
                         )}
                       </div>
@@ -552,8 +595,142 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
           </div>
         )}
 
+        {/* ======================================================== */}
+        {/* REVIEW SECTION LINK & GOOGLE FORM REDIRECT PORTAL */}
+        {/* ======================================================== */}
+        <div id="submit-review" className="mt-14 rounded-3xl bg-gradient-to-br from-white via-[#f4fbfc] to-[#eaf6f7] dark:from-[#081e22] dark:via-[#0c262a] dark:to-[#071618] border-2 border-[#3dabab]/40 shadow-xl p-6 sm:p-8 md:p-10 relative overflow-hidden">
+          {/* Vibrant Aurora Background Elements */}
+          <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-bl from-amber-400/20 via-[#3dabab]/20 to-transparent rounded-full blur-2xl pointer-events-none" />
+          <div className="absolute -bottom-10 -left-10 w-72 h-72 bg-teal-400/20 dark:bg-teal-500/15 rounded-full blur-2xl pointer-events-none" />
+          <div className="absolute inset-0 bg-stage-pattern opacity-30 dark:opacity-40 pointer-events-none" />
+
+          <div className="relative z-10">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-stone-200/80 dark:border-stone-800">
+              <div className="max-w-2xl">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#3dabab]/15 text-[#1f5e5e] dark:text-[#4fd1d1] border border-[#3dabab]/30 mb-3 shadow-2xs">
+                  <Sparkles className="w-3.5 h-3.5 text-[#3dabab]" />
+                  <span>Verified Community Review Portal</span>
+                </div>
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-stone-950 dark:text-white font-display tracking-tight leading-tight">
+                  Share Your SpeakSmart Experience
+                </h3>
+                <p className="text-stone-600 dark:text-stone-300 text-sm sm:text-base mt-2 leading-relaxed">
+                  Has your child mastered stage confidence, cleared school admission interviews, or earned Trinity College London accolades? Submit your review to be featured on our official Star Scholars Wall of Fame.
+                </p>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
+                <a
+                  href={googleFormReviewUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-extrabold text-white bg-gradient-to-r from-[#3dabab] via-[#329696] to-[#277979] hover:from-[#329696] hover:to-[#1f5e5e] rounded-xl transition-all shadow-md hover:shadow-lg hover:shadow-[#3dabab]/25 cursor-pointer whitespace-nowrap"
+                >
+                  <span>Open Review Google Form</span>
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+
+                <button
+                  type="button"
+                  onClick={() => setIsConfiguringReviewUrl(!isConfiguringReviewUrl)}
+                  className="inline-flex items-center justify-center gap-1.5 px-4 py-3.5 text-xs font-bold text-stone-700 dark:text-stone-300 bg-white dark:bg-stone-900 border border-stone-300 dark:border-stone-700 hover:border-[#3dabab] hover:text-[#3dabab] rounded-xl transition-colors cursor-pointer whitespace-nowrap shadow-2xs"
+                  title="Configure Google Form URL"
+                >
+                  <Settings className="w-4 h-4 text-[#3dabab]" />
+                  <span>{isConfiguringReviewUrl ? 'Hide URL Settings' : 'Set Google Form Link'}</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Configurable Google Form URL Drawer */}
+            {isConfiguringReviewUrl && (
+              <div className="mt-6 p-5 rounded-2xl bg-white/95 dark:bg-stone-900/95 border-2 border-[#3dabab]/30 shadow-md animate-in fade-in zoom-in-95 duration-200">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+                  <div className="text-xs font-extrabold text-stone-900 dark:text-white flex items-center gap-2">
+                    <Link2 className="w-4 h-4 text-[#3dabab]" />
+                    <span>Set Custom Review Google Form Link</span>
+                  </div>
+                  <div className="text-[11px] text-stone-500 dark:text-stone-400">
+                    Active URL: <span className="font-mono text-xs text-[#1f5e5e] dark:text-[#4fd1d1] font-bold">{googleFormReviewUrl}</span>
+                  </div>
+                </div>
+                <p className="text-xs text-stone-600 dark:text-stone-300 mb-3.5">
+                  Paste your Google Form link below. All review buttons on this page will immediately redirect students and parents to your designated form.
+                </p>
+
+                <form onSubmit={handleSaveReviewUrl} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
+                  <input
+                    type="url"
+                    required
+                    value={tempReviewUrl}
+                    onChange={(e) => setTempReviewUrl(e.target.value)}
+                    placeholder="https://forms.gle/your-review-form-id"
+                    className="flex-1 px-4 py-2.5 text-xs rounded-xl border border-stone-300 dark:border-stone-700 bg-stone-50 dark:bg-stone-800 text-stone-900 dark:text-white font-mono focus:outline-none focus:ring-2 focus:ring-[#3dabab]"
+                  />
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="submit"
+                      className="px-5 py-2.5 text-xs font-bold text-white bg-[#3dabab] hover:bg-[#329696] rounded-xl transition-colors cursor-pointer shadow-xs whitespace-nowrap"
+                    >
+                      Save Link
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleResetReviewUrl}
+                      className="px-3.5 py-2.5 text-xs font-semibold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white bg-stone-100 dark:bg-stone-800 rounded-xl transition-colors cursor-pointer whitespace-nowrap"
+                    >
+                      Reset Default
+                    </button>
+                  </div>
+                </form>
+
+                {urlSaveSuccess && (
+                  <div className="mt-3 text-xs text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-1.5 animate-in fade-in">
+                    <CheckCircle2 className="w-4 h-4" />
+                    <span>Google Form link saved successfully!</span>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Audience Guidance Pillars for Students & Teachers/Parents */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+              <div className="p-4 rounded-xl bg-white/80 dark:bg-stone-900/70 border border-stone-200/80 dark:border-stone-800 backdrop-blur-xs">
+                <div className="text-xs font-extrabold text-[#1f5e5e] dark:text-[#4fd1d1] uppercase mb-1.5 flex items-center gap-1.5">
+                  <GraduationCap className="w-4 h-4 text-[#3dabab]" />
+                  <span>For Students</span>
+                </div>
+                <p className="text-xs text-stone-600 dark:text-stone-300 leading-relaxed">
+                  Reflect on your speech topic, how stage fear melted away, and your proudest moment speaking to an examiner.
+                </p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-white/80 dark:bg-stone-900/70 border border-stone-200/80 dark:border-stone-800 backdrop-blur-xs">
+                <div className="text-xs font-extrabold text-[#1f5e5e] dark:text-[#4fd1d1] uppercase mb-1.5 flex items-center gap-1.5">
+                  <Users className="w-4 h-4 text-[#3dabab]" />
+                  <span>For Parents</span>
+                </div>
+                <p className="text-xs text-stone-600 dark:text-stone-300 leading-relaxed">
+                  Share transformations you witnessed at home, in school assemblies, and during Trinity London exams.
+                </p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-white/80 dark:bg-stone-900/70 border border-stone-200/80 dark:border-stone-800 backdrop-blur-xs">
+                <div className="text-xs font-extrabold text-[#1f5e5e] dark:text-[#4fd1d1] uppercase mb-1.5 flex items-center gap-1.5">
+                  <Award className="w-4 h-4 text-[#3dabab]" />
+                  <span>For Admissions Scholars</span>
+                </div>
+                <p className="text-xs text-stone-600 dark:text-stone-300 leading-relaxed">
+                  Cleared entrance interviews like The Doon School? Tell incoming applicants how spontaneous Q&A prep helped.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Bottom CTA bar */}
-        <div className="mt-14 p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-[#ebf7f7] via-white to-[#ebf7f7] dark:from-[#091f23] dark:via-[#0c262a] dark:to-[#091f23] text-stone-900 dark:text-stone-100 flex flex-col sm:flex-row sm:items-center justify-between gap-6 border border-[#3dabab]/30 shadow-xs">
+        <div className="mt-8 p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-[#ebf7f7] via-white to-[#ebf7f7] dark:from-[#091f23] dark:via-[#0c262a] dark:to-[#091f23] text-stone-900 dark:text-stone-100 flex flex-col sm:flex-row sm:items-center justify-between gap-6 border border-[#3dabab]/30 shadow-xs">
           <div>
             <h4 className="text-xl font-bold font-display text-stone-950 dark:text-white">
               Ready to witness your child&apos;s breakthrough on stage?

@@ -11,6 +11,7 @@ import { NoticeBoard } from './components/NoticeBoard';
 import { RulesSection } from './components/RulesSection';
 import { RegistrationModal } from './components/RegistrationModal';
 import { Footer } from './components/Footer';
+import { StageAtmosphere } from './components/StageAtmosphere';
 import { ChevronRight } from 'lucide-react';
 
 export default function App() {
@@ -83,20 +84,27 @@ export default function App() {
   const urgentNotice = NOTICES.find((n) => n.isUrgent) || NOTICES[0];
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#f8fafb] dark:bg-[#071618] text-stone-900 dark:text-stone-100 selection:bg-[#3dabab] selection:text-white font-sans overflow-x-hidden transition-colors duration-200">
+    <div className="min-h-screen flex flex-col bg-[#f7fafc] dark:bg-[#061517] text-stone-900 dark:text-stone-100 selection:bg-[#3dabab] selection:text-white font-sans overflow-x-hidden transition-colors duration-200 relative">
+      {/* Vibrant Podium Atmosphere & Ambient Stage Background */}
+      <StageAtmosphere />
+
       {/* 1. Top Announcement Bar */}
-      <AnnouncementBar
-        urgentNotice={urgentNotice}
-        onOpenNotice={handleOpenNotice}
-        onViewAllUpdates={() => handleNavigate('updates')}
-      />
+      <div className="relative z-10">
+        <AnnouncementBar
+          urgentNotice={urgentNotice}
+          onOpenNotice={handleOpenNotice}
+          onViewAllUpdates={() => handleNavigate('updates')}
+        />
+      </div>
 
       {/* 2. Primary Navigation Bar */}
-      <Navbar
-        currentView={currentView}
-        onNavigate={handleNavigate}
-        onOpenRegister={() => setIsRegisterOpen(true)}
-      />
+      <div className="relative z-20">
+        <Navbar
+          currentView={currentView}
+          onNavigate={handleNavigate}
+          onOpenRegister={() => setIsRegisterOpen(true)}
+        />
+      </div>
 
       {/* Dedicated Page Hero Header Banner with Distinct Atmospheric Gradient per Page */}
       {currentView !== 'home' && (

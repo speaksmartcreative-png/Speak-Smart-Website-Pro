@@ -180,17 +180,17 @@ export const WhatIsSpeakSmart: React.FC<WhatIsSpeakSmartProps> = ({
   };
 
   return (
-    <section id="what-is-speaksmart" className="relative py-16 md:py-24 bg-gradient-to-b from-[#eef7f8] via-[#e5f1f3] to-[#eaf4f6] text-stone-900 border-b border-stone-200/80 overflow-hidden">
+    <section id="what-is-speaksmart" className="relative py-16 md:py-24 bg-gradient-to-b from-[#f3fafb]/85 via-[#e8f6f7]/80 to-[#edf7f9]/85 dark:from-[#061517]/90 dark:via-[#092226]/85 dark:to-[#071618]/90 text-stone-900 dark:text-stone-100 border-b border-stone-200/80 dark:border-stone-800 overflow-hidden">
       {/* Decorative Aurora Ambient Orbs & Subtle Matrix Grid */}
-      <div className="absolute top-0 right-10 w-[500px] h-[400px] bg-gradient-to-br from-[#3dabab]/20 via-teal-200/25 to-transparent rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/3 left-0 w-80 h-80 bg-gradient-to-tr from-cyan-300/20 to-[#3dabab]/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-20 right-1/4 w-96 h-96 bg-teal-200/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(#3dabab_0.75px,transparent_0.75px)] [background-size:28px_28px] opacity-15 pointer-events-none" />
+      <div className="absolute top-0 right-10 w-[34rem] h-[30rem] bg-gradient-to-br from-[#3dabab]/25 via-teal-200/20 to-transparent dark:from-[#3dabab]/20 dark:via-teal-800/10 rounded-full blur-3xl pointer-events-none animate-aurora" />
+      <div className="absolute top-1/3 left-0 w-80 h-80 bg-gradient-to-tr from-amber-300/20 via-[#3dabab]/15 to-transparent dark:from-amber-500/15 dark:via-[#3dabab]/10 rounded-full blur-3xl pointer-events-none animate-float-slow" />
+      <div className="absolute bottom-20 right-1/4 w-96 h-96 bg-cyan-300/20 dark:bg-cyan-800/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute inset-0 bg-stage-pattern opacity-40 dark:opacity-60 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header with Official Brand Credentials */}
-        <div className="mb-10 pb-8 border-b border-stone-200">
+        <div className="mb-10 pb-8 border-b border-stone-200 dark:border-stone-800">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
             <div className="flex items-center gap-4">
               <img

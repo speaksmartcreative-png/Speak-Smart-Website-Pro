@@ -22,13 +22,13 @@
   body {
     font-family: var(--font-sans);
     color: #1c1917;
-    background-color: #f8fafb;
+    background-color: #f7fafc;
     transition: background-color 0.25s ease, color 0.25s ease;
   }
 
   .dark body {
     color: #f5f5f4;
-    background-color: #071518;
+    background-color: #061517;
   }
 
   h1, h2, h3, h4, .font-display {
@@ -40,3 +40,50 @@
     font-family: var(--font-script);
   }
 }
+
+/* Vibrant Academic & Stage Atmosphere Styles */
+@keyframes aurora-pulse {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.65;
+  }
+  50% {
+    transform: translateY(-12px) scale(1.06);
+    opacity: 0.85;
+  }
+}
+
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+}
+
+.animate-aurora {
+  animation: aurora-pulse 10s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-gentle 7s ease-in-out infinite;
+}
+
+/* Acoustic soundwave and podium grid texture */
+.bg-stage-pattern {
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(61, 171, 171, 0.08) 1.5px, transparent 1.5px),
+    linear-gradient(to right, rgba(61, 171, 171, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(61, 171, 171, 0.035) 1px, transparent 1px);
+  background-size: 32px 32px, 64px 64px, 64px 64px;
+}
+
+.dark .bg-stage-pattern {
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(79, 209, 209, 0.12) 1.5px, transparent 1.5px),
+    linear-gradient(to right, rgba(79, 209, 209, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(79, 209, 209, 0.05) 1px, transparent 1px);
+  background-size: 32px 32px, 64px 64px, 64px 64px;
+}
+

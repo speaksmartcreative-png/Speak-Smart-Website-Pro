@@ -89,20 +89,15 @@ export const RulesSection: React.FC<RulesSectionProps> = ({
   );
 
   return (
-    <section id="rules" className="relative py-14 sm:py-20 bg-gradient-to-b from-[#eaf3f0] via-[#f2f7f5] to-[#e4eee9] dark:from-[#061517] dark:via-[#081d20] dark:to-[#051316] text-stone-900 dark:text-stone-100 border-b border-stone-200/80 dark:border-stone-800 overflow-hidden">
+    <section id="rules" className="relative py-14 sm:py-20 bg-gradient-to-b from-[#edf6f3]/85 via-[#f6faf8]/80 to-[#e9f3ef]/85 dark:from-[#061517]/90 dark:via-[#081f22]/85 dark:to-[#051417]/90 text-stone-900 dark:text-stone-100 border-b border-stone-200/80 dark:border-stone-800 overflow-hidden">
       {/* Ambient background glow accents */}
-      <div className="absolute top-10 right-10 w-[30rem] h-[30rem] bg-[#1f5e5e]/10 dark:bg-[#1f5e5e]/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 left-10 w-[32rem] h-[32rem] bg-[#3dabab]/12 dark:bg-[#3dabab]/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/2 left-1/3 w-80 h-80 bg-emerald-100/30 dark:bg-teal-900/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-10 right-10 w-[30rem] h-[30rem] bg-gradient-to-bl from-emerald-500/15 via-[#1f5e5e]/15 to-transparent dark:from-emerald-600/15 dark:via-teal-900/10 rounded-full blur-3xl pointer-events-none animate-aurora" />
+      <div className="absolute bottom-10 left-10 w-[32rem] h-[32rem] bg-gradient-to-tr from-[#3dabab]/20 via-teal-200/10 to-transparent dark:from-[#3dabab]/15 rounded-full blur-3xl pointer-events-none animate-float-slow" />
+      <div className="absolute top-1/2 left-1/3 w-80 h-80 bg-amber-200/15 dark:bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
 
-      {/* Micro-dot texture overlay */}
-      <div 
-        className="absolute inset-0 opacity-[0.035] dark:opacity-[0.05] pointer-events-none"
-        style={{
-          backgroundImage: 'radial-gradient(#1f5e5e 1px, transparent 1px)',
-          backgroundSize: '24px 24px'
-        }}
-      />
+      {/* Stage Pattern Texture */}
+      <div className="absolute inset-0 bg-stage-pattern opacity-40 dark:opacity-60 pointer-events-none" />
+
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         

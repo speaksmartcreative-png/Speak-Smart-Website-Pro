@@ -30,20 +30,14 @@ export const Hero: React.FC<HeroProps> = ({
   const [activeStarIdx, setActiveStarIdx] = useState(0);
   const [previewImage, setPreviewImage] = useState<{ src: string; caption: string } | null>(null);
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-[#eaf4f6] via-[#f1f7f8] to-[#e4eff1] dark:from-[#061517] dark:via-[#091f23] dark:to-[#071619] text-stone-900 dark:text-stone-100 py-12 md:py-20 lg:py-24 border-b border-stone-200/80 dark:border-stone-800 transition-colors duration-200">
-      {/* Background glow accents and ambient atmosphere */}
-      <div className="absolute top-0 right-1/4 w-[32rem] h-[32rem] bg-[#3dabab]/15 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-10 w-96 h-96 bg-[#277979]/12 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] bg-gradient-to-tr from-[#3dabab]/8 to-amber-200/10 rounded-full blur-3xl pointer-events-none" />
+    <section className="relative overflow-hidden bg-gradient-to-b from-[#edf8f9]/90 via-[#f6fbfc]/80 to-[#e6f4f6]/90 dark:from-[#061517]/90 dark:via-[#092226]/85 dark:to-[#07171a]/95 text-stone-900 dark:text-stone-100 py-12 md:py-20 lg:py-24 border-b border-stone-200/80 dark:border-stone-800 transition-colors duration-200">
+      {/* Dynamic Stage Light Auroras */}
+      <div className="absolute top-0 right-1/4 w-[36rem] h-[36rem] bg-gradient-to-br from-[#3dabab]/25 via-teal-300/15 to-transparent rounded-full blur-3xl pointer-events-none animate-aurora" />
+      <div className="absolute bottom-0 left-10 w-[30rem] h-[30rem] bg-gradient-to-tr from-amber-400/20 via-amber-300/10 to-transparent dark:from-amber-500/15 dark:via-amber-600/5 rounded-full blur-3xl pointer-events-none animate-aurora" style={{ animationDelay: '-6s' }} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[44rem] h-[44rem] bg-gradient-to-tr from-[#3dabab]/12 via-cyan-200/10 to-transparent rounded-full blur-3xl pointer-events-none" />
       
-      {/* Subtle micro-grid texture */}
-      <div 
-        className="absolute inset-0 opacity-[0.035] pointer-events-none"
-        style={{
-          backgroundImage: 'radial-gradient(#1f5e5e 1px, transparent 1px)',
-          backgroundSize: '24px 24px'
-        }}
-      />
+      {/* Subtle Stage Pattern Texture */}
+      <div className="absolute inset-0 bg-stage-pattern opacity-40 dark:opacity-60 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
@@ -51,39 +45,39 @@ export const Hero: React.FC<HeroProps> = ({
           {/* Left Column: Core Value Proposition & Registration CTA */}
           <div className="lg:col-span-7 space-y-6">
             <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm font-bold tracking-wider uppercase text-[#1f5e5e] dark:text-[#52c5c5]">
-              <span className="flex items-center gap-1.5 bg-[#3dabab]/15 border border-[#3dabab]/30 px-3 py-1 rounded-full text-[#1f5e5e] dark:text-[#52c5c5]">
-                <Sparkles className="w-3.5 h-3.5 text-[#3dabab]" />
-                <span>Spring 2027 Admissions Open</span>
+              <span className="flex items-center gap-1.5 bg-gradient-to-r from-amber-400/20 via-[#0ea5a5]/25 to-indigo-500/20 border-2 border-[#0ea5a5]/40 px-3.5 py-1 rounded-full text-stone-900 dark:text-stone-100 font-black shadow-xs">
+                <Sparkles className="w-3.5 h-3.5 text-amber-500 fill-amber-400" />
+                <span className="text-black dark:text-white">Spring Admissions Open</span>
               </span>
               <span className="text-stone-400 dark:text-stone-600 hidden sm:inline">·</span>
-              <span className="text-stone-700 dark:text-stone-300 hidden sm:inline font-bold">Think • Speak • Lead</span>
+              <span className="text-stone-900 dark:text-stone-100 hidden sm:inline font-extrabold tracking-wide">Think • Speak • Lead</span>
               <span className="text-stone-400 dark:text-stone-600 hidden sm:inline">·</span>
               <a
                 href="https://maps.app.goo.gl/Uxyx9HLjUbGjjZCSA?g_st=ac"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#1f5e5e] dark:text-[#52c5c5] hover:text-[#3dabab] font-bold lowercase sm:normal-case hover:underline inline-flex items-center gap-1"
+                className="text-[#0d9488] dark:text-[#2dd4bf] hover:text-[#0284c7] font-black hover:underline inline-flex items-center gap-1"
                 title="View campus location in Google Maps"
               >
                 <span>📍 SpeakSmart, Kolkata</span>
               </a>
             </div>
 
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-stone-950 dark:text-white font-display leading-[1.1] text-balance">
-              We don&apos;t teach only public speaking. We teach communication as an <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1f5e5e] via-[#3dabab] to-[#277979] dark:from-[#52c5c5] dark:via-[#3dabab] dark:to-[#7fe3e3]">essential life skill</span>.
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-stone-950 dark:text-white font-display leading-[1.1] text-balance">
+              We don&apos;t teach only public speaking. We teach communication as an <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0d9488] via-[#0284c7] to-[#6366f1] dark:from-[#2dd4bf] dark:via-[#38bdf8] dark:to-[#818cf8]">essential life skill</span>.
             </h1>
 
-            <p className="text-base sm:text-lg text-stone-600 dark:text-stone-300 leading-relaxed max-w-2xl">
-              <strong className="text-stone-900 dark:text-white">SpeakSmart Centre for Communication</strong> (LLPIN: ACO-6485) — conceived by Founder <strong className="text-stone-900 dark:text-white">Mrs. Sreela Mitra</strong> at SpeakSmart, Kolkata. We prepare students for every human communication format: debates, interviews, business negotiations, storytelling, media soundbites, and the <strong className="text-stone-900 dark:text-white">ARISTRI™ Examination System</strong>.
+            <p className="text-base sm:text-lg text-stone-700 dark:text-stone-200 leading-relaxed max-w-2xl font-medium">
+              <strong className="text-stone-950 dark:text-white font-extrabold">SpeakSmart Centre for Communication</strong> (LLPIN: ACO-6485) — founded by <strong className="text-stone-950 dark:text-white font-extrabold">Mrs. Sreela Mitra</strong> at SpeakSmart, Kolkata. We prepare students for every real-world stage: debates, competitive boarding school interviews, storytelling, boardroom leadership, and the <strong className="text-stone-950 dark:text-white font-extrabold">ARISTRI™ Examination System</strong>.
             </p>
 
             {/* Primary Action Buttons */}
-            <div className="flex flex-wrap items-center gap-4 pt-2">
+            <div className="flex flex-wrap items-center gap-3.5 pt-2">
               <a
                 href="https://forms.gle/amSFYJ7xTY1oi97u8"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3.5 text-sm sm:text-base font-bold text-white bg-[#3dabab] hover:bg-[#329696] active:scale-[0.98] rounded-md transition-all shadow-md hover:shadow-[#3dabab]/20 cursor-pointer flex items-center gap-2 whitespace-nowrap"
+                className="px-6 py-3.5 text-sm sm:text-base font-black text-white bg-gradient-to-r from-[#0d9488] via-[#0284c7] to-[#2563eb] hover:from-[#0f766e] hover:to-[#1d4ed8] active:scale-[0.98] rounded-xl transition-all shadow-lg shadow-teal-500/25 hover:shadow-xl hover:shadow-cyan-500/30 cursor-pointer flex items-center gap-2 whitespace-nowrap"
               >
                 <span>Student Registration for New Semester</span>
                 <ExternalLink className="w-4 h-4" />
@@ -91,88 +85,88 @@ export const Hero: React.FC<HeroProps> = ({
 
               <button
                 onClick={() => onNavigate('speaksmart')}
-                className="px-5 py-3.5 text-sm sm:text-base font-bold text-stone-800 dark:text-stone-200 bg-white dark:bg-[#0c2024] hover:bg-stone-50 dark:hover:bg-[#112c32] hover:text-[#3dabab] dark:hover:text-[#3dabab] border border-stone-300 dark:border-stone-700 rounded-md transition-colors cursor-pointer flex items-center gap-2 whitespace-nowrap shadow-xs"
+                className="px-5 py-3.5 text-sm sm:text-base font-bold text-stone-900 dark:text-stone-100 bg-white/90 dark:bg-[#0c2428] hover:bg-white dark:hover:bg-[#123035] hover:border-[#0ea5a5] border-2 border-stone-300 dark:border-stone-700 rounded-xl transition-all cursor-pointer flex items-center gap-2 whitespace-nowrap shadow-xs"
               >
-                <BookOpen className="w-4 h-4 text-[#3dabab]" />
-                <span>Founder&apos;s Vision (What is SpeakSmart)</span>
+                <BookOpen className="w-4 h-4 text-[#0d9488] dark:text-[#2dd4bf]" />
+                <span>Founder&apos;s Vision</span>
               </button>
 
               <button
                 onClick={() => onNavigate('aristri')}
-                className="px-5 py-3.5 text-sm sm:text-base font-bold text-stone-700 dark:text-stone-300 hover:text-stone-950 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-stone-800 rounded-md transition-colors cursor-pointer flex items-center gap-1.5 whitespace-nowrap"
+                className="px-4 py-3.5 text-sm sm:text-base font-extrabold text-stone-800 dark:text-stone-200 hover:text-black dark:hover:text-white hover:bg-amber-100/60 dark:hover:bg-amber-950/40 rounded-xl border border-amber-300/60 dark:border-amber-700/50 transition-colors cursor-pointer flex items-center gap-1.5 whitespace-nowrap"
               >
-                <Award className="w-4 h-4 text-[#3dabab]" />
+                <Award className="w-4 h-4 text-amber-500" />
                 <span>What is ARISTRI™?</span>
               </button>
             </div>
 
-            {/* Authentic Founder Pedagogy Metrics (Directly from Sreela Mitra's Address) */}
-            <div className="pt-4 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-stone-200">
-              <div>
-                <p className="text-2xl font-extrabold font-mono text-stone-950 tabular-nums">10 : 1</p>
-                <p className="text-xs text-stone-600 font-medium">Students to Teacher</p>
+            {/* Vibrant Pedagogy Metric Strip (Directly from Founder Sreela Mitra's Address) */}
+            <div className="pt-4 grid grid-cols-2 sm:grid-cols-4 gap-3.5">
+              <div className="p-3.5 rounded-2xl bg-gradient-to-br from-teal-500/10 via-cyan-500/5 to-transparent border-2 border-teal-500/30 dark:border-teal-400/30 shadow-xs backdrop-blur-xs">
+                <p className="text-2xl sm:text-3xl font-black font-mono text-teal-700 dark:text-teal-300 tabular-nums">10 : 1</p>
+                <p className="text-xs text-stone-700 dark:text-stone-300 font-bold mt-0.5">Students to Mentor</p>
               </div>
-              <div>
-                <p className="text-2xl font-extrabold font-mono text-stone-950 tabular-nums">100%</p>
-                <p className="text-xs text-stone-600 font-medium">Every Student Speaks</p>
+              <div className="p-3.5 rounded-2xl bg-gradient-to-br from-emerald-500/10 via-teal-500/5 to-transparent border-2 border-emerald-500/30 dark:border-emerald-400/30 shadow-xs backdrop-blur-xs">
+                <p className="text-2xl sm:text-3xl font-black font-mono text-emerald-700 dark:text-emerald-300 tabular-nums">100%</p>
+                <p className="text-xs text-stone-700 dark:text-stone-300 font-bold mt-0.5">Every Student Speaks</p>
               </div>
-              <div>
-                <p className="text-2xl font-extrabold font-mono text-stone-950 tabular-nums">Zero</p>
-                <p className="text-xs text-stone-600 font-medium">No Traditional Homework</p>
+              <div className="p-3.5 rounded-2xl bg-gradient-to-br from-amber-500/10 via-orange-500/5 to-transparent border-2 border-amber-500/30 dark:border-amber-400/30 shadow-xs backdrop-blur-xs">
+                <p className="text-2xl sm:text-3xl font-black font-mono text-amber-700 dark:text-amber-300 tabular-nums">Zero HW</p>
+                <p className="text-xs text-stone-700 dark:text-stone-300 font-bold mt-0.5">100% Studio Immersion</p>
               </div>
-              <div>
-                <p className="text-2xl font-extrabold font-mono text-stone-950 tabular-nums">Weekly</p>
-                <p className="text-xs text-stone-600 font-medium">Videos Sent to Parents</p>
+              <div className="p-3.5 rounded-2xl bg-gradient-to-br from-indigo-500/10 via-purple-500/5 to-transparent border-2 border-indigo-500/30 dark:border-indigo-400/30 shadow-xs backdrop-blur-xs">
+                <p className="text-2xl sm:text-3xl font-black font-mono text-indigo-700 dark:text-indigo-300 tabular-nums">Weekly</p>
+                <p className="text-xs text-stone-700 dark:text-stone-300 font-bold mt-0.5">Videos to Parents</p>
               </div>
             </div>
           </div>
 
           {/* Right Column: Star Students Showcase */}
           <div className="lg:col-span-5 relative">
-            {/* Subtle card glow */}
-            <div className="absolute -inset-1.5 bg-gradient-to-r from-amber-200/50 via-[#3dabab]/20 to-teal-100 rounded-3xl blur-lg opacity-70 pointer-events-none" />
+            {/* Vibrant Multi-Chromatic Card Glow Halo */}
+            <div className="absolute -inset-1.5 bg-gradient-to-r from-amber-400/40 via-teal-400/35 to-indigo-500/40 rounded-3xl blur-xl opacity-80 pointer-events-none animate-aurora" />
 
-            <div className="relative rounded-3xl overflow-hidden border border-stone-200 dark:border-stone-800 shadow-xl bg-white dark:bg-[#091a1d] p-5 sm:p-6 space-y-4">
+            <div className="relative rounded-3xl overflow-hidden border-2 border-[#0ea5a5]/30 dark:border-teal-500/30 shadow-2xl bg-white/95 dark:bg-[#07191d]/95 backdrop-blur-md p-5 sm:p-6 space-y-4">
               
               {/* Header */}
-              <div className="flex items-center justify-between pb-3 border-b border-stone-100 dark:border-stone-800">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-xl bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-400 flex items-center justify-center shadow-xs">
-                    <Star className="w-4 h-4 fill-amber-500 text-amber-600 dark:text-amber-400" />
+              <div className="flex items-center justify-between pb-3.5 border-b-2 border-stone-100 dark:border-stone-800">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 text-stone-950 flex items-center justify-center shadow-md">
+                    <Star className="w-4 h-4 fill-white text-white drop-shadow-xs" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-extrabold text-stone-950 dark:text-white font-display leading-tight flex items-center gap-1.5">
+                    <h3 className="text-base font-black text-stone-950 dark:text-white font-display leading-tight flex items-center gap-2">
                       <span>Star Students</span>
-                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-50 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800 font-sans font-bold">
-                        Hall of Fame
+                      <span className="text-[10px] px-2.5 py-0.5 rounded-full bg-gradient-to-r from-amber-400 to-amber-500 text-stone-950 font-black uppercase tracking-wider shadow-xs">
+                        ★ Hall of Fame
                       </span>
                     </h3>
-                    <p className="text-[11px] text-stone-500 dark:text-stone-400 font-medium">
-                      Student breakthroughs &amp; stage honors
+                    <p className="text-[11px] text-[#0d9488] dark:text-[#2dd4bf] font-extrabold">
+                      Verified Podium Scholars &amp; Stage Triumphs
                     </p>
                   </div>
                 </div>
 
                 {/* Carousel Navigation Buttons */}
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1.5">
                   <button
                     onClick={() => setActiveStarIdx((prev) => (prev === 0 ? STAR_STUDENTS.length - 1 : prev - 1))}
-                    className="p-1.5 rounded-lg border border-stone-200 dark:border-stone-700 hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-600 dark:text-stone-300 transition-colors cursor-pointer"
+                    className="p-1.5 rounded-lg border-2 border-stone-200 dark:border-stone-700 hover:border-[#0ea5a5] hover:bg-teal-50 dark:hover:bg-teal-950 text-stone-700 dark:text-stone-200 transition-colors cursor-pointer shadow-2xs"
                     aria-label="Previous star student"
                     title="Previous student"
                   >
-                    <ChevronLeft className="w-3.5 h-3.5" />
+                    <ChevronLeft className="w-4 h-4" />
                   </button>
-                  <span className="text-[11px] font-mono text-stone-500 dark:text-stone-400 px-1 font-semibold">
+                  <span className="text-xs font-mono text-stone-700 dark:text-stone-300 px-1 font-black">
                     {activeStarIdx + 1}/{STAR_STUDENTS.length}
                   </span>
                   <button
                     onClick={() => setActiveStarIdx((prev) => (prev === STAR_STUDENTS.length - 1 ? 0 : prev + 1))}
-                    className="p-1.5 rounded-lg border border-stone-200 dark:border-stone-700 hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-600 dark:text-stone-300 transition-colors cursor-pointer"
+                    className="p-1.5 rounded-lg border-2 border-stone-200 dark:border-stone-700 hover:border-[#0ea5a5] hover:bg-teal-50 dark:hover:bg-teal-950 text-stone-700 dark:text-stone-200 transition-colors cursor-pointer shadow-2xs"
                     aria-label="Next star student"
                     title="Next student"
                   >
-                    <ChevronRight className="w-3.5 h-3.5" />
+                    <ChevronRight className="w-4 h-4" />
                   </button>
                 </div>
               </div>
@@ -182,56 +176,57 @@ export const Hero: React.FC<HeroProps> = ({
                 const student = STAR_STUDENTS[activeStarIdx];
                 return (
                   <div className="space-y-3.5">
-                    <div className="flex items-start gap-3.5">
+                    <div className="flex items-start gap-4">
                       {/* Student Portrait / Photo */}
                       <div 
-                        className="relative w-20 h-24 sm:w-22 sm:h-28 rounded-xl overflow-hidden shrink-0 border border-stone-200 dark:border-stone-700 shadow-sm bg-stone-100 dark:bg-stone-800 group/img cursor-pointer"
+                        className="relative w-22 h-26 sm:w-24 sm:h-28 rounded-2xl overflow-hidden shrink-0 border-2 border-[#0ea5a5]/40 shadow-md bg-stone-100 dark:bg-stone-800 group/img cursor-pointer ring-2 ring-amber-400/30"
                         onClick={() => setPreviewImage({ src: student.image, caption: `${student.name} · ${student.achievement}` })}
                         title="Click to view full photo"
                       >
                         <img
                           src={student.image}
                           alt={student.name}
-                          className="w-full h-full object-cover object-center group-hover/img:scale-105 transition-transform duration-300"
+                          className="w-full h-full object-cover object-center group-hover/img:scale-110 transition-transform duration-500"
                         />
                         <div className="absolute top-1 left-1">
-                          <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-black/70 text-white backdrop-blur-xs">
+                          <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-black/80 text-white backdrop-blur-xs">
                             {student.tag}
                           </span>
                         </div>
-                        <div className="absolute inset-0 bg-black/30 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center text-white">
+                        <div className="absolute inset-0 bg-black/35 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center text-white">
                           <Maximize2 className="w-4 h-4 drop-shadow" />
                         </div>
                       </div>
 
                       {/* Info & Achievements */}
-                      <div className="space-y-1 flex-1 min-w-0">
+                      <div className="space-y-1.5 flex-1 min-w-0">
                         <div className="flex items-center gap-1.5 flex-wrap">
-                          <h4 className="text-base font-extrabold text-stone-950 dark:text-white font-display truncate">
+                          <h4 className="text-base sm:text-lg font-black text-stone-950 dark:text-white font-display truncate">
                             {student.name}
                           </h4>
-                          <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#f2f9f9] dark:bg-[#3dabab]/20 text-[#1f5e5e] dark:text-[#52c5c5] border border-[#3dabab]/30 font-bold">
+                          <span className="text-[10px] px-2 py-0.5 rounded-full bg-gradient-to-r from-teal-500/20 to-cyan-500/20 text-[#0f766e] dark:text-[#2dd4bf] border border-[#0ea5a5]/40 font-black">
                             {student.badge}
                           </span>
                         </div>
-                        <p className="text-[11px] font-bold text-[#1f5e5e] dark:text-[#52c5c5]">
+                        <p className="text-xs font-black text-[#0d9488] dark:text-[#2dd4bf]">
                           {student.grade}
                         </p>
-                        <p className="text-xs font-semibold text-stone-900 dark:text-stone-200 leading-snug">
+                        <p className="text-xs font-bold text-stone-900 dark:text-stone-100 leading-snug">
                           {student.achievement}
                         </p>
                       </div>
                     </div>
 
                     {/* Speech Highlight / Testimonial Quote */}
-                    <div className="p-3 rounded-xl bg-gradient-to-r from-stone-50 via-white to-stone-50 dark:from-[#061416] dark:via-[#091a1d] dark:to-[#061416] border border-stone-200 dark:border-stone-800 text-xs text-stone-700 dark:text-stone-300 leading-snug">
-                      <p className="italic">
+                    <div className="p-3.5 rounded-2xl bg-gradient-to-r from-teal-50/70 via-white to-amber-50/70 dark:from-[#051618] dark:via-[#092226] dark:to-[#091a1d] border-2 border-[#0ea5a5]/25 text-xs text-stone-800 dark:text-stone-200 leading-relaxed shadow-2xs">
+                      <p className="italic font-medium">
                         &ldquo;{student.speechHighlight}&rdquo;
                       </p>
                     </div>
                   </div>
                 );
               })()}
+
 
               {/* Student Quick Pill Selectors */}
               <div className="flex items-center gap-1.5 pt-1 overflow-x-auto pb-1 scrollbar-thin">

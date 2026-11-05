@@ -23,20 +23,15 @@ export const WhatIsAristri: React.FC<WhatIsAristriProps> = ({ onOpenRegister }) 
   const highResImagePath = '/assets/aistudio/ISHITA__c535712c.jpg';
 
   return (
-    <section id="what-is-aristri" className="relative py-16 md:py-24 bg-gradient-to-b from-[#e3f2f4] via-[#ecf6f8] to-[#e0eff2] dark:from-[#051316] dark:via-[#081d21] dark:to-[#051417] text-stone-900 dark:text-stone-100 border-b border-stone-200/80 dark:border-stone-800 overflow-hidden">
+    <section id="what-is-aristri" className="relative py-16 md:py-24 bg-gradient-to-b from-[#edf7f9]/85 via-[#f5fbfc]/80 to-[#e8f5f7]/85 dark:from-[#051316]/90 dark:via-[#081f23]/85 dark:to-[#051518]/90 text-stone-900 dark:text-stone-100 border-b border-stone-200/80 dark:border-stone-800 overflow-hidden">
       {/* Ambient background glowing elements */}
-      <div className="absolute top-10 right-10 w-96 h-96 bg-[#3dabab]/15 dark:bg-[#3dabab]/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-20 left-10 w-[30rem] h-[30rem] bg-[#1f5e5e]/10 dark:bg-[#1f5e5e]/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[45rem] h-[45rem] bg-teal-200/15 dark:bg-teal-900/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-10 right-10 w-[34rem] h-[34rem] bg-gradient-to-bl from-teal-400/20 via-[#3dabab]/15 to-transparent dark:from-teal-500/15 dark:via-teal-800/10 rounded-full blur-3xl pointer-events-none animate-aurora" />
+      <div className="absolute bottom-20 left-10 w-[32rem] h-[32rem] bg-gradient-to-tr from-emerald-500/15 via-[#1f5e5e]/15 to-transparent dark:from-emerald-600/15 dark:via-emerald-900/10 rounded-full blur-3xl pointer-events-none animate-float-slow" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] bg-amber-300/10 dark:bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
 
-      {/* Micro-grid pattern overlay */}
-      <div 
-        className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none"
-        style={{
-          backgroundImage: 'radial-gradient(#1f5e5e 1px, transparent 1px)',
-          backgroundSize: '24px 24px'
-        }}
-      />
+      {/* Stage Pattern Texture */}
+      <div className="absolute inset-0 bg-stage-pattern opacity-40 dark:opacity-60 pointer-events-none" />
+
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
