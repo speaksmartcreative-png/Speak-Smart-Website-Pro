@@ -33,7 +33,7 @@ export const Hero: React.FC<HeroProps> = ({
     <section className="relative overflow-hidden bg-gradient-to-b from-[#edf8f9]/90 via-[#f6fbfc]/80 to-[#e6f4f6]/90 dark:from-[#061517]/90 dark:via-[#092226]/85 dark:to-[#07171a]/95 text-stone-900 dark:text-stone-100 py-12 md:py-20 lg:py-24 border-b border-stone-200/80 dark:border-stone-800 transition-colors duration-200">
       {/* Dynamic Stage Light Auroras */}
       <div className="absolute top-0 right-1/4 w-[36rem] h-[36rem] bg-gradient-to-br from-[#3dabab]/25 via-teal-300/15 to-transparent rounded-full blur-3xl pointer-events-none animate-aurora" />
-      <div className="absolute bottom-0 left-10 w-[30rem] h-[30rem] bg-gradient-to-tr from-amber-400/20 via-amber-300/10 to-transparent dark:from-amber-500/15 dark:via-amber-600/5 rounded-full blur-3xl pointer-events-none animate-aurora" style={{ animationDelay: '-6s' }} />
+      <div className="absolute bottom-0 left-10 w-[30rem] h-[30rem] bg-gradient-to-tr from-teal-400/20 via-cyan-300/10 to-transparent dark:from-teal-600/15 dark:via-cyan-900/10 rounded-full blur-3xl pointer-events-none animate-aurora" style={{ animationDelay: '-6s' }} />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[44rem] h-[44rem] bg-gradient-to-tr from-[#3dabab]/12 via-cyan-200/10 to-transparent rounded-full blur-3xl pointer-events-none" />
       
       {/* Subtle Stage Pattern Texture */}
@@ -45,8 +45,8 @@ export const Hero: React.FC<HeroProps> = ({
           {/* Left Column: Core Value Proposition & Registration CTA */}
           <div className="lg:col-span-7 space-y-6">
             <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm font-bold tracking-wider uppercase text-[#1f5e5e] dark:text-[#52c5c5]">
-              <span className="flex items-center gap-1.5 bg-gradient-to-r from-amber-400/20 via-[#0ea5a5]/25 to-indigo-500/20 border-2 border-[#0ea5a5]/40 px-3.5 py-1 rounded-full text-stone-900 dark:text-stone-100 font-black shadow-xs">
-                <Sparkles className="w-3.5 h-3.5 text-amber-500 fill-amber-400" />
+              <span className="flex items-center gap-1.5 bg-gradient-to-r from-teal-500/15 via-[#0ea5a5]/20 to-sky-500/15 border-2 border-[#0ea5a5]/40 px-3.5 py-1 rounded-full text-stone-900 dark:text-stone-100 font-bold shadow-xs">
+                <Sparkles className="w-3.5 h-3.5 text-[#0d9488] dark:text-[#2dd4bf]" />
                 <span className="text-black dark:text-white">Spring Admissions Open</span>
               </span>
               <span className="text-stone-400 dark:text-stone-600 hidden sm:inline">·</span>
@@ -93,9 +93,9 @@ export const Hero: React.FC<HeroProps> = ({
 
               <button
                 onClick={() => onNavigate('aristri')}
-                className="px-4 py-3.5 text-sm sm:text-base font-extrabold text-stone-800 dark:text-stone-200 hover:text-black dark:hover:text-white hover:bg-amber-100/60 dark:hover:bg-amber-950/40 rounded-xl border border-amber-300/60 dark:border-amber-700/50 transition-colors cursor-pointer flex items-center gap-1.5 whitespace-nowrap"
+                className="px-4 py-3.5 text-sm sm:text-base font-bold text-stone-800 dark:text-stone-200 hover:text-black dark:hover:text-white hover:bg-teal-50 dark:hover:bg-teal-950/40 rounded-xl border border-teal-200 dark:border-teal-800/60 transition-colors cursor-pointer flex items-center gap-1.5 whitespace-nowrap"
               >
-                <Award className="w-4 h-4 text-amber-500" />
+                <Award className="w-4 h-4 text-[#0d9488] dark:text-[#2dd4bf]" />
                 <span>What is ARISTRI™?</span>
               </button>
             </div>
@@ -110,8 +110,8 @@ export const Hero: React.FC<HeroProps> = ({
                 <p className="text-2xl sm:text-3xl font-black font-mono text-emerald-700 dark:text-emerald-300 tabular-nums">100%</p>
                 <p className="text-xs text-stone-700 dark:text-stone-300 font-bold mt-0.5">Every Student Speaks</p>
               </div>
-              <div className="p-3.5 rounded-2xl bg-gradient-to-br from-amber-500/10 via-orange-500/5 to-transparent border-2 border-amber-500/30 dark:border-amber-400/30 shadow-xs backdrop-blur-xs">
-                <p className="text-2xl sm:text-3xl font-black font-mono text-amber-700 dark:text-amber-300 tabular-nums">Zero HW</p>
+              <div className="p-3.5 rounded-2xl bg-gradient-to-br from-sky-500/10 via-teal-500/5 to-transparent border-2 border-sky-500/30 dark:border-sky-400/30 shadow-xs backdrop-blur-xs">
+                <p className="text-2xl sm:text-3xl font-black font-mono text-sky-800 dark:text-sky-300 tabular-nums">Zero HW</p>
                 <p className="text-xs text-stone-700 dark:text-stone-300 font-bold mt-0.5">100% Studio Immersion</p>
               </div>
               <div className="p-3.5 rounded-2xl bg-gradient-to-br from-indigo-500/10 via-purple-500/5 to-transparent border-2 border-indigo-500/30 dark:border-indigo-400/30 shadow-xs backdrop-blur-xs">
@@ -123,21 +123,21 @@ export const Hero: React.FC<HeroProps> = ({
 
           {/* Right Column: Star Students Showcase */}
           <div className="lg:col-span-5 relative">
-            {/* Vibrant Multi-Chromatic Card Glow Halo */}
-            <div className="absolute -inset-1.5 bg-gradient-to-r from-amber-400/40 via-teal-400/35 to-indigo-500/40 rounded-3xl blur-xl opacity-80 pointer-events-none animate-aurora" />
+            {/* Multi-Chromatic Professional Card Glow Halo */}
+            <div className="absolute -inset-1.5 bg-gradient-to-r from-teal-500/35 via-cyan-400/25 to-indigo-500/35 rounded-3xl blur-xl opacity-75 pointer-events-none animate-aurora" />
 
             <div className="relative rounded-3xl overflow-hidden border-2 border-[#0ea5a5]/30 dark:border-teal-500/30 shadow-2xl bg-white/95 dark:bg-[#07191d]/95 backdrop-blur-md p-5 sm:p-6 space-y-4">
               
               {/* Header */}
               <div className="flex items-center justify-between pb-3.5 border-b-2 border-stone-100 dark:border-stone-800">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 text-stone-950 flex items-center justify-center shadow-md">
-                    <Star className="w-4 h-4 fill-white text-white drop-shadow-xs" />
+                  <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#0d9488] to-[#0f766e] text-white flex items-center justify-center shadow-md">
+                    <Star className="w-4 h-4 fill-amber-300 text-amber-300 drop-shadow-xs" />
                   </div>
                   <div>
                     <h3 className="text-base font-black text-stone-950 dark:text-white font-display leading-tight flex items-center gap-2">
                       <span>Star Students</span>
-                      <span className="text-[10px] px-2.5 py-0.5 rounded-full bg-gradient-to-r from-amber-400 to-amber-500 text-stone-950 font-black uppercase tracking-wider shadow-xs">
+                      <span className="text-[10px] px-2.5 py-0.5 rounded-full bg-[#3dabab]/20 text-[#0f766e] dark:text-[#4fd1d1] border border-[#3dabab]/30 font-bold uppercase tracking-wider shadow-2xs">
                         ★ Hall of Fame
                       </span>
                     </h3>
@@ -179,7 +179,7 @@ export const Hero: React.FC<HeroProps> = ({
                     <div className="flex items-start gap-4">
                       {/* Student Portrait / Photo */}
                       <div 
-                        className="relative w-22 h-26 sm:w-24 sm:h-28 rounded-2xl overflow-hidden shrink-0 border-2 border-[#0ea5a5]/40 shadow-md bg-stone-100 dark:bg-stone-800 group/img cursor-pointer ring-2 ring-amber-400/30"
+                        className="relative w-22 h-26 sm:w-24 sm:h-28 rounded-2xl overflow-hidden shrink-0 border-2 border-[#0ea5a5]/40 shadow-md bg-stone-100 dark:bg-stone-800 group/img cursor-pointer ring-2 ring-[#0ea5a5]/25"
                         onClick={() => setPreviewImage({ src: student.image, caption: `${student.name} · ${student.achievement}` })}
                         title="Click to view full photo"
                       >
@@ -218,7 +218,7 @@ export const Hero: React.FC<HeroProps> = ({
                     </div>
 
                     {/* Speech Highlight / Testimonial Quote */}
-                    <div className="p-3.5 rounded-2xl bg-gradient-to-r from-teal-50/70 via-white to-amber-50/70 dark:from-[#051618] dark:via-[#092226] dark:to-[#091a1d] border-2 border-[#0ea5a5]/25 text-xs text-stone-800 dark:text-stone-200 leading-relaxed shadow-2xs">
+                    <div className="p-3.5 rounded-2xl bg-gradient-to-r from-teal-50/70 via-white to-cyan-50/70 dark:from-[#051618] dark:via-[#092226] dark:to-[#091a1d] border-2 border-[#0ea5a5]/25 text-xs text-stone-800 dark:text-stone-200 leading-relaxed shadow-2xs">
                       <p className="italic font-medium">
                         &ldquo;{student.speechHighlight}&rdquo;
                       </p>

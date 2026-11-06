@@ -388,7 +388,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 }`}
               >
                 <span>Updates &amp; Exam Dates</span>
-                <span className="text-[10px] font-bold bg-amber-50 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800/80 px-2 py-0.5 rounded">
+                <span className="text-[10px] font-bold bg-teal-50 dark:bg-teal-950/60 text-[#0f766e] dark:text-[#4fd1d1] border border-teal-200 dark:border-teal-800/80 px-2 py-0.5 rounded">
                   Notices
                 </span>
               </button>

@@ -14,9 +14,7 @@ import {
   X,
   MapPin,
   Check,
-  ExternalLink,
-  Settings,
-  Link2
+  ExternalLink
 } from 'lucide-react';
 import { STUDENT_TESTIMONIALS, PARENT_TESTIMONIALS } from '../data/mockData';
 import { StudentTestimonial, ParentTestimonial } from '../types';
@@ -38,44 +36,8 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
   const [submittedReview, setSubmittedReview] = useState(false);
   const [selectedPhoto, setSelectedPhoto] = useState<{ src: string; name: string; quote: string; achievement: string } | null>(null);
 
-  // Google Form Review redirection state (configurable by user/admin)
-  const DEFAULT_GOOGLE_FORM_REVIEW_URL = 'https://forms.gle/amSFYJ7xTY1oi97u8';
-  const [googleFormReviewUrl, setGoogleFormReviewUrl] = useState<string>(() => {
-    return localStorage.getItem('speaksmart_review_google_form_url') || DEFAULT_GOOGLE_FORM_REVIEW_URL;
-  });
-  const [isConfiguringReviewUrl, setIsConfiguringReviewUrl] = useState(false);
-  const [tempReviewUrl, setTempReviewUrl] = useState(googleFormReviewUrl);
-  const [urlSaveSuccess, setUrlSaveSuccess] = useState(false);
-
-  const handleSaveReviewUrl = (e: React.FormEvent) => {
-    e.preventDefault();
-    let url = tempReviewUrl.trim();
-    if (!url) {
-      url = DEFAULT_GOOGLE_FORM_REVIEW_URL;
-    }
-    if (!url.startsWith('http://') && !url.startsWith('https://')) {
-      url = 'https://' + url;
-    }
-    setGoogleFormReviewUrl(url);
-    setTempReviewUrl(url);
-    localStorage.setItem('speaksmart_review_google_form_url', url);
-    setUrlSaveSuccess(true);
-    setTimeout(() => {
-      setUrlSaveSuccess(false);
-      setIsConfiguringReviewUrl(false);
-    }, 1500);
-  };
-
-  const handleResetReviewUrl = () => {
-    setGoogleFormReviewUrl(DEFAULT_GOOGLE_FORM_REVIEW_URL);
-    setTempReviewUrl(DEFAULT_GOOGLE_FORM_REVIEW_URL);
-    localStorage.removeItem('speaksmart_review_google_form_url');
-    setUrlSaveSuccess(true);
-    setTimeout(() => {
-      setUrlSaveSuccess(false);
-      setIsConfiguringReviewUrl(false);
-    }, 1500);
-  };
+  // Official SpeakSmart Google Form Review URL
+  const GOOGLE_FORM_REVIEW_URL = 'https://forms.gle/amSFYJ7xTY1oi97u8';
 
   useEffect(() => {
     setActiveTab(initialTab);
@@ -194,7 +156,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
   return (
     <section id="testimonials" className="relative py-16 md:py-24 bg-gradient-to-b from-[#fefbf6]/80 via-[#f0f9fa]/75 to-[#e9f6f7]/80 dark:from-[#061517]/85 dark:via-[#092226]/85 dark:to-[#07171a]/90 text-stone-900 dark:text-stone-100 border-b border-stone-200/80 dark:border-stone-800/80 overflow-hidden">
       {/* Radiant Stage Spotlight Accents */}
-      <div className="absolute top-10 left-10 w-[36rem] h-[36rem] bg-gradient-to-br from-amber-300/25 via-amber-400/10 to-transparent dark:from-amber-500/15 dark:via-amber-600/5 rounded-full blur-3xl pointer-events-none animate-aurora" />
+      <div className="absolute top-10 left-10 w-[36rem] h-[36rem] bg-gradient-to-br from-teal-300/25 via-teal-400/10 to-transparent dark:from-teal-600/15 dark:via-teal-800/10 rounded-full blur-3xl pointer-events-none animate-aurora" />
       <div className="absolute bottom-10 right-10 w-[34rem] h-[34rem] bg-gradient-to-tl from-[#3dabab]/25 via-teal-400/15 to-transparent dark:from-[#3dabab]/20 dark:via-teal-600/10 rounded-full blur-3xl pointer-events-none animate-aurora" style={{ animationDelay: '-5s' }} />
       <div className="absolute top-1/2 left-1/3 w-96 h-96 bg-cyan-400/15 dark:bg-cyan-600/10 rounded-full blur-3xl pointer-events-none" />
 
@@ -297,14 +259,14 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
           <div className="space-y-12">
             
             {/* Spotlight Banner: Real Student Ekagra Jhunjhunwala (Cleared The Doon School Interview) */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-gradient-to-br from-white via-[#f4fafb] to-[#fef8ee] dark:from-[#092125] dark:via-[#0c262a] dark:to-[#081a1d] p-6 sm:p-8 md:p-10 rounded-3xl border-2 border-amber-400/70 dark:border-amber-500/60 shadow-2xl relative overflow-hidden ring-4 ring-amber-400/10">
-              <div className="absolute top-0 right-0 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 text-stone-950 text-xs font-black px-5 py-1.5 rounded-bl-2xl tracking-wider uppercase shadow-md flex items-center gap-1.5">
-                <Star className="w-3.5 h-3.5 fill-stone-950 text-stone-950" />
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-gradient-to-br from-white via-[#f3fafb] to-[#ecf8fa] dark:from-[#092125] dark:via-[#0c262a] dark:to-[#081a1d] p-6 sm:p-8 md:p-10 rounded-3xl border-2 border-[#3dabab]/45 dark:border-[#3dabab]/40 shadow-2xl relative overflow-hidden ring-4 ring-[#3dabab]/10">
+              <div className="absolute top-0 right-0 bg-gradient-to-r from-[#0f766e] via-[#0d9488] to-[#0f766e] text-white text-xs font-black px-5 py-1.5 rounded-bl-2xl tracking-wider uppercase shadow-md flex items-center gap-1.5">
+                <Star className="w-3.5 h-3.5 fill-amber-300 text-amber-300" />
                 <span>Premier Success Story</span>
               </div>
 
               {/* Student Portrait */}
-              <div className="lg:col-span-5 relative group rounded-2xl overflow-hidden border-2 border-amber-400/50 dark:border-amber-500/40 shadow-lg bg-stone-100 dark:bg-stone-800 ring-2 ring-[#0ea5a5]/30">
+              <div className="lg:col-span-5 relative group rounded-2xl overflow-hidden border-2 border-[#0ea5a5]/40 shadow-lg bg-stone-100 dark:bg-stone-800 ring-2 ring-[#0ea5a5]/20">
                 <div className="relative aspect-square w-full">
                   <img
                     src="/assets/testimonials/student_doon_school_cropped.jpg"
@@ -332,8 +294,8 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
                     </button>
                   </div>
                   <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
-                    <span className="text-xs font-black text-stone-900 dark:text-stone-100 bg-white/95 dark:bg-stone-900/95 backdrop-blur-sm px-3.5 py-1.5 rounded-full shadow-md border border-amber-400/50 flex items-center gap-1.5">
-                      <MapPin className="w-3.5 h-3.5 text-amber-500" />
+                    <span className="text-xs font-black text-stone-900 dark:text-stone-100 bg-white/95 dark:bg-stone-900/95 backdrop-blur-sm px-3.5 py-1.5 rounded-full shadow-md border border-[#3dabab]/40 flex items-center gap-1.5">
+                      <MapPin className="w-3.5 h-3.5 text-[#0d9488] dark:text-[#2dd4bf]" />
                       <span>The Doon School, Dehradun (Selected)</span>
                     </span>
                   </div>
@@ -342,19 +304,19 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
 
               {/* Quotation & Details */}
               <div className="lg:col-span-7 space-y-4">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-amber-400/20 to-teal-400/20 border border-amber-400/40 text-xs text-[#0f766e] dark:text-[#4fd1d1] font-black uppercase tracking-wider">
-                  <Award className="w-4 h-4 text-amber-500" />
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-[#3dabab]/15 to-teal-500/15 border border-[#3dabab]/35 text-xs text-[#0f766e] dark:text-[#4fd1d1] font-bold uppercase tracking-wider">
+                  <Award className="w-4 h-4 text-[#0d9488] dark:text-[#2dd4bf]" />
                   <span>Elite Boarding School Admissions · Kolkata Centre</span>
                 </div>
 
                 <div className="relative">
-                  <Quote className="w-12 h-12 text-amber-400/20 absolute -top-5 -left-2 pointer-events-none" />
+                  <Quote className="w-12 h-12 text-[#3dabab]/20 absolute -top-5 -left-2 pointer-events-none" />
                   <h3 className="text-2xl sm:text-3xl font-black text-stone-950 dark:text-white font-display leading-tight pl-4">
                     &ldquo;Getting to The Doon School was not easy, but SpeakSmart made it possible!&rdquo;
                   </h3>
                 </div>
 
-                <div className="bg-gradient-to-r from-amber-50/80 via-white to-teal-50/80 dark:from-[#092226] dark:via-[#0c2a2f] dark:to-[#081f23] p-5 sm:p-6 rounded-2xl border-2 border-amber-400/35 relative shadow-sm">
+                <div className="bg-gradient-to-r from-teal-50/70 via-white to-cyan-50/70 dark:from-[#092226] dark:via-[#0c2a2f] dark:to-[#081f23] p-5 sm:p-6 rounded-2xl border-2 border-[#3dabab]/30 relative shadow-sm">
                   <p className="text-sm sm:text-base text-stone-800 dark:text-stone-100 leading-relaxed italic font-medium">
                     &ldquo;When I was born, my mother’s dream was that I would go to Doon School. When I researched it, it became my dream too. I joined SpeakSmart and it helped me a lot for my interview, especially Vishakha Ma’am—she was very kind and guided me on demeanor, poise, and spontaneous answers. Today, I got through Doon!&rdquo;
                   </p>
@@ -366,8 +328,8 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
                     <p className="text-[#0d9488] dark:text-[#2dd4bf] font-extrabold">Selected for The Doon School, Dehradun</p>
                     <p className="text-stone-600 dark:text-stone-400 text-xs font-semibold">SpeakSmart Interview & Demeanor Coaching</p>
                   </div>
-                  <span className="font-black text-stone-950 bg-gradient-to-r from-amber-400 to-amber-500 px-4 py-2 rounded-xl border border-amber-500 text-xs shadow-sm flex items-center gap-1.5">
-                    <Award className="w-4 h-4 fill-stone-950" />
+                  <span className="font-black text-white bg-gradient-to-r from-[#0f766e] to-[#0d9488] px-4 py-2 rounded-xl border border-[#0d9488] text-xs shadow-sm flex items-center gap-1.5">
+                    <Award className="w-4 h-4 text-white" />
                     <span>Successfully Cleared Interview</span>
                   </span>
                 </div>
@@ -475,19 +437,19 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
                           </div>
                         )}
 
-                        {/* Student Authentic Quotation with Bold Border */}
-                        <div className="relative pl-3.5 border-l-4 border-amber-400 dark:border-amber-500 py-0.5">
+                        {/* Student Authentic Quotation with Refined Teal Border */}
+                        <div className="relative pl-3.5 border-l-4 border-[#3dabab] py-0.5">
                           <blockquote className="text-xs sm:text-sm text-stone-800 dark:text-stone-100 font-medium leading-relaxed italic line-clamp-4">
                             &ldquo;{st.quote}&rdquo;
                           </blockquote>
                         </div>
                       </div>
 
-                      {/* Colorful Milestone Achievement Box */}
+                      {/* Milestone Achievement Box */}
                       <div className="pt-3 border-t-2 border-stone-100 dark:border-stone-800">
                         {st.achievement && (
-                          <div className="text-xs font-black text-stone-900 dark:text-stone-100 bg-gradient-to-r from-amber-400/20 via-teal-400/15 to-indigo-500/15 px-3 py-2 rounded-xl border border-amber-400/40 shadow-2xs flex items-center gap-1.5">
-                            <Award className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+                          <div className="text-xs font-bold text-stone-900 dark:text-stone-100 bg-gradient-to-r from-teal-500/15 via-cyan-500/10 to-indigo-500/10 px-3 py-2 rounded-xl border border-teal-500/30 shadow-2xs flex items-center gap-1.5">
+                            <Award className="w-3.5 h-3.5 text-[#0d9488] dark:text-[#2dd4bf] shrink-0" />
                             <span className="truncate">{st.achievement}</span>
                           </div>
                         )}
@@ -506,11 +468,11 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
         {activeTab === 'parents' && (
           <div className="space-y-8">
             {/* Friendly parent notice */}
-            <div className="bg-amber-50 dark:bg-amber-950/40 border-l-4 border-amber-500 p-4 rounded-r-xl shadow-xs flex items-start gap-3">
-              <Sparkles className="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
-              <div className="text-xs sm:text-sm text-amber-900 dark:text-amber-200">
-                <p className="font-bold">Parent Community Feedback</p>
-                <p className="text-amber-800 dark:text-amber-300 mt-0.5">
+            <div className="bg-teal-50 dark:bg-[#071d20] border-l-4 border-[#3dabab] p-4 rounded-r-xl shadow-xs flex items-start gap-3">
+              <Sparkles className="w-5 h-5 text-[#0d9488] dark:text-[#2dd4bf] shrink-0 mt-0.5" />
+              <div className="text-xs sm:text-sm text-stone-900 dark:text-stone-100">
+                <p className="font-bold text-[#0f766e] dark:text-[#4fd1d1]">Parent Community Feedback</p>
+                <p className="text-stone-700 dark:text-stone-300 mt-0.5">
                   Parent video interviews are currently in production and will be shared soon. In the meantime, explore verified written parent reflections below and check out the 18 authentic student scholar portraits above.
                 </p>
               </div>
@@ -599,8 +561,8 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
         {/* REVIEW SECTION LINK & GOOGLE FORM REDIRECT PORTAL */}
         {/* ======================================================== */}
         <div id="submit-review" className="mt-14 rounded-3xl bg-gradient-to-br from-white via-[#f4fbfc] to-[#eaf6f7] dark:from-[#081e22] dark:via-[#0c262a] dark:to-[#071618] border-2 border-[#3dabab]/40 shadow-xl p-6 sm:p-8 md:p-10 relative overflow-hidden">
-          {/* Vibrant Aurora Background Elements */}
-          <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-bl from-amber-400/20 via-[#3dabab]/20 to-transparent rounded-full blur-2xl pointer-events-none" />
+          {/* Serene Aurora Background Elements */}
+          <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-bl from-cyan-400/20 via-[#3dabab]/20 to-transparent rounded-full blur-2xl pointer-events-none" />
           <div className="absolute -bottom-10 -left-10 w-72 h-72 bg-teal-400/20 dark:bg-teal-500/15 rounded-full blur-2xl pointer-events-none" />
           <div className="absolute inset-0 bg-stage-pattern opacity-30 dark:opacity-40 pointer-events-none" />
 
@@ -619,10 +581,10 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
                 </p>
               </div>
 
-              {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
+              {/* Action Button: Opens the official Google Form directly */}
+              <div className="shrink-0">
                 <a
-                  href={googleFormReviewUrl}
+                  href={GOOGLE_FORM_REVIEW_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-extrabold text-white bg-gradient-to-r from-[#3dabab] via-[#329696] to-[#277979] hover:from-[#329696] hover:to-[#1f5e5e] rounded-xl transition-all shadow-md hover:shadow-lg hover:shadow-[#3dabab]/25 cursor-pointer whitespace-nowrap"
@@ -630,69 +592,8 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
                   <span>Open Review Google Form</span>
                   <ExternalLink className="w-4 h-4" />
                 </a>
-
-                <button
-                  type="button"
-                  onClick={() => setIsConfiguringReviewUrl(!isConfiguringReviewUrl)}
-                  className="inline-flex items-center justify-center gap-1.5 px-4 py-3.5 text-xs font-bold text-stone-700 dark:text-stone-300 bg-white dark:bg-stone-900 border border-stone-300 dark:border-stone-700 hover:border-[#3dabab] hover:text-[#3dabab] rounded-xl transition-colors cursor-pointer whitespace-nowrap shadow-2xs"
-                  title="Configure Google Form URL"
-                >
-                  <Settings className="w-4 h-4 text-[#3dabab]" />
-                  <span>{isConfiguringReviewUrl ? 'Hide URL Settings' : 'Set Google Form Link'}</span>
-                </button>
               </div>
             </div>
-
-            {/* Configurable Google Form URL Drawer */}
-            {isConfiguringReviewUrl && (
-              <div className="mt-6 p-5 rounded-2xl bg-white/95 dark:bg-stone-900/95 border-2 border-[#3dabab]/30 shadow-md animate-in fade-in zoom-in-95 duration-200">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
-                  <div className="text-xs font-extrabold text-stone-900 dark:text-white flex items-center gap-2">
-                    <Link2 className="w-4 h-4 text-[#3dabab]" />
-                    <span>Set Custom Review Google Form Link</span>
-                  </div>
-                  <div className="text-[11px] text-stone-500 dark:text-stone-400">
-                    Active URL: <span className="font-mono text-xs text-[#1f5e5e] dark:text-[#4fd1d1] font-bold">{googleFormReviewUrl}</span>
-                  </div>
-                </div>
-                <p className="text-xs text-stone-600 dark:text-stone-300 mb-3.5">
-                  Paste your Google Form link below. All review buttons on this page will immediately redirect students and parents to your designated form.
-                </p>
-
-                <form onSubmit={handleSaveReviewUrl} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
-                  <input
-                    type="url"
-                    required
-                    value={tempReviewUrl}
-                    onChange={(e) => setTempReviewUrl(e.target.value)}
-                    placeholder="https://forms.gle/your-review-form-id"
-                    className="flex-1 px-4 py-2.5 text-xs rounded-xl border border-stone-300 dark:border-stone-700 bg-stone-50 dark:bg-stone-800 text-stone-900 dark:text-white font-mono focus:outline-none focus:ring-2 focus:ring-[#3dabab]"
-                  />
-                  <div className="flex items-center gap-2">
-                    <button
-                      type="submit"
-                      className="px-5 py-2.5 text-xs font-bold text-white bg-[#3dabab] hover:bg-[#329696] rounded-xl transition-colors cursor-pointer shadow-xs whitespace-nowrap"
-                    >
-                      Save Link
-                    </button>
-                    <button
-                      type="button"
-                      onClick={handleResetReviewUrl}
-                      className="px-3.5 py-2.5 text-xs font-semibold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white bg-stone-100 dark:bg-stone-800 rounded-xl transition-colors cursor-pointer whitespace-nowrap"
-                    >
-                      Reset Default
-                    </button>
-                  </div>
-                </form>
-
-                {urlSaveSuccess && (
-                  <div className="mt-3 text-xs text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-1.5 animate-in fade-in">
-                    <CheckCircle2 className="w-4 h-4" />
-                    <span>Google Form link saved successfully!</span>
-                  </div>
-                )}
-              </div>
-            )}
 
             {/* Audience Guidance Pillars for Students & Teachers/Parents */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">

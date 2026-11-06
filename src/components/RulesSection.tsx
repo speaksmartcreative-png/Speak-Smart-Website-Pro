@@ -93,7 +93,7 @@ export const RulesSection: React.FC<RulesSectionProps> = ({
       {/* Ambient background glow accents */}
       <div className="absolute top-10 right-10 w-[30rem] h-[30rem] bg-gradient-to-bl from-emerald-500/15 via-[#1f5e5e]/15 to-transparent dark:from-emerald-600/15 dark:via-teal-900/10 rounded-full blur-3xl pointer-events-none animate-aurora" />
       <div className="absolute bottom-10 left-10 w-[32rem] h-[32rem] bg-gradient-to-tr from-[#3dabab]/20 via-teal-200/10 to-transparent dark:from-[#3dabab]/15 rounded-full blur-3xl pointer-events-none animate-float-slow" />
-      <div className="absolute top-1/2 left-1/3 w-80 h-80 bg-amber-200/15 dark:bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-1/3 w-80 h-80 bg-cyan-200/15 dark:bg-cyan-900/10 rounded-full blur-3xl pointer-events-none" />
 
       {/* Stage Pattern Texture */}
       <div className="absolute inset-0 bg-stage-pattern opacity-40 dark:opacity-60 pointer-events-none" />
@@ -179,7 +179,7 @@ export const RulesSection: React.FC<RulesSectionProps> = ({
               </a>
 
               <a
-                href="https://www.youtube.com/watch?v=9PC5IG1qkVM"
+                href="https://www.youtube.com/watch?v=mtIkqzV8SsY"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-3 py-1.5 rounded-lg bg-red-50 dark:bg-red-950/40 hover:bg-red-100 dark:hover:bg-red-900/40 text-red-700 dark:text-red-300 text-xs font-bold flex items-center gap-1.5 transition-colors border border-red-200 dark:border-red-900/50"
@@ -438,8 +438,8 @@ export const RulesSection: React.FC<RulesSectionProps> = ({
           </div>
 
           {/* Note Regarding Physical Page 5 from PDF */}
-          <div className="mt-8 p-4 rounded-xl bg-amber-50/70 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900/60 text-xs text-stone-700 dark:text-stone-300 flex items-start gap-3">
-            <Info className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
+          <div className="mt-8 p-4 rounded-xl bg-teal-50/70 dark:bg-[#071d20] border border-teal-200 dark:border-teal-800/60 text-xs text-stone-700 dark:text-stone-300 flex items-start gap-3">
+            <Info className="w-4 h-4 text-[#0d9488] dark:text-[#2dd4bf] shrink-0 mt-0.5" />
             <div>
               <p className="font-bold text-stone-900 dark:text-white">
                 Note on Document Signing &amp; Physical Sheet:

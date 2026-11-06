@@ -27,7 +27,7 @@ export const WhatIsAristri: React.FC<WhatIsAristriProps> = ({ onOpenRegister }) 
       {/* Ambient background glowing elements */}
       <div className="absolute top-10 right-10 w-[34rem] h-[34rem] bg-gradient-to-bl from-teal-400/20 via-[#3dabab]/15 to-transparent dark:from-teal-500/15 dark:via-teal-800/10 rounded-full blur-3xl pointer-events-none animate-aurora" />
       <div className="absolute bottom-20 left-10 w-[32rem] h-[32rem] bg-gradient-to-tr from-emerald-500/15 via-[#1f5e5e]/15 to-transparent dark:from-emerald-600/15 dark:via-emerald-900/10 rounded-full blur-3xl pointer-events-none animate-float-slow" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] bg-amber-300/10 dark:bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] bg-cyan-300/10 dark:bg-cyan-900/10 rounded-full blur-3xl pointer-events-none" />
 
       {/* Stage Pattern Texture */}
       <div className="absolute inset-0 bg-stage-pattern opacity-40 dark:opacity-60 pointer-events-none" />

@@ -61,7 +61,7 @@ export const NoticeBoard: React.FC<NoticeBoardProps> = ({
       {/* Ambient background glow accents */}
       <div className="absolute top-10 right-10 w-[32rem] h-[32rem] bg-gradient-to-bl from-sky-400/20 via-[#3dabab]/15 to-transparent dark:from-sky-500/15 dark:via-teal-800/10 rounded-full blur-3xl pointer-events-none animate-aurora" />
       <div className="absolute bottom-10 left-10 w-[30rem] h-[30rem] bg-gradient-to-tr from-[#3dabab]/20 via-teal-300/10 to-transparent dark:from-[#1f5e5e]/20 rounded-full blur-3xl pointer-events-none animate-float-slow" />
-      <div className="absolute top-1/2 left-1/3 w-80 h-80 bg-amber-200/15 dark:bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-1/3 w-80 h-80 bg-cyan-200/15 dark:bg-cyan-900/10 rounded-full blur-3xl pointer-events-none" />
 
       {/* Stage Pattern Texture */}
       <div className="absolute inset-0 bg-stage-pattern opacity-40 dark:opacity-60 pointer-events-none" />

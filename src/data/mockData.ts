@@ -321,7 +321,7 @@ export const RULES_AND_REGULATIONS: RuleCategory[] = [
       },
       {
         ruleTitle: 'Program Overview Video & Instagram Community',
-        description: 'Watch our short introductory video on YouTube (https://www.youtube.com/watch?v=9PC5IG1qkVM) to understand the SpeakSmart pedagogical approach, and follow our Instagram (@speaksmartcommunication) for showcases.',
+        description: 'Watch our short introductory video on YouTube (https://www.youtube.com/watch?v=mtIkqzV8SsY) to understand the SpeakSmart pedagogical approach, and follow our Instagram (@speaksmartcommunication) for showcases.',
         enforcement: 'Helps students and parents understand classroom methodology before orientation.'
       }
     ]

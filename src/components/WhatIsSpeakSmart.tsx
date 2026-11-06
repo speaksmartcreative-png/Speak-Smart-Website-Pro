@@ -5,7 +5,6 @@ import {
   Quote,
   Users,
   Play,
-  Edit3,
   Tv,
   HeartHandshake,
   Target,
@@ -114,16 +113,13 @@ const VISHAKHA_STAGE_GALLERY = [
   }
 ];
 
+const SPEAKSMART_OFFICIAL_YOUTUBE_ID = 'mtIkqzV8SsY';
+
 export const WhatIsSpeakSmart: React.FC<WhatIsSpeakSmartProps> = ({
   onOpenRegister,
   onNavigateAristri,
 }) => {
   const [activeTab, setActiveTab] = useState<'philosophy' | 'fourCs' | 'formats' | 'classroom'>('philosophy');
-  const [youtubeUrl, setYoutubeUrl] = useState(() => {
-    return localStorage.getItem('speaksmart_youtube_url') || '';
-  });
-  const [inputUrl, setInputUrl] = useState('');
-  const [isSettingUrl, setIsSettingUrl] = useState(false);
   const [startSeconds, setStartSeconds] = useState(0);
   const [isAutoPlay, setIsAutoPlay] = useState(false);
   const [activeChapterIndex, setActiveChapterIndex] = useState(0);
@@ -152,25 +148,7 @@ export const WhatIsSpeakSmart: React.FC<WhatIsSpeakSmartProps> = ({
 
   const transcriptPdfUrl = '/assets/aistudio/What_is_SpeakSmart_b1e4544e.pdf';
 
-  // Helper to extract YouTube video ID from standard or short links
-  const extractYouTubeId = (url: string) => {
-    if (!url) return '';
-    const clean = url.trim();
-    const match = clean.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
-    if (match && match[1]) return match[1];
-    if (clean.length === 11 && !clean.includes('/') && !clean.includes('.')) return clean;
-    return '';
-  };
-
-  const currentYoutubeId = extractYouTubeId(youtubeUrl);
-
-  const handleSaveYoutubeUrl = (urlToSave?: string) => {
-    const target = urlToSave !== undefined ? urlToSave : inputUrl;
-    setYoutubeUrl(target);
-    localStorage.setItem('speaksmart_youtube_url', target);
-    setIsSettingUrl(false);
-    setIsAutoPlay(true);
-  };
+  const currentYoutubeId = SPEAKSMART_OFFICIAL_YOUTUBE_ID;
 
   const jumpToChapter = (seconds: number, tabSync?: 'philosophy' | 'fourCs' | 'formats' | 'classroom', chapterIdx?: number) => {
     setStartSeconds(seconds);
@@ -183,7 +161,7 @@ export const WhatIsSpeakSmart: React.FC<WhatIsSpeakSmartProps> = ({
     <section id="what-is-speaksmart" className="relative py-16 md:py-24 bg-gradient-to-b from-[#f3fafb]/85 via-[#e8f6f7]/80 to-[#edf7f9]/85 dark:from-[#061517]/90 dark:via-[#092226]/85 dark:to-[#071618]/90 text-stone-900 dark:text-stone-100 border-b border-stone-200/80 dark:border-stone-800 overflow-hidden">
       {/* Decorative Aurora Ambient Orbs & Subtle Matrix Grid */}
       <div className="absolute top-0 right-10 w-[34rem] h-[30rem] bg-gradient-to-br from-[#3dabab]/25 via-teal-200/20 to-transparent dark:from-[#3dabab]/20 dark:via-teal-800/10 rounded-full blur-3xl pointer-events-none animate-aurora" />
-      <div className="absolute top-1/3 left-0 w-80 h-80 bg-gradient-to-tr from-amber-300/20 via-[#3dabab]/15 to-transparent dark:from-amber-500/15 dark:via-[#3dabab]/10 rounded-full blur-3xl pointer-events-none animate-float-slow" />
+      <div className="absolute top-1/3 left-0 w-80 h-80 bg-gradient-to-tr from-cyan-300/20 via-[#3dabab]/15 to-transparent dark:from-cyan-800/20 dark:via-[#3dabab]/10 rounded-full blur-3xl pointer-events-none animate-float-slow" />
       <div className="absolute bottom-20 right-1/4 w-96 h-96 bg-cyan-300/20 dark:bg-cyan-800/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute inset-0 bg-stage-pattern opacity-40 dark:opacity-60 pointer-events-none" />
 
@@ -548,7 +526,7 @@ export const WhatIsSpeakSmart: React.FC<WhatIsSpeakSmartProps> = ({
                       className="w-full h-full object-cover group-hover/m:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent opacity-80" />
-                    <span className="absolute top-2 left-2 text-[10px] font-bold px-2 py-0.5 rounded bg-amber-600 text-white">
+                    <span className="absolute top-2 left-2 text-[10px] font-bold px-2.5 py-0.5 rounded-md bg-[#0f766e] text-white border border-[#3dabab]/40 shadow-xs">
                       Spotlight Gala
                     </span>
                     <span className="absolute bottom-2 right-2 text-white/80 group-hover/m:text-white p-1 rounded-lg bg-black/60">
@@ -878,90 +856,26 @@ export const WhatIsSpeakSmart: React.FC<WhatIsSpeakSmartProps> = ({
             </div>
 
             <div className="flex items-center gap-2">
-              <button
-                onClick={() => setIsSettingUrl(!isSettingUrl)}
-                className="px-3 py-1.5 rounded-lg text-xs font-medium bg-stone-800 hover:bg-stone-700 text-stone-300 hover:text-white border border-stone-700 transition-colors flex items-center gap-1.5 cursor-pointer"
-                title="Update YouTube link"
-              >
-                <Edit3 className="w-3.5 h-3.5 text-[#3dabab]" />
-                <span>{currentYoutubeId ? 'Change YouTube Link' : 'Add YouTube Video Link'}</span>
-              </button>
+              <span className="px-2.5 py-1 rounded-lg text-xs font-semibold bg-[#3dabab]/20 text-[#4fd1d1] border border-[#3dabab]/30 flex items-center gap-1.5 shadow-xs">
+                <span className="w-2 h-2 rounded-full bg-[#4fd1d1] animate-pulse" />
+                <span>1080p Full HD</span>
+              </span>
+              <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-medium bg-stone-800 text-stone-300 border border-stone-700">
+                Official YouTube Broadcast
+              </span>
             </div>
           </div>
 
-          {/* Optional inline input for pasting YouTube URL */}
-          {isSettingUrl && (
-            <div className="p-4 bg-stone-900 border-b border-stone-800 flex flex-col sm:flex-row items-center gap-3">
-              <input
-                type="text"
-                placeholder="Paste YouTube Link (e.g. https://www.youtube.com/watch?v=... or https://youtu.be/...)"
-                value={inputUrl}
-                onChange={(e) => setInputUrl(e.target.value)}
-                className="flex-1 w-full px-3 py-2 bg-stone-950 border border-stone-700 rounded-lg text-xs text-white placeholder-stone-500 focus:outline-none focus:border-[#3dabab]"
-              />
-              <div className="flex items-center gap-2 w-full sm:w-auto">
-                <button
-                  onClick={() => handleSaveYoutubeUrl()}
-                  className="px-4 py-2 bg-[#3dabab] hover:bg-[#329696] text-white text-xs font-bold rounded-lg cursor-pointer"
-                >
-                  Save &amp; Embed
-                </button>
-                <button
-                  onClick={() => setIsSettingUrl(false)}
-                  className="px-3 py-2 bg-stone-800 hover:bg-stone-700 text-stone-400 text-xs rounded-lg cursor-pointer"
-                >
-                  Cancel
-                </button>
-              </div>
-            </div>
-          )}
-
-          {/* Video Container (YouTube Embed or Setup Placeholder) */}
+          {/* Video Container (YouTube Embed with 1080p HD permanent default) */}
           <div className="relative aspect-video w-full bg-stone-950 flex items-center justify-center">
-            {currentYoutubeId ? (
-              <iframe
-                key={`${currentYoutubeId}-${startSeconds}`}
-                src={`https://www.youtube-nocookie.com/embed/${currentYoutubeId}?start=${startSeconds}&autoplay=${isAutoPlay ? 1 : 0}&rel=0`}
-                title="Founder Mrs. Sreela Mitra Address"
-                className="w-full h-full border-0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
-            ) : (
-              <div className="relative w-full h-full flex flex-col items-center justify-center p-6 text-center bg-gradient-to-br from-stone-900 via-stone-950 to-stone-900 overflow-hidden">
-                <div className="relative z-10 max-w-lg space-y-4">
-                  <div className="w-16 h-16 mx-auto rounded-2xl bg-[#3dabab]/20 text-[#3dabab] border border-[#3dabab]/30 flex items-center justify-center shadow-lg">
-                    <VideoIcon className="w-8 h-8" />
-                  </div>
-                  <div>
-                    <h4 className="text-lg sm:text-xl font-bold text-white font-display">
-                      Founder&apos;s Video Address Player
-                    </h4>
-                    <p className="text-xs sm:text-sm text-stone-400 mt-1">
-                      Ready to play: Add your YouTube video link anytime to make it playable directly on this website.
-                    </p>
-                  </div>
-                  <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
-                    <button
-                      onClick={() => setIsSettingUrl(true)}
-                      className="px-5 py-2.5 bg-[#3dabab] hover:bg-[#329696] text-white text-xs sm:text-sm font-bold rounded-xl shadow-lg transition-all flex items-center gap-2 cursor-pointer"
-                    >
-                      <Play className="w-4 h-4 fill-white" />
-                      <span>Add YouTube Video Link</span>
-                    </button>
-                    <a
-                      href={transcriptPdfUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-4 py-2.5 bg-stone-800 hover:bg-stone-700 text-stone-300 hover:text-white text-xs sm:text-sm font-semibold rounded-xl border border-stone-700 transition-colors flex items-center gap-2"
-                    >
-                      <FileText className="w-4 h-4 text-[#3dabab]" />
-                      <span>Read Original Transcript (PDF)</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            )}
+            <iframe
+              key={`${currentYoutubeId}-${startSeconds}`}
+              src={`https://www.youtube-nocookie.com/embed/${currentYoutubeId}?start=${startSeconds}&autoplay=${isAutoPlay ? 1 : 0}&rel=0&modestbranding=1&vq=hd1080&hd=1&playsinline=1`}
+              title="Founder Mrs. Sreela Mitra Address - SpeakSmart Centre for Communication"
+              className="w-full h-full border-0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
           </div>
 
           {/* Interactive Chapter Quick-Jump Buttons */}
