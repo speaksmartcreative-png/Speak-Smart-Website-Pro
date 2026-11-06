@@ -1069,12 +1069,15 @@ export const WhatIsSpeakSmart: React.FC<WhatIsSpeakSmartProps> = ({
                 </div>
 
                 <div className="pt-2 flex items-center gap-4">
-                  <button
-                    onClick={onOpenRegister}
-                    className="px-6 py-3 text-sm font-bold text-white bg-[#3dabab] hover:bg-[#329696] rounded-md shadow-sm transition-all cursor-pointer"
+                  <a
+                    href="https://forms.gle/amSFYJ7xTY1oi97u8"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-6 py-3 text-sm font-bold text-white bg-[#3dabab] hover:bg-[#329696] rounded-md shadow-sm transition-all cursor-pointer inline-flex items-center gap-2"
                   >
-                    Enroll in SpeakSmart Cohort
-                  </button>
+                    <span>Enroll in SpeakSmart Cohort</span>
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
                   <button
                     onClick={() => {
                       setActiveTab('fourCs');

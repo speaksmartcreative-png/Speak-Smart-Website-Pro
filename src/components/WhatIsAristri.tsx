@@ -324,13 +324,15 @@ export const WhatIsAristri: React.FC<WhatIsAristriProps> = ({ onOpenRegister }) 
           </div>
 
           <div className="pt-2 flex flex-wrap items-center justify-center gap-4">
-            <button
-              onClick={onOpenRegister}
+            <a
+              href="https://forms.gle/amSFYJ7xTY1oi97u8"
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-8 py-3.5 text-sm font-bold text-white bg-[#3dabab] hover:bg-[#329696] active:scale-[0.98] rounded-md transition-all shadow-md hover:shadow-[#3dabab]/20 cursor-pointer inline-flex items-center gap-2"
             >
               <span>Register for ARISTRI™ Examination</span>
               <ArrowRight className="w-4 h-4" />
-            </button>
+            </a>
 
             <button
               onClick={() => setShowFullResolutionModal(true)}
@@ -390,15 +392,15 @@ export const WhatIsAristri: React.FC<WhatIsAristriProps> = ({ onOpenRegister }) 
               <div className="p-3 border-t border-stone-200 bg-stone-50 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-stone-600">
                 <span>Double Certification from Government of India (GOI) and SpeakSmart</span>
                 <div className="flex items-center gap-3">
-                  <button
-                    onClick={() => {
-                      setShowFullResolutionModal(false);
-                      onOpenRegister();
-                    }}
-                    className="font-bold text-[#1f5e5e] hover:text-[#3dabab] hover:underline cursor-pointer"
+                  <a
+                    href="https://forms.gle/amSFYJ7xTY1oi97u8"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setShowFullResolutionModal(false)}
+                    className="font-bold text-[#1f5e5e] hover:text-[#3dabab] hover:underline cursor-pointer inline-flex items-center gap-1"
                   >
-                    Proceed to Registration →
-                  </button>
+                    <span>Proceed to Registration →</span>
+                  </a>
                 </div>
               </div>
 

@@ -466,12 +466,15 @@ export const RulesSection: React.FC<RulesSectionProps> = ({
                 Mrs. Sreela Mitra (Founder, Director) · Ms. Vishakha Agarwal (Partner) · <a href="mailto:speaksmart.communication@gmail.com" className="text-[#3dabab] underline">speaksmart.communication@gmail.com</a> · <a href="tel:+919830064596" className="text-stone-700 dark:text-stone-300 font-bold">+91 98300 64596</a>
               </p>
             </div>
-            <button
-              onClick={onOpenRegister}
-              className="px-4 py-2.5 rounded-lg bg-[#3dabab] hover:bg-[#329696] text-white font-bold text-xs shadow-xs cursor-pointer shrink-0 transition-colors"
+            <a
+              href="https://forms.gle/amSFYJ7xTY1oi97u8"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2.5 rounded-lg bg-[#3dabab] hover:bg-[#329696] text-white font-bold text-xs shadow-xs cursor-pointer shrink-0 transition-colors inline-flex items-center gap-1.5"
             >
-              Student Registration for New Semester →
-            </button>
+              <span>Student Registration for New Semester</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
           </div>
         </div>
 

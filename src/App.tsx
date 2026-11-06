@@ -9,16 +9,20 @@ import { WhatIsAristri } from './components/WhatIsAristri';
 import { TestimonialsSection } from './components/TestimonialsSection';
 import { NoticeBoard } from './components/NoticeBoard';
 import { RulesSection } from './components/RulesSection';
-import { RegistrationModal } from './components/RegistrationModal';
 import { Footer } from './components/Footer';
 import { StageAtmosphere } from './components/StageAtmosphere';
 import { ChevronRight } from 'lucide-react';
 
+export const OFFICIAL_REGISTRATION_FORM_URL = 'https://forms.gle/amSFYJ7xTY1oi97u8';
+
 export default function App() {
   const [currentView, setCurrentView] = useState<PageView>('home');
-  const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [selectedNoticeModal, setSelectedNoticeModal] = useState<NoticeItem | null>(null);
   const [selectedRuleCategory, setSelectedRuleCategory] = useState<string>('rule-onboarding');
+
+  const handleOpenRegister = () => {
+    window.open(OFFICIAL_REGISTRATION_FORM_URL, '_blank', 'noopener,noreferrer');
+  };
 
   // Handle URL hash changes if user uses anchors or browser history
   useEffect(() => {
@@ -36,7 +40,10 @@ export default function App() {
       else if (hash === 'parent-testimonials') setCurrentView('parent-testimonials');
       else if (hash === 'updates' || hash === 'exams') setCurrentView('updates');
       else if (hash === 'rules') setCurrentView('rules');
-      else if (hash === 'register') setIsRegisterOpen(true);
+      else if (hash === 'register') {
+        window.open(OFFICIAL_REGISTRATION_FORM_URL, '_blank', 'noopener,noreferrer');
+        window.location.hash = '';
+      }
       else if (!hash) setCurrentView('home');
     };
 
@@ -102,7 +109,7 @@ export default function App() {
         <Navbar
           currentView={currentView}
           onNavigate={handleNavigate}
-          onOpenRegister={() => setIsRegisterOpen(true)}
+          onOpenRegister={handleOpenRegister}
         />
       </div>
 
@@ -198,53 +205,53 @@ export default function App() {
           <>
             {/* Hero Section with Quick Home Page Rules Buttons */}
             <Hero
-              onOpenRegister={() => setIsRegisterOpen(true)}
+              onOpenRegister={handleOpenRegister}
               onNavigate={handleNavigate}
               onSelectRuleCategory={handleSelectRuleCategory}
             />
 
             {/* What is SpeakSmart Section */}
             <WhatIsSpeakSmart
-              onOpenRegister={() => setIsRegisterOpen(true)}
+              onOpenRegister={handleOpenRegister}
               onNavigateAristri={() => handleNavigate('aristri')}
             />
 
             {/* What is Aristri Section */}
             <WhatIsAristri
-              onOpenRegister={() => setIsRegisterOpen(true)}
+              onOpenRegister={handleOpenRegister}
             />
 
             {/* Unified Testimonials Section (Sub-buttons for Student & Parent) */}
             <TestimonialsSection
               initialTab="students"
-              onOpenRegister={() => setIsRegisterOpen(true)}
+              onOpenRegister={handleOpenRegister}
             />
 
             {/* Updates / Notice Board (Exam dates, holidays) */}
             <NoticeBoard
               selectedNoticeModal={selectedNoticeModal}
               onCloseNoticeModal={() => setSelectedNoticeModal(null)}
-              onOpenRegister={() => setIsRegisterOpen(true)}
+              onOpenRegister={handleOpenRegister}
             />
 
             {/* Rules and Regulations Section */}
             <RulesSection
               selectedCategoryId={selectedRuleCategory}
-              onOpenRegister={() => setIsRegisterOpen(true)}
+              onOpenRegister={handleOpenRegister}
             />
           </>
         )}
 
         {currentView === 'aristri' && (
           <WhatIsAristri
-            onOpenRegister={() => setIsRegisterOpen(true)}
+            onOpenRegister={handleOpenRegister}
           />
         )}
 
         {(currentView === 'testimonials' || currentView === 'student-testimonials') && (
           <TestimonialsSection
             initialTab="students"
-            onOpenRegister={() => setIsRegisterOpen(true)}
+            onOpenRegister={handleOpenRegister}
             onTabChange={(tab) => {
               setCurrentView(tab === 'students' ? 'student-testimonials' : 'parent-testimonials');
               window.location.hash = tab === 'students' ? 'student-testimonials' : 'parent-testimonials';
@@ -255,7 +262,7 @@ export default function App() {
         {currentView === 'parent-testimonials' && (
           <TestimonialsSection
             initialTab="parents"
-            onOpenRegister={() => setIsRegisterOpen(true)}
+            onOpenRegister={handleOpenRegister}
             onTabChange={(tab) => {
               setCurrentView(tab === 'students' ? 'student-testimonials' : 'parent-testimonials');
               window.location.hash = tab === 'students' ? 'student-testimonials' : 'parent-testimonials';
@@ -267,28 +274,22 @@ export default function App() {
           <NoticeBoard
             selectedNoticeModal={selectedNoticeModal}
             onCloseNoticeModal={() => setSelectedNoticeModal(null)}
-            onOpenRegister={() => setIsRegisterOpen(true)}
+            onOpenRegister={handleOpenRegister}
           />
         )}
 
         {currentView === 'rules' && (
           <RulesSection
             selectedCategoryId={selectedRuleCategory}
-            onOpenRegister={() => setIsRegisterOpen(true)}
+            onOpenRegister={handleOpenRegister}
           />
         )}
       </main>
 
-      {/* 3. Student Registration Modal (Interactive Multi-Step Form) */}
-      <RegistrationModal
-        isOpen={isRegisterOpen}
-        onClose={() => setIsRegisterOpen(false)}
-      />
-
-      {/* 4. Footer */}
+      {/* Footer */}
       <Footer
         onNavigate={handleNavigate}
-        onOpenRegister={() => setIsRegisterOpen(true)}
+        onOpenRegister={handleOpenRegister}
         onSelectRuleCategory={handleSelectRuleCategory}
       />
     </div>

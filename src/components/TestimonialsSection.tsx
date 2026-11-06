@@ -577,12 +577,15 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
               Join the upcoming semester cohort at SpeakSmart, Kolkata. Strictly capped at 12 students per studio batch.
             </p>
           </div>
-          <button
-            onClick={onOpenRegister}
-            className="px-6 py-3 text-xs sm:text-sm font-bold text-white bg-[#3dabab] hover:bg-[#329696] rounded-md transition-all shadow-md hover:shadow-[#3dabab]/20 cursor-pointer whitespace-nowrap self-start sm:self-auto"
+          <a
+            href="https://forms.gle/amSFYJ7xTY1oi97u8"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-3 text-xs sm:text-sm font-bold text-white bg-[#3dabab] hover:bg-[#329696] rounded-md transition-all shadow-md hover:shadow-[#3dabab]/20 cursor-pointer whitespace-nowrap self-start sm:self-auto inline-flex items-center gap-2"
           >
-            Student Registration for New Semester
-          </button>
+            <span>Student Registration for New Semester</span>
+            <ExternalLink className="w-4 h-4" />
+          </a>
         </div>
 
         {/* Share Testimonial Modal */}

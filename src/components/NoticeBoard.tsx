@@ -156,12 +156,15 @@ export const NoticeBoard: React.FC<NoticeBoardProps> = ({
                 <span>Register for New Semester</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
-              <button
-                onClick={onOpenRegister}
-                className="px-5 py-2.5 rounded-lg text-xs font-bold text-[#1f5e5e] dark:text-[#4fd1d1] bg-stone-100 dark:bg-stone-800 hover:bg-stone-200 dark:hover:bg-stone-700 border border-stone-200 dark:border-stone-700 transition-all cursor-pointer"
+              <a
+                href="https://forms.gle/amSFYJ7xTY1oi97u8"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-5 py-2.5 rounded-lg text-xs font-bold text-[#1f5e5e] dark:text-[#4fd1d1] bg-stone-100 dark:bg-stone-800 hover:bg-stone-200 dark:hover:bg-stone-700 border border-stone-200 dark:border-stone-700 transition-all cursor-pointer inline-flex items-center gap-1.5"
               >
-                Book Diagnostic Speech Evaluation
-              </button>
+                <span>Book Diagnostic Speech Evaluation</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
               <a
                 href="https://wa.me/919830064596"
                 target="_blank"
