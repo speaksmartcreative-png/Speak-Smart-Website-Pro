@@ -4,7 +4,6 @@ import {
   Award, 
   CheckCircle2, 
   MessageSquarePlus, 
-  Heart, 
   Sparkles, 
   Filter, 
   GraduationCap, 
@@ -224,11 +223,10 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
                 }`}
               >
                 <Users className={`w-4 h-4 ${activeTab === 'parents' ? 'text-[#3dabab]' : 'text-stone-400'}`} />
-                <span>Parent Testimonials</span>
-                <span className={`text-[11px] px-2 py-0.5 rounded-full font-mono font-bold ${
+                <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${
                   activeTab === 'parents' ? 'bg-[#3dabab]/15 text-[#1f5e5e] dark:text-[#4fd1d1]' : 'bg-stone-200 dark:bg-stone-800 text-stone-600 dark:text-stone-300'
                 }`}>
-                  {filteredParents.length}
+                  In Studio
                 </span>
               </button>
             </div>
@@ -466,93 +464,32 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
         {/* PARENTS TESTIMONIAL VIEW */}
         {/* ======================================================== */}
         {activeTab === 'parents' && (
-          <div className="space-y-8">
-            {/* Friendly parent notice */}
-            <div className="bg-teal-50 dark:bg-[#071d20] border-l-4 border-[#3dabab] p-4 rounded-r-xl shadow-xs flex items-start gap-3">
-              <Sparkles className="w-5 h-5 text-[#0d9488] dark:text-[#2dd4bf] shrink-0 mt-0.5" />
-              <div className="text-xs sm:text-sm text-stone-900 dark:text-stone-100">
-                <p className="font-bold text-[#0f766e] dark:text-[#4fd1d1]">Parent Community Feedback</p>
-                <p className="text-stone-700 dark:text-stone-300 mt-0.5">
-                  Parent video interviews are currently in production and will be shared soon. In the meantime, explore verified written parent reflections below and check out the 18 authentic student scholar portraits above.
-                </p>
-              </div>
+          <div className="py-12 px-6 sm:px-10 rounded-2xl bg-white dark:bg-[#0c2024]/90 border border-stone-200 dark:border-stone-800 text-center space-y-4 max-w-3xl mx-auto shadow-sm">
+            <div className="w-14 h-14 mx-auto rounded-2xl bg-[#3dabab]/15 text-[#0d9488] dark:text-[#2dd4bf] border border-[#3dabab]/30 flex items-center justify-center">
+              <Users className="w-7 h-7" />
             </div>
-
-            {/* Visual spotlight banner for Parents */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white dark:bg-[#0c2024]/90 p-6 sm:p-8 rounded-2xl border border-stone-200 dark:border-stone-800 shadow-sm">
-              <div className="lg:col-span-4 rounded-xl overflow-hidden border border-stone-200 dark:border-stone-700 shadow-sm">
-                <img
-                  src="/src/assets/images/parent_student_coaching_1793341838500.jpg"
-                  alt="SpeakSmart parent and teacher encouraging student speaker"
-                  referrerPolicy="no-referrer"
-                  className="w-full h-64 sm:h-72 object-cover object-top"
-                />
-              </div>
-              <div className="lg:col-span-8 space-y-4">
-                <div className="flex items-center gap-2 text-xs text-[#3dabab] font-bold uppercase tracking-wider">
-                  <Heart className="w-4 h-4 text-[#3dabab]" />
-                  <span>Parent Perspectives & Life Impact</span>
-                </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-black dark:text-white font-display">
-                  &ldquo;The single most impactful extracurricular investment we made in our daughter&apos;s education.&rdquo;
-                </h3>
-                <p className="text-sm text-stone-700 dark:text-stone-300 leading-relaxed italic">
-                  &ldquo;Before SpeakSmart, my daughter would retreat into the background. She would rather take a lower grade than volunteer for group presentations. Watching her command the room at the SpeakSmart Showcase with poise, comedic timing, and deep conviction brought us to tears. Her school teachers noticed the change immediately.&rdquo;
-                </p>
-                <div className="pt-2 flex flex-wrap items-center justify-between gap-4 border-t border-stone-100 dark:border-stone-800 text-xs">
-                  <div>
-                    <p className="font-bold text-black dark:text-white">Pooja Agarwal</p>
-                    <p className="text-stone-500 dark:text-stone-400">Parent of SpeakSmart Junior & Teen Scholars · Kolkata</p>
-                  </div>
-                  <span className="font-semibold text-black dark:text-stone-200 bg-stone-100 dark:bg-stone-800 px-3 py-1 rounded border border-stone-200 dark:border-stone-700">
-                    Outcome: Stage Confidence & School Captaincy
-                  </span>
-                </div>
-              </div>
+            <div>
+              <h3 className="text-xl sm:text-2xl font-bold text-stone-950 dark:text-white font-display">
+                Parent Video Reflections in Studio Production
+              </h3>
+              <p className="text-stone-600 dark:text-stone-300 text-xs sm:text-sm mt-2 leading-relaxed max-w-xl mx-auto">
+                Official parent video interviews and written reflections from our Kolkata campus are currently being recorded and compiled. In the meantime, explore our 18 verified student testimonials, or submit your own experience via our review portal.
+              </p>
             </div>
-
-            {/* Grid of Parent Testimonials */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredParents.map((pt) => (
-                <div
-                  key={pt.id}
-                  className="p-6 rounded-xl bg-white dark:bg-[#0c2024]/90 border border-stone-200 dark:border-stone-800 hover:border-[#3dabab] hover:shadow-md transition-all flex flex-col justify-between"
-                >
-                  <div>
-                    <div className="flex items-center justify-between gap-2 mb-3">
-                      <div className="flex items-center gap-1 text-amber-500">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-                        ))}
-                      </div>
-                      <span className="text-[11px] font-bold text-stone-500 dark:text-stone-400">
-                        {pt.location}
-                      </span>
-                    </div>
-
-                    <blockquote className="text-xs sm:text-sm text-stone-800 dark:text-stone-200 leading-relaxed mb-4 italic">
-                      &ldquo;{pt.quote}&rdquo;
-                    </blockquote>
-                  </div>
-
-                  <div className="pt-4 border-t border-stone-100 dark:border-stone-800">
-                    <div className="flex items-center gap-3">
-                      <div className="w-9 h-9 rounded-full bg-[#ebf7f7] dark:bg-[#133036] text-[#1f5e5e] dark:text-[#4fd1d1] flex items-center justify-center text-xs font-bold shrink-0 border border-[#3dabab]/40">
-                        {pt.avatarInitials}
-                      </div>
-                      <div className="overflow-hidden">
-                        <p className="text-xs font-bold text-stone-900 dark:text-white truncate">{pt.parentName}</p>
-                        <p className="text-[11px] text-stone-500 dark:text-stone-400 truncate">Parent of {pt.childName} ({pt.childGrade})</p>
-                      </div>
-                    </div>
-                    {pt.outcomeMetric && (
-                      <div className="mt-2 text-[11px] font-semibold text-[#1f5e5e] dark:text-[#4fd1d1] bg-[#3dabab]/10 px-2 py-1 rounded border border-[#3dabab]/30 truncate">
-                        ✓ {pt.outcomeMetric}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              ))}
+            <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
+              <button
+                onClick={() => handleTabSwitch('students')}
+                className="px-5 py-2.5 bg-[#3dabab] hover:bg-[#329696] text-white text-xs sm:text-sm font-bold rounded-xl transition-all cursor-pointer shadow-sm flex items-center gap-2"
+              >
+                <GraduationCap className="w-4 h-4" />
+                <span>View Verified Student Transformations ({studentList.length})</span>
+              </button>
+              <a
+                href="#submit-review"
+                className="px-5 py-2.5 bg-stone-100 dark:bg-stone-800 hover:bg-stone-200 dark:hover:bg-stone-700 text-stone-800 dark:text-stone-200 text-xs sm:text-sm font-bold rounded-xl transition-all cursor-pointer border border-stone-200 dark:border-stone-700"
+              >
+                <span>Share a Parent Review</span>
+              </a>
             </div>
           </div>
         )}

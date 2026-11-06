@@ -244,63 +244,8 @@ export const STUDENT_TESTIMONIALS: StudentTestimonial[] = [
   }
 ];
 
-export const PARENT_TESTIMONIALS: ParentTestimonial[] = [
-  {
-    id: 'pt-01',
-    parentName: 'Eleanor Vance',
-    childName: 'Chloe Vance',
-    childGrade: 'High School Senior · 17 yrs',
-    programEnrolled: 'Aristri Honors Rhetoric & Debate',
-    quote: 'As a parent, you worry when your daughter shrinks into the background despite having brilliant ideas. Enrolling Chloe at SpeakSmart was the single most impactful investment we made in her schooling. Within a single semester, she found her voice, commanded the room, and carried herself with remarkable grace.',
-    outcomeMetric: 'Secured full merit scholarship & 1st place in state debate',
-    location: 'Metropolitan District',
-    avatarInitials: 'EV'
-  },
-  {
-    id: 'pt-02',
-    parentName: 'Rajesh & Sunita Sharma',
-    childName: 'Aarav Sharma',
-    childGrade: 'Middle School · 13 yrs',
-    programEnrolled: 'SpeakSmart Teen Communicators',
-    quote: 'Aarav was excruciatingly shy. He would avoid family gatherings and dreaded oral presentations at school. The coaches at SpeakSmart showed endless patience, positive reinforcement, and structured step-by-step techniques. Watching him host the school assembly last week brought happy tears to our eyes.',
-    outcomeMetric: 'Overcame social stage fright; selected as school assembly host',
-    location: 'North Suburbs',
-    avatarInitials: 'RS'
-  },
-  {
-    id: 'pt-03',
-    parentName: 'Dr. Marcus Adebayo',
-    childName: 'David Adebayo',
-    childGrade: 'Elementary School · 10 yrs',
-    programEnrolled: 'Junior Communicators Foundation',
-    quote: 'Children today spend so much time on digital screens that verbal eloquence is becoming a lost art. SpeakSmart bridges that gap with incredible energy and warmth. David now speaks with clarity, looks people in the eye, and articulates his points with mature logic.',
-    outcomeMetric: 'Exceptional verbal expression & leadership growth',
-    location: 'West Campus Area',
-    avatarInitials: 'MA'
-  },
-  {
-    id: 'pt-04',
-    parentName: 'Priya & Vikram Merchant',
-    childName: 'Rhea Merchant',
-    childGrade: 'Grade 10 · 15 yrs',
-    programEnrolled: 'Aristri Leadership & Public Forum',
-    quote: 'What sets SpeakSmart apart from standard speech coaches is their scientific approach: audio diagnostics, posture alignment, and ethos/pathos/logos debate frameworks. Rhea did not just learn to speak well—she learned to think critically under pressure.',
-    outcomeMetric: 'Elected Student President; commended for diplomatic negotiation',
-    location: 'Central District',
-    avatarInitials: 'PM'
-  },
-  {
-    id: 'pt-05',
-    parentName: 'Catherine Miller',
-    childName: 'Lucas Miller',
-    childGrade: 'Grade 6 · 11 yrs',
-    programEnrolled: 'SpeakSmart Voice & Impromptu Track',
-    quote: 'Lucas had a subtle lisp and was teased in 4th grade, which made him retreat into silence. SpeakSmart vocal therapists and public speaking mentors built up his confidence brick by brick. His diction is now crisp, resonant, and confident.',
-    outcomeMetric: 'Diction correction and total self-confidence restored',
-    location: 'South Hills',
-    avatarInitials: 'CM'
-  }
-];
+// Authentic parent testimonials are in production; synthetic entries cleared
+export const PARENT_TESTIMONIALS: ParentTestimonial[] = [];
 
 export const RULES_AND_REGULATIONS: RuleCategory[] = [
   {
@@ -481,40 +426,40 @@ export const PROGRAMS_LIST = [
     id: 'prog-junior',
     name: 'SpeakSmart Junior Communicators',
     ageRange: 'Ages 7 – 10 (Grades 2 – 5)',
-    duration: '16-Week Semester · 2 hrs / week',
+    duration: 'Weekly Studio Sessions · 2 hrs / week',
     focus: 'Overcoming Shyness, Vocal Projection, Creative Storytelling & Stage Body Language',
     batches: ['Saturday 09:30 AM – 11:30 AM', 'Sunday 10:00 AM – 12:00 PM', 'Tuesday 04:30 PM – 06:30 PM'],
-    fee: '$480 / semester (Includes workbook, studio recordings & showcase entry)',
+    fee: '₹4,000 / month (One-time admission: ₹2,000)',
     badge: 'Foundation Speaking'
   },
   {
     id: 'prog-teen',
     name: 'SpeakSmart Teen Communicators',
     ageRange: 'Ages 11 – 14 (Grades 6 – 8)',
-    duration: '16-Week Semester · 2.5 hrs / week',
+    duration: 'Weekly Studio Sessions · 2.5 hrs / week',
     focus: 'Thought Architecture, Extempore Speaking, Class Presentations, Debate Basics & Interview Composure',
     batches: ['Saturday 01:00 PM – 03:30 PM', 'Sunday 02:00 PM – 04:30 PM', 'Thursday 05:00 PM – 07:30 PM'],
-    fee: '$560 / semester (Includes studio diagnostics & mid-term jury)',
+    fee: '₹4,000 / month (One-time admission: ₹2,000)',
     badge: 'Core Speaking'
   },
   {
     id: 'prog-aristri',
     name: 'ARISTRI™ Public Speaking & Communication Skills Examination',
     ageRange: 'Ages 12 – 19 & Emerging Leaders',
-    duration: '16-Week Multilevel Skill System · Live Practical Testing',
+    duration: 'Multilevel Skill System · Live Practical Testing',
     focus: 'Presenting Ideas, Arguments, Negotiations & Pitching, Live On-the-Spot Individual Examiner Assessments',
     batches: ['Saturday 04:00 PM – 07:00 PM', 'Sunday 04:30 PM – 07:30 PM', 'Wednesday 05:30 PM – 08:30 PM'],
-    fee: '$680 / semester (Includes Double Certification from GOI & SpeakSmart, Written Task Feedback & Exam Slot)',
+    fee: '₹4,000 / month (Includes Double Certification from GOI & SpeakSmart)',
     badge: 'ARISTRI™ GOI Certified'
   },
   {
     id: 'prog-weekend-bootcamp',
     name: 'SpeakSmart Impromptu & Extempore Intensive',
     ageRange: 'All Ages (Split Cohorts)',
-    duration: '6-Week Rapid Bootcamp · 2 hrs / week',
+    duration: 'Studio Intensive Sessions · 2 hrs / week',
     focus: 'Zero-Hesitation Thinking, Table Topics, Eliminating Filler Words & Quick Rebuttals',
     batches: ['Friday 05:00 PM – 07:00 PM', 'Sunday 11:30 AM – 01:30 PM'],
-    fee: '$290 / bootcamp',
+    fee: '₹4,000 / month',
     badge: 'Specialized Skill'
   }
 ];
